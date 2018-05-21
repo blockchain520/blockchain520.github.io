@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="Swift,UIKit,RxSwift," />
+  <meta name="keywords" content="Swift,RxSwift,UIKit," />
 
 
 
@@ -95,7 +95,7 @@
 
 
 <meta name="description" content="RxSwift RxSwift 是一个用于与 Swift 语言交互的框架，但它只是基础，并不能用来进行用户交互、网络请求等。   而 RxCocoa 是让 Cocoa APIs 更容易使用响应式编程的一个框架。RxCocoa 能够让我们方便地进行响应式网络请求、响应式的用户交互、绑定数据模型到 UI 控件等等。而且大多数的 UIKit 控件都有响应式扩展，它们都是通过 rx 属性进行使用  UIL">
-<meta name="keywords" content="Swift,UIKit,RxSwift">
+<meta name="keywords" content="Swift,RxSwift,UIKit">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxSwift-UIKit-UILabel-响应式扩展-01">
 <meta property="og:url" content="http://yoursite.com/2017/12/15/Swift/RxSwift/UIKit/UILabel-01/index.html">
@@ -103,7 +103,7 @@
 <meta property="og:description" content="RxSwift RxSwift 是一个用于与 Swift 语言交互的框架，但它只是基础，并不能用来进行用户交互、网络请求等。   而 RxCocoa 是让 Cocoa APIs 更容易使用响应式编程的一个框架。RxCocoa 能够让我们方便地进行响应式网络请求、响应式的用户交互、绑定数据模型到 UI 控件等等。而且大多数的 UIKit 控件都有响应式扩展，它们都是通过 rx 属性进行使用  UIL">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/Rxswift-uilabel-01.gif">
-<meta property="og:updated_time" content="2018-05-21T07:03:05.613Z">
+<meta property="og:updated_time" content="2018-05-21T07:06:49.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxSwift-UIKit-UILabel-响应式扩展-01">
 <meta name="twitter:description" content="RxSwift RxSwift 是一个用于与 Swift 语言交互的框架，但它只是基础，并不能用来进行用户交互、网络请求等。   而 RxCocoa 是让 Cocoa APIs 更容易使用响应式编程的一个框架。RxCocoa 能够让我们方便地进行响应式网络请求、响应式的用户交互、绑定数据模型到 UI 控件等等。而且大多数的 UIKit 控件都有响应式扩展，它们都是通过 rx 属性进行使用  UIL">
@@ -423,7 +423,11 @@
 <h1 id="UILabel"><a href="#UILabel" class="headerlink" title="UILabel"></a>UILabel</h1><blockquote>
 <p>disposeBag</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">    <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">&gt; <span class="type">UI</span>- 显示时间lab</span><br><span class="line"></span><br><span class="line">```swift</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">fileprivate</span> <span class="built_in">lazy</span>  <span class="keyword">var</span> timeLabel: <span class="type">UILabel</span>  = &#123;</span><br><span class="line">        <span class="keyword">let</span> timeLabel = <span class="type">UILabel</span>()</span><br><span class="line">        timeLabel.frame = <span class="type">CGRect</span>(x:<span class="number">30</span>,y:<span class="number">40</span>,width:<span class="number">300</span>,height:<span class="number">111</span>)</span><br><span class="line">        <span class="keyword">return</span> timeLabel</span><br><span class="line">    &#125;()</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>UI- 显示时间lab</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span>  <span class="keyword">var</span> timeLabel: <span class="type">UILabel</span>  = &#123;</span><br><span class="line">    <span class="keyword">let</span> timeLabel = <span class="type">UILabel</span>()</span><br><span class="line">    timeLabel.frame = <span class="type">CGRect</span>(x:<span class="number">30</span>,y:<span class="number">40</span>,width:<span class="number">300</span>,height:<span class="number">111</span>)</span><br><span class="line">    <span class="keyword">return</span> timeLabel</span><br><span class="line">&#125;()</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>显示彩色时间lab</p>
 </blockquote>
@@ -462,9 +466,9 @@
           
             <a href="/tags/Swift/" rel="tag"># Swift</a>
           
-            <a href="/tags/UIKit/" rel="tag"># UIKit</a>
-          
             <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+            <a href="/tags/UIKit/" rel="tag"># UIKit</a>
           
         </div>
       
@@ -477,8 +481,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/15/Swift/RxSwift/Grammar/01-基本介绍&安装配置/" rel="next" title="RxSwift-基本介绍&安装配置-01">
-                <i class="fa fa-chevron-left"></i> RxSwift-基本介绍&安装配置-01
+              <a href="/2017/12/14/Swift/Swift/UIKit/UIImagePickerController/" rel="next" title="Swift-UIKit-UIImagePickerController">
+                <i class="fa fa-chevron-left"></i> Swift-UIKit-UIImagePickerController
               </a>
             
           </div>
@@ -487,8 +491,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/15/Swift/RxSwift/Grammar/02-Observables/" rel="prev" title="RxSwift-Grammar-Observables-02">
-                RxSwift-Grammar-Observables-02 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/15/Swift/RxSwift/Grammar/01-基本介绍&安装配置/" rel="prev" title="RxSwift-基本介绍&安装配置-01">
+                RxSwift-基本介绍&安装配置-01 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
