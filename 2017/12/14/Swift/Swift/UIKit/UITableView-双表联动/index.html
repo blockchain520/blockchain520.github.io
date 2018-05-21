@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Swift,UIKit,UITableView," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="FFTableViewCtl.swift协议class FFTableViewCtl: UIViewController, UITableViewDataSource, UITableViewDelegate&amp;#123;&amp;#125; 声明变量 左侧 菜单分类数据源  fileprivate lazy var categoryData = [FFCategoryModel]()  右侧，某类型具体菜">
+<meta name="keywords" content="Swift,UIKit,UITableView">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-UIKit-UITableView-双表联动">
+<meta property="og:url" content="http://yoursite.com/2017/12/14/Swift/Swift/UIKit/UITableView-双表联动/index.html">
+<meta property="og:site_name" content="💖区块链💖 💖随心记💖">
+<meta property="og:description" content="FFTableViewCtl.swift协议class FFTableViewCtl: UIViewController, UITableViewDataSource, UITableViewDelegate&amp;#123;&amp;#125; 声明变量 左侧 菜单分类数据源  fileprivate lazy var categoryData = [FFCategoryModel]()  右侧，某类型具体菜">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-14T09:18:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-UIKit-UITableView-双表联动">
+<meta name="twitter:description" content="FFTableViewCtl.swift协议class FFTableViewCtl: UIViewController, UITableViewDataSource, UITableViewDelegate&amp;#123;&amp;#125; 声明变量 左侧 菜单分类数据源  fileprivate lazy var categoryData = [FFCategoryModel]()  右侧，某类型具体菜">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/14/Swift/Swift/UIKit/UITableView-双表联动/"/>
+
+
+
+
+
+  <title>Swift-UIKit-UITableView-双表联动 | 💖区块链💖 💖随心记💖</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">💖区块链💖 💖随心记💖</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/Swift/Swift/UIKit/UITableView-双表联动/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YKK">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="💖区块链💖 💖随心记💖">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-UIKit-UITableView-双表联动</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T16:53:17+08:00">
+                2017-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/UIKit/" itemprop="url" rel="index">
+                    <span itemprop="name">UIKit</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/UIKit/UITableView/" itemprop="url" rel="index">
+                    <span itemprop="name">UITableView</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="FFTableViewCtl-swift"><a href="#FFTableViewCtl-swift" class="headerlink" title="FFTableViewCtl.swift"></a>FFTableViewCtl.swift</h1><h2 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FFTableViewCtl</span>: <span class="title">UIViewController</span>, <span class="title">UITableViewDataSource</span>, <span class="title">UITableViewDelegate</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h2><blockquote>
+<p>左侧 菜单分类数据源</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> categoryData = [<span class="type">FFCategoryModel</span>]()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>右侧，某类型具体菜单详情</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> foodData     = [[<span class="type">FFFoodModel</span>]]()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>记录当前选择分类（菜类型）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fileprivate</span>  <span class="keyword">var</span> selectIndex  = <span class="number">0</span>   <span class="comment">//默认选择 0</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>记录是否向下滚动</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fileprivate</span>  <span class="keyword">var</span> isScrollDown = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>记录最后Y方向偏移量</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fileprivate</span>  <span class="keyword">var</span> lastOffsetY : <span class="type">CGFloat</span> = <span class="number">0.0</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>左侧TableView表</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> leftTableView : <span class="type">UITableView</span> = &#123;</span><br><span class="line">    <span class="keyword">let</span> leftTableView = <span class="type">UITableView</span>()</span><br><span class="line">    leftTableView.delegate = <span class="keyword">self</span></span><br><span class="line">    leftTableView.dataSource = <span class="keyword">self</span></span><br><span class="line">    </span><br><span class="line">    leftTableView.frame = <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">80</span>, height: <span class="type">UIScreen</span>.main.bounds.height)</span><br><span class="line">    leftTableView.rowHeight = <span class="number">55</span></span><br><span class="line">    leftTableView.showsVerticalScrollIndicator = <span class="literal">false</span></span><br><span class="line">    leftTableView.separatorColor = <span class="type">UIColor</span>.clear</span><br><span class="line">    leftTableView.register(<span class="type">FFLeftTableViewCell</span>.<span class="keyword">self</span>, forCellReuseIdentifier: <span class="string">"FFLeftTableViewCell"</span>)</span><br><span class="line">    <span class="keyword">return</span> leftTableView</span><br><span class="line">&#125;()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>右侧TableView表</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">   <span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> rightTableView : <span class="type">UITableView</span> = &#123;</span><br><span class="line">    <span class="keyword">let</span> rightTableView = <span class="type">UITableView</span>()</span><br><span class="line">    rightTableView.delegate = <span class="keyword">self</span></span><br><span class="line">    rightTableView.dataSource = <span class="keyword">self</span></span><br><span class="line">    rightTableView.frame = <span class="type">CGRect</span>(x: <span class="number">80</span>, y: <span class="number">64</span>, width: <span class="type">UIScreen</span>.main.bounds.width - <span class="number">80</span>, height: <span class="type">UIScreen</span>.main.bounds.height - <span class="number">64</span>)</span><br><span class="line">    rightTableView.rowHeight = <span class="number">80</span></span><br><span class="line">    rightTableView.showsVerticalScrollIndicator = <span class="literal">false</span></span><br><span class="line">    rightTableView.register(<span class="type">FFRightTableViewCell</span>.<span class="keyword">self</span>, forCellReuseIdentifier: <span class="string">"FFRightTableViewCell"</span>)</span><br><span class="line">    <span class="keyword">return</span> rightTableView</span><br><span class="line">&#125;()</span><br></pre></td></tr></table></figure>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">extension</span> <span class="title">FFTableViewCtl</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">fileprivate</span> <span class="function"><span class="keyword">func</span> <span class="title">configureData</span> <span class="params">()</span></span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">guard</span></span><br><span class="line">            <span class="keyword">let</span> path = <span class="type">Bundle</span>.main.path(forResource: <span class="string">"meituan"</span>, ofType: <span class="string">"json"</span>)</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">guard</span></span><br><span class="line">            <span class="keyword">let</span> data = <span class="type">NSData</span>(contentsOfFile: path) <span class="keyword">as</span> <span class="type">Data</span>?</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">guard</span></span><br><span class="line">            <span class="keyword">let</span> anyObject = <span class="keyword">try</span>? <span class="type">JSONSerialization</span>.jsonObject(with: data,</span><br><span class="line">                                                              options: .mutableContainers)</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">guard</span></span><br><span class="line">            <span class="keyword">let</span> dict = anyObject <span class="keyword">as</span>? [<span class="type">String</span> : <span class="type">Any</span>]</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">guard</span></span><br><span class="line">            <span class="keyword">let</span> datas = dict[<span class="string">"data"</span>] <span class="keyword">as</span>? [<span class="type">String</span> : <span class="type">Any</span>]</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">guard</span></span><br><span class="line">            <span class="keyword">let</span> foods = datas[<span class="string">"food_spu_tags"</span>] <span class="keyword">as</span>? [[<span class="type">String</span> : <span class="type">Any</span>]]</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"<span class="subst">\(foods)</span>"</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> food <span class="keyword">in</span> foods &#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">let</span> model = <span class="type">FFCategoryModel</span>(dict: food)</span><br><span class="line">            categoryData.append(model)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">guard</span></span><br><span class="line">                <span class="keyword">let</span> spus = model.spus</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">var</span> datas = [<span class="type">FFFoodModel</span>]()</span><br><span class="line">            <span class="keyword">for</span> fModel <span class="keyword">in</span> spus &#123;</span><br><span class="line">                datas.append(fModel)</span><br><span class="line">            &#125;</span><br><span class="line">           foodData.append(datas)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="TableView-2个协议-实现"><a href="#TableView-2个协议-实现" class="headerlink" title="TableView 2个协议 实现"></a>TableView 2个协议 实现</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">FFTableViewCtl</span> </span>&#123;<span class="comment">//DataSource //Delegate &#125;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>行</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, numberOfRowsInSection section: Int)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> leftTableView == tableView&#123;</span><br><span class="line">        <span class="keyword">return</span> categoryData.<span class="built_in">count</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> foodData[section].<span class="built_in">count</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>cell</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, cellForRowAt indexPath: IndexPath)</span></span> -&gt; <span class="type">UITableViewCell</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> leftTableView == tableView &#123;</span><br><span class="line">        <span class="keyword">let</span> cell = tableView.dequeueReusableCell(withIdentifier: <span class="string">"FFLeftTableViewCell"</span>,</span><br><span class="line">                                                 <span class="keyword">for</span>: indexPath)<span class="keyword">as</span>! <span class="type">FFLeftTableViewCell</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> model  = categoryData[indexPath.row]</span><br><span class="line">        cell.nameLab.text = model.name</span><br><span class="line">        <span class="keyword">return</span> cell</span><br><span class="line">        </span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> cell = tableView.dequeueReusableCell(withIdentifier: <span class="string">"FFRightTableViewCell"</span>, <span class="keyword">for</span>: indexPath) <span class="keyword">as</span>! <span class="type">FFRightTableViewCell</span></span><br><span class="line">        <span class="keyword">let</span> model = foodData[indexPath.section][indexPath.row]</span><br><span class="line">        cell.setDatas(model: model)</span><br><span class="line">        <span class="keyword">return</span> cell</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>区 数</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">numberOfSections</span><span class="params">(<span class="keyword">in</span> tableView: UITableView)</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> leftTableView == tableView &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> categoryData.<span class="built_in">count</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 区 view- 设置</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, viewForHeaderInSection section: Int)</span></span> -&gt; <span class="type">UIView</span>? &#123;</span><br><span class="line">    <span class="keyword">if</span> leftTableView == tableView &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> headerView = <span class="type">FFTableViewHeaderView</span>(frame: <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="type">UIScreen</span>.main.bounds.width, height: <span class="number">20</span>))</span><br><span class="line">        <span class="keyword">let</span> model = categoryData[section]</span><br><span class="line">        headerView.nameLab.text = model.name</span><br><span class="line">        <span class="keyword">return</span> headerView</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 区头view - 区高</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, heightForHeaderInSection section: Int)</span></span> -&gt; <span class="type">CGFloat</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> leftTableView == tableView &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">20</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>区头view - 即将展示</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)</span></span> &#123;</span><br><span class="line">    <span class="comment">// 当前的 tableView 是 FFRightTableView，FFRightTableView 滚动的方向向上，FFRightTableView 是用户拖拽而产生滚动的（（主要判断 RightTableView 用户拖拽而滚动的，还是点击 FFLeftTableView 而滚动的）</span></span><br><span class="line">    <span class="keyword">if</span>(rightTableView == tableView)</span><br><span class="line">        &amp;&amp; !isScrollDown</span><br><span class="line">        &amp;&amp; (rightTableView.isDragging || rightTableView.isDecelerating)&#123;</span><br><span class="line">        selectRow(index: section)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>区头view - 展示结束</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int)</span></span> &#123;</span><br><span class="line">    <span class="comment">// 当前的 tableView 是 FFRightTableView，FFRightTableView 滚动的方向向下，FFRightTableView 是用户拖拽而产生滚动的（（主要判断 RightTableView 用户拖拽而滚动的，还是点击 FFLeftTableView 而滚动的）</span></span><br><span class="line">    <span class="keyword">if</span> (rightTableView == tableView)</span><br><span class="line">        &amp;&amp; isScrollDown</span><br><span class="line">        &amp;&amp; (rightTableView.isDragging || rightTableView.isDecelerating) &#123;</span><br><span class="line">        selectRow(index: section + <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>didSelct - 选择cell</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, didSelectRowAt indexPath: IndexPath)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> leftTableView == tableView &#123;</span><br><span class="line">        selectIndex = indexPath.row</span><br><span class="line">        <span class="keyword">self</span>.scrollToTop(section: selectIndex, animated: <span class="literal">true</span>)</span><br><span class="line">        leftTableView.scrollToRow(at: <span class="type">IndexPath</span>(row: selectIndex, section: <span class="number">0</span>), at: .top, animated: <span class="literal">true</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>scrollViewDidScroll<br>标记一下 RightTableView 的滚动方向，是向上还是向下</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">scrollViewDidScroll</span><span class="params">(<span class="number">_</span> scrollView: UIScrollView)</span></span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> tableView = scrollView <span class="keyword">as</span>! <span class="type">UITableView</span></span><br><span class="line">    <span class="keyword">if</span> rightTableView == tableView &#123;</span><br><span class="line">        isScrollDown = lastOffsetY &lt; scrollView.contentOffset.y</span><br><span class="line">        lastOffsetY = scrollView.contentOffset.y</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="private-私有方法"><a href="#private-私有方法" class="headerlink" title="private 私有方法"></a>private 私有方法</h2><blockquote>
+<p>selectRow 当拖动右边TableView，处理左边 TableView</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">func</span> <span class="title">selectRow</span><span class="params">(index:Int)</span></span>&#123;</span><br><span class="line">    leftTableView.selectRow(at: <span class="type">IndexPath</span>(row: index,</span><br><span class="line">                                          section: <span class="number">0</span>),</span><br><span class="line">                            animated: <span class="literal">true</span>,</span><br><span class="line">                            scrollPosition: .top)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>scrollToTop</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fileprivate</span> <span class="function"><span class="keyword">func</span> <span class="title">scrollToTop</span><span class="params">(section:Int,animated: Bool)</span></span> &#123;</span><br><span class="line">    <span class="keyword">let</span> headerRect = rightTableView.rect(forSection: section)</span><br><span class="line">    <span class="keyword">let</span> topHeader = <span class="type">CGPoint</span>(x: <span class="number">0</span>, y: headerRect.origin.y - rightTableView.contentInset.top)</span><br><span class="line">    rightTableView.setContentOffset(topHeader, animated: animated)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="FFLeftTableViewCell-swift"><a href="#FFLeftTableViewCell-swift" class="headerlink" title="FFLeftTableViewCell.swift"></a>FFLeftTableViewCell.swift</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">import</span> UIKit</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FFLeftTableViewCell</span>: <span class="title">UITableViewCell</span> </span>&#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">awakeFromNib</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.awakeFromNib()</span><br><span class="line">        <span class="comment">// Initialization code</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">lazy</span> <span class="keyword">var</span> nameLab = <span class="type">UILabel</span>()</span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">lazy</span> <span class="keyword">var</span> yellowView = <span class="type">UIView</span>()</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span> (style:<span class="type">UITableViewCellStyle</span>,reuseIdentifier:<span class="type">String</span>?)&#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(style: style, reuseIdentifier: reuseIdentifier)</span><br><span class="line">        selectionStyle = .<span class="keyword">none</span></span><br><span class="line">        initUI()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">        <span class="built_in">fatalError</span>(<span class="string">"init(coder:) has not been implemented"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">initUI</span><span class="params">()</span></span> &#123;</span><br><span class="line">        nameLab.frame = <span class="type">CGRect</span>(x: <span class="number">10</span>, y: <span class="number">10</span>, width: <span class="number">60</span>, height: <span class="number">40</span>)</span><br><span class="line">        nameLab.numberOfLines = <span class="number">0</span></span><br><span class="line">        nameLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">15</span>)</span><br><span class="line">        nameLab.textColor = <span class="type">UIColor</span>(<span class="number">130</span>, <span class="number">130</span>, <span class="number">130</span>)</span><br><span class="line">        nameLab.highlightedTextColor = <span class="type">UIColor</span>(<span class="number">253</span>, <span class="number">212</span>, <span class="number">49</span>)</span><br><span class="line">        contentView.addSubview(nameLab)</span><br><span class="line">        </span><br><span class="line">        yellowView.frame = <span class="type">CGRect</span>(x:<span class="number">0</span>,y:<span class="number">5</span>,width:<span class="number">5</span>,height:<span class="number">45</span>)</span><br><span class="line">        yellowView.backgroundColor = <span class="type">UIColor</span>(<span class="number">253</span>, <span class="number">212</span>, <span class="number">49</span>)</span><br><span class="line">        contentView.addSubview(yellowView)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">setSelected</span><span class="params">(<span class="number">_</span> selected: Bool, animated: Bool)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.setSelected(selected, animated: animated)</span><br><span class="line">        <span class="comment">// Configure the view for the selected state</span></span><br><span class="line">        </span><br><span class="line">        contentView.backgroundColor = selected ? <span class="type">UIColor</span>.white : <span class="type">UIColor</span>(white: <span class="number">0</span>, alpha: <span class="number">0.1</span>)</span><br><span class="line">        isHighlighted = selected</span><br><span class="line">        nameLab.isHighlighted = selected</span><br><span class="line">        yellowView.isHidden = !selected</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="FFRightTableViewCell-swift"><a href="#FFRightTableViewCell-swift" class="headerlink" title="FFRightTableViewCell.swift"></a>FFRightTableViewCell.swift</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">FFRightTableViewCell</span>: <span class="title">UITableViewCell</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">awakeFromNib</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.awakeFromNib()</span><br><span class="line">        <span class="comment">// Initialization code</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">setSelected</span><span class="params">(<span class="number">_</span> selected: Bool, animated: Bool)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.setSelected(selected, animated: animated)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Configure the view for the selected state</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">lazy</span> <span class="keyword">var</span> nameLab = <span class="type">UILabel</span>()       <span class="comment">//名称</span></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">lazy</span> <span class="keyword">var</span> imgView = <span class="type">UIImageView</span>()   <span class="comment">//</span></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">lazy</span> <span class="keyword">var</span> priceLab = <span class="type">UILabel</span>()      <span class="comment">// 价格</span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>(style: <span class="type">UITableViewCellStyle</span>, reuseIdentifier: <span class="type">String</span>?)&#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(style: style, reuseIdentifier: reuseIdentifier)</span><br><span class="line">        initUI()</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">        <span class="built_in">fatalError</span>(<span class="string">"init(coder:) has not been implemented"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//#MARK:设置UI</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span>  <span class="title">initUI</span><span class="params">()</span></span>&#123;</span><br><span class="line">        nameLab.frame = <span class="type">CGRect</span>(x: <span class="number">15</span>, y: <span class="number">15</span>, width: <span class="number">50</span>, height: <span class="number">50</span>)</span><br><span class="line">        contentView.addSubview(nameLab)</span><br><span class="line">        </span><br><span class="line">        imgView.frame = <span class="type">CGRect</span>(x: <span class="number">15</span>, y: <span class="number">15</span>, width: <span class="number">50</span>, height: <span class="number">50</span>)</span><br><span class="line">        contentView.addSubview(imgView)</span><br><span class="line">        </span><br><span class="line">        priceLab.frame = <span class="type">CGRect</span>(x: <span class="number">80</span>, y: <span class="number">45</span>, width: <span class="number">200</span>, height: <span class="number">30</span>)</span><br><span class="line">        priceLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">14</span>)</span><br><span class="line">        priceLab.textColor = <span class="type">UIColor</span>.red</span><br><span class="line">        contentView.addSubview(priceLab)</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="comment">//#MARK: 加载数据</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">setDatas</span><span class="params">( model:FFFoodModel)</span></span>&#123;</span><br><span class="line">        <span class="keyword">guard</span></span><br><span class="line">            <span class="keyword">let</span> minPrice = model.minPrice,</span><br><span class="line">            <span class="keyword">let</span> picture = model.picture,</span><br><span class="line">            <span class="keyword">let</span> name = model.name</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">            priceLab.text = <span class="string">"￥<span class="subst">\(minPrice)</span>"</span></span><br><span class="line">            nameLab.text = name</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> url = <span class="type">URL</span>.<span class="keyword">init</span>(string: picture)</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">      imgView.kf.setImage(with: url)</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="FFCategoryModel-swift"><a href="#FFCategoryModel-swift" class="headerlink" title="FFCategoryModel.swift"></a>FFCategoryModel.swift</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">FFCategoryModel</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> icon: <span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> spus:    [<span class="type">FFFoodModel</span>]?</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(dict :[<span class="type">String</span>:<span class="type">Any</span>]) &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">        setValuesForKeys(dict)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">setValue</span><span class="params">(<span class="number">_</span> value: Any?, forKey key: String)</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> key == <span class="string">"spus"</span> &#123;</span><br><span class="line">           spus = <span class="type">Array</span>()</span><br><span class="line">            <span class="keyword">guard</span></span><br><span class="line">                <span class="keyword">let</span> datas = value <span class="keyword">as</span>? [[<span class="type">String</span>:<span class="type">Any</span>]]</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> dict <span class="keyword">in</span> datas&#123;</span><br><span class="line">                <span class="keyword">let</span> foodModel = <span class="type">FFFoodModel</span>(dict:dict)</span><br><span class="line">                spus?.append(foodModel)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">super</span>.setValue(value, forKey: key)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">setValue</span><span class="params">(<span class="number">_</span> value: Any?, forUndefinedKey key: String)</span></span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="FFFoodModel-swift"><a href="#FFFoodModel-swift" class="headerlink" title="FFFoodModel.swift"></a>FFFoodModel.swift</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">FFFoodModel</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name : <span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> picture : <span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> minPrice : <span class="type">Float</span>?</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">init</span>(dict : [<span class="type">String</span> : <span class="type">Any</span>]) &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>()</span><br><span class="line">        setValuesForKeys(dict)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">setValue</span><span class="params">(<span class="number">_</span> value: Any?, forKey key: String)</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> key == <span class="string">"min_price"</span> &#123;</span><br><span class="line">            <span class="keyword">guard</span> <span class="keyword">let</span> price = value <span class="keyword">as</span>? <span class="type">Float</span> <span class="keyword">else</span> &#123;<span class="keyword">return</span>&#125;</span><br><span class="line">            minPrice = price</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">super</span>.setValue(value, forKey: key)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">setValue</span><span class="params">(<span class="number">_</span> value: Any?, forUndefinedKey key: String)</span></span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="FFTableViewHeaderView-swift"><a href="#FFTableViewHeaderView-swift" class="headerlink" title="FFTableViewHeaderView.swift"></a>FFTableViewHeaderView.swift</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">FFTableViewHeaderView</span>: <span class="title">UIView</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="built_in">lazy</span> <span class="keyword">var</span> nameLab  = <span class="type">UILabel</span>()</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span> (frame:<span class="type">CGRect</span>)&#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(frame: frame)</span><br><span class="line">        backgroundColor = <span class="type">UIColor</span>(<span class="number">240</span>, <span class="number">240</span>, <span class="number">240</span>, <span class="number">0.8</span>)</span><br><span class="line">        nameLab.frame = <span class="type">CGRect</span>(x: <span class="number">15</span>, y: <span class="number">0</span>, width: <span class="number">200</span>, height: <span class="number">20</span>)</span><br><span class="line">        nameLab.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">13</span>)</span><br><span class="line">        addSubview(nameLab)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">        <span class="built_in">fatalError</span>(<span class="string">"init(coder:) has not been implemented"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/UIKit/" rel="tag"># UIKit</a>
+          
+            <a href="/tags/UITableView/" rel="tag"># UITableView</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/14/Swift/Swift/Error/Swift-Error-网络错误锦集/" rel="next" title="Swift-Error-网络错误锦集">
+                <i class="fa fa-chevron-left"></i> Swift-Error-网络错误锦集
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/14/Swift/Swift/UIKit/UISearchController-简介/" rel="prev" title="Swift-UIKit-UISearchController-简介">
+                Swift-UIKit-UISearchController-简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YKK</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FFTableViewCtl-swift"><span class="nav-number">1.</span> <span class="nav-text">FFTableViewCtl.swift</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#协议"><span class="nav-number">1.1.</span> <span class="nav-text">协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#声明变量"><span class="nav-number">1.2.</span> <span class="nav-text">声明变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API"><span class="nav-number">1.3.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TableView-2个协议-实现"><span class="nav-number">1.4.</span> <span class="nav-text">TableView 2个协议 实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#private-私有方法"><span class="nav-number">1.5.</span> <span class="nav-text">private 私有方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FFLeftTableViewCell-swift"><span class="nav-number">2.</span> <span class="nav-text">FFLeftTableViewCell.swift</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FFRightTableViewCell-swift"><span class="nav-number">3.</span> <span class="nav-text">FFRightTableViewCell.swift</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FFCategoryModel-swift"><span class="nav-number">4.</span> <span class="nav-text">FFCategoryModel.swift</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FFFoodModel-swift"><span class="nav-number">5.</span> <span class="nav-text">FFFoodModel.swift</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FFTableViewHeaderView-swift"><span class="nav-number">6.</span> <span class="nav-text">FFTableViewHeaderView.swift</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YKK</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

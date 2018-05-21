@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Swift,RxSwift," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="①just ②of ③from ④empty ⑤never ⑥error ⑦range ⑧repeatElement ⑨generate ⑩create ⑪deferred ⑫interval ⑬timer  ①just ①just just() 方法该方法通过传入一个默认值来初始化只创建包含一个元素的序列。换言之，只发送一个值和 .Completed：  let observable = Ob">
+<meta name="keywords" content="Swift,RxSwift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-RxSwift-创建序列Observable-03">
+<meta property="og:url" content="http://yoursite.com/2017/12/15/Swift/RxSwift/Grammar/03-创建序列Observable/index.html">
+<meta property="og:site_name" content="💖区块链💖 💖随心记💖">
+<meta property="og:description" content="①just ②of ③from ④empty ⑤never ⑥error ⑦range ⑧repeatElement ⑨generate ⑩create ⑪deferred ⑫interval ⑬timer  ①just ①just just() 方法该方法通过传入一个默认值来初始化只创建包含一个元素的序列。换言之，只发送一个值和 .Completed：  let observable = Ob">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-28T07:20:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-RxSwift-创建序列Observable-03">
+<meta name="twitter:description" content="①just ②of ③from ④empty ⑤never ⑥error ⑦range ⑧repeatElement ⑨generate ⑩create ⑪deferred ⑫interval ⑬timer  ①just ①just just() 方法该方法通过传入一个默认值来初始化只创建包含一个元素的序列。换言之，只发送一个值和 .Completed：  let observable = Ob">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/15/Swift/RxSwift/Grammar/03-创建序列Observable/"/>
+
+
+
+
+
+  <title>Swift-RxSwift-创建序列Observable-03 | 💖区块链💖 💖随心记💖</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">💖区块链💖 💖随心记💖</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/Swift/RxSwift/Grammar/03-创建序列Observable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YKK">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="💖区块链💖 💖随心记💖">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-RxSwift-创建序列Observable-03</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T10:28:28+08:00">
+                2017-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><a href="#①just">①just</a></li>
+<li><a href="#②of">②of</a></li>
+<li><a href="#③from">③from</a></li>
+<li><a href="#④empty">④empty</a></li>
+<li><a href="#⑤never">⑤never</a></li>
+<li><a href="#⑥error">⑥error</a></li>
+<li><a href="#⑦range">⑦range</a></li>
+<li><a href="#⑧repeatElement">⑧repeatElement</a></li>
+<li><a href="#⑨generatet">⑨generate</a></li>
+<li><a href="#⑩create">⑩create</a></li>
+<li><a href="#⑪deferredt">⑪deferred</a></li>
+<li><a href="#⑫intervalt">⑫interval</a></li>
+<li><a href="#⑬timer">⑬timer</a></li>
+</ul>
+<p><span id="①just">①just</span></p>
+<h1 id="①just"><a href="#①just" class="headerlink" title="①just"></a>①just</h1><blockquote>
+<p>just() 方法<br>该方法通过传入一个默认值来初始化<br>只创建包含一个元素的序列。换言之，只发送一个值和 .Completed：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.just(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p><span id="②of">②of</span></p>
+<h1 id="②of"><a href="#②of" class="headerlink" title="②of"></a>②of</h1><blockquote>
+<p>通过一组元素创建一个序列<br>该方法可以接受可变数量的参数（必需要是同类型的）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.of(<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>)</span><br></pre></td></tr></table></figure>
+<p><span id="③from">③from</span></p>
+<h1 id="③from"><a href="#③from" class="headerlink" title="③from"></a>③from</h1><blockquote>
+<p>需要一个数组参数<br>数据里的元素就会被当做这个 Observable 所发出 event 携带的数据内容，最终效果同上面 of 样例是一样的</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.from([<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>])</span><br></pre></td></tr></table></figure>
+<p><span id="④empty">④empty</span></p>
+<h1 id="④empty"><a href="#④empty" class="headerlink" title="④empty"></a>④empty</h1><blockquote>
+<p>创建一个空内容的 Observable 序列</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.empty()</span><br></pre></td></tr></table></figure>
+<p><span id="⑤never">⑤never</span></p>
+<h1 id="⑤never"><a href="#⑤never" class="headerlink" title="⑤never"></a>⑤never</h1><blockquote>
+<p>创建一个永远不会发出 Event（也不会终止）的 Observable 序列</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.never()</span><br></pre></td></tr></table></figure>
+<p><span id="⑥error">⑥error</span></p>
+<h1 id="⑥error"><a href="#⑥error" class="headerlink" title="⑥error"></a>⑥error</h1><blockquote>
+<p>创建一个不做任何操作，而是直接发送一个错误的 Observable 序列</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">MyError</span>: <span class="title">Error</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">A</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">B</span></span><br><span class="line">&#125;</span><br><span class="line">         </span><br><span class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.error(<span class="type">MyError</span>.<span class="type">A</span>)</span><br></pre></td></tr></table></figure>
+<p><span id="⑦range">⑦range</span></p>
+<h1 id="⑦range"><a href="#⑦range" class="headerlink" title="⑦range"></a>⑦range</h1><blockquote>
+<p>通过指定起始和结束数值，创建一个以这个范围内所有值作为初始值的 Observable 序列。<br>下面样例中，两种方法创建的 Observable 序列都是一样的</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//使用range()</span></span><br><span class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.range(start: <span class="number">1</span>, <span class="built_in">count</span>: <span class="number">5</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment">//使用of()</span></span><br><span class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ,<span class="number">4</span> ,<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p><span id="⑧repeatElement">⑧repeatElement</span></p>
+<h1 id="⑧repeatElement"><a href="#⑧repeatElement" class="headerlink" title="⑧repeatElement"></a>⑧repeatElement</h1><blockquote>
+<p>法创建一个可以无限发出给定元素的 Event 的 Observable 序列（永不终止）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.repeatElement(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p><span id="⑨generate">⑨generate</span></p>
+<p>#⑨generate</p>
+<blockquote>
+<p>该方法创建一个只有当提供的所有的判断条件都为 true 的时候，才会给出动作的 Observable 序列<br>两种方法创建的 Observable 序列都是一样的</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//使用generate()方法</span></span><br><span class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.generate(</span><br><span class="line">    initialState: <span class="number">0</span>,</span><br><span class="line">    condition: &#123; $<span class="number">0</span> &lt;= <span class="number">10</span> &#125;,</span><br><span class="line">    iterate: &#123; $<span class="number">0</span> + <span class="number">2</span> &#125;</span><br><span class="line">)</span><br><span class="line"> </span><br><span class="line"><span class="comment">//使用of()方法</span></span><br><span class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>.of(<span class="number">0</span> , <span class="number">2</span> ,<span class="number">4</span> ,<span class="number">6</span> ,<span class="number">8</span> ,<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p><span id="⑩create">⑩create</span></p>
+<p>#⑩create</p>
+<blockquote>
+<p>接受一个 block 形式的参数，任务是对每一个过来的订阅进行处理<br>方便演示，这里增加了订阅相关代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//这个block有一个回调参数observer就是订阅这个Observable对象的订阅者</span><br><span class="line">//当一个订阅者订阅这个Observable对象的时候，就会将订阅者作为参数传入这个block来执行一些内容</span><br><span class="line">let observable = Observable&lt;String&gt;.create&#123;observer in</span><br><span class="line">    //对订阅者发出了.next事件，且携带了一个数据&quot;hangge.com&quot;</span><br><span class="line">    observer.onNext(&quot;hangge.com&quot;)</span><br><span class="line">    //对订阅者发出了.completed事件</span><br><span class="line">    observer.onCompleted()</span><br><span class="line">    //因为一个订阅行为会有一个Disposable类型的返回值，所以在结尾一定要returen一个Disposable</span><br><span class="line">    return Disposables.create()</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">//订阅测试</span><br><span class="line">observable.subscribe &#123;</span><br><span class="line">    print($0)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//打印</span><br><span class="line"> next(hangge.com)</span><br><span class="line"> completed</span><br></pre></td></tr></table></figure>
+<p><span id="⑪deferred">⑪deferred</span></p>
+<p>#⑪deferred</p>
+<blockquote>
+<p>该个方法相当于是创建一个 Observable 工厂，通过传入一个 block 来执行延迟 Observable 序列创建的行为，而这个 block 里就是真正的实例化序列对象的地方</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//用于标记是奇数、还是偶数</span></span><br><span class="line"><span class="keyword">var</span> isOdd = <span class="literal">true</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//使用deferred()方法延迟Observable序列的初始化，通过传入的block来实现Observable序列的初始化并且返回。</span></span><br><span class="line"><span class="keyword">let</span> factory : <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt; = <span class="type">Observable</span>.deferred &#123;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//让每次执行这个block时候都会让奇、偶数进行交替</span></span><br><span class="line">    isOdd = !isOdd</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//根据isOdd参数，决定创建并返回的是奇数Observable、还是偶数Observable</span></span><br><span class="line">    <span class="keyword">if</span> isOdd &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Observable</span>.of(<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span> ,<span class="number">7</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Observable</span>.of(<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//第1次订阅测试</span></span><br><span class="line">factory.subscribe &#123; event <span class="keyword">in</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(isOdd)</span>"</span>, event)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//第2次订阅测试</span></span><br><span class="line">factory.subscribe &#123; event <span class="keyword">in</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"<span class="subst">\(isOdd)</span>"</span>, event)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// print</span></span><br><span class="line"><span class="literal">false</span> next(<span class="number">2</span>)</span><br><span class="line"><span class="literal">false</span> next(<span class="number">4</span>)</span><br><span class="line"><span class="literal">false</span> next(<span class="number">6</span>)</span><br><span class="line"><span class="literal">false</span> next(<span class="number">8</span>)</span><br><span class="line"><span class="literal">false</span> completed</span><br><span class="line"><span class="literal">true</span> next(<span class="number">1</span>)</span><br><span class="line"><span class="literal">true</span> next(<span class="number">3</span>)</span><br><span class="line"><span class="literal">true</span> next(<span class="number">5</span>)</span><br><span class="line"><span class="literal">true</span> next(<span class="number">7</span>)</span><br><span class="line"><span class="literal">true</span> completed</span><br></pre></td></tr></table></figure>
+<p><span id="⑫interval">⑫interval</span></p>
+<p>#⑫interval</p>
+<blockquote>
+<p>创建的 Observable 序列每隔一段设定的时间，会发出一个索引数的元素。而且它会一直发送下去<br>创建的 Observable 序列每隔一段设定的时间，会发出一个索引数的元素。而且它会一直发送下去</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">1</span>, scheduler: <span class="type">MainScheduler</span>.instance)</span><br><span class="line">observable.subscribe &#123; event <span class="keyword">in</span></span><br><span class="line">    <span class="built_in">print</span>(event)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//print</span></span><br><span class="line">next(<span class="number">0</span>)</span><br><span class="line">next(<span class="number">1</span>)</span><br><span class="line">next(<span class="number">2</span>)</span><br><span class="line">next(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p><span id="⑬timer">⑬timer</span></p>
+<h1 id="⑬timer"><a href="#⑬timer" class="headerlink" title="⑬timer"></a>⑬timer</h1><blockquote>
+<p>这个方法有两种用法，一种是创建的 Observable 序列在经过设定的一段时间后，产生唯一的一个元素</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//5秒种后发出唯一的一个元素0</span></span><br><span class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.timer(<span class="number">5</span>, scheduler: <span class="type">MainScheduler</span>.instance)</span><br><span class="line">observable.subscribe &#123; event <span class="keyword">in</span></span><br><span class="line">    <span class="built_in">print</span>(event)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//print</span></span><br><span class="line">next(<span class="number">0</span>)</span><br><span class="line">competed</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>另一种是创建的 Observable 序列在经过设定的一段时间后，每隔一段时间产生一个元素</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//延时5秒种后，每隔1秒钟发出一个元素</span></span><br><span class="line"><span class="keyword">let</span> observable = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.timer(<span class="number">5</span>, period: <span class="number">1</span>, scheduler: <span class="type">MainScheduler</span>.instance)</span><br><span class="line">observable.subscribe &#123; event <span class="keyword">in</span></span><br><span class="line">    <span class="built_in">print</span>(event)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//print</span></span><br><span class="line">next(<span class="number">0</span>)</span><br><span class="line">next(<span class="number">1</span>)</span><br><span class="line">next(<span class="number">2</span>)</span><br><span class="line">next(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/15/Swift/RxSwift/Grammar/02-Observables/" rel="next" title="RxSwift-Grammar-Observables-02">
+                <i class="fa fa-chevron-left"></i> RxSwift-Grammar-Observables-02
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/15/Swift/RxSwift/Grammar/简介以及简单学习使用/" rel="prev" title="Swift-RxSwift-简介以及简单学习使用">
+                Swift-RxSwift-简介以及简单学习使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YKK</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#①just"><span class="nav-number">1.</span> <span class="nav-text">①just</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#②of"><span class="nav-number">2.</span> <span class="nav-text">②of</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#③from"><span class="nav-number">3.</span> <span class="nav-text">③from</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#④empty"><span class="nav-number">4.</span> <span class="nav-text">④empty</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#⑤never"><span class="nav-number">5.</span> <span class="nav-text">⑤never</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#⑥error"><span class="nav-number">6.</span> <span class="nav-text">⑥error</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#⑦range"><span class="nav-number">7.</span> <span class="nav-text">⑦range</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#⑧repeatElement"><span class="nav-number">8.</span> <span class="nav-text">⑧repeatElement</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#⑬timer"><span class="nav-number">9.</span> <span class="nav-text">⑬timer</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YKK</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

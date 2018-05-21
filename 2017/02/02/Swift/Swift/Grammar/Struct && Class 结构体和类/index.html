@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="①定义 结构体struct  struct SForm&amp;#123;    var iXX:Int = 99    var strHello:String = &quot;dsf&quot;    func testFunc(iXX:Int)-&amp;gt;Int&amp;#123;        return iXX+1    &amp;#125;&amp;#125;  类class  class CTset&amp;#123;    var iAge:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-Grammar-类和结构体">
+<meta property="og:url" content="http://yoursite.com/2017/02/02/Swift/Swift/Grammar/Struct && Class 结构体和类/index.html">
+<meta property="og:site_name" content="💖区块链💖 💖随心记💖">
+<meta property="og:description" content="①定义 结构体struct  struct SForm&amp;#123;    var iXX:Int = 99    var strHello:String = &quot;dsf&quot;    func testFunc(iXX:Int)-&amp;gt;Int&amp;#123;        return iXX+1    &amp;#125;&amp;#125;  类class  class CTset&amp;#123;    var iAge:">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-05T05:43:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-Grammar-类和结构体">
+<meta name="twitter:description" content="①定义 结构体struct  struct SForm&amp;#123;    var iXX:Int = 99    var strHello:String = &quot;dsf&quot;    func testFunc(iXX:Int)-&amp;gt;Int&amp;#123;        return iXX+1    &amp;#125;&amp;#125;  类class  class CTset&amp;#123;    var iAge:">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/02/Swift/Swift/Grammar/Struct && Class 结构体和类/"/>
+
+
+
+
+
+  <title>Swift-Grammar-类和结构体 | 💖区块链💖 💖随心记💖</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">💖区块链💖 💖随心记💖</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/02/Swift/Swift/Grammar/Struct && Class 结构体和类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YKK">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="💖区块链💖 💖随心记💖">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-Grammar-类和结构体</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-02T16:25:51+08:00">
+                2017-02-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="①定义"><a href="#①定义" class="headerlink" title="①定义"></a>①定义</h1><blockquote>
+<p>结构体struct</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SForm</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> iXX:<span class="type">Int</span> = <span class="number">99</span></span><br><span class="line">    <span class="keyword">var</span> strHello:<span class="type">String</span> = <span class="string">"dsf"</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testFunc</span><span class="params">(iXX:Int)</span></span>-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> iXX+<span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>类class</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CTset</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> iAge:<span class="type">Int</span> = <span class="number">9</span></span><br><span class="line">    <span class="keyword">var</span> strName:<span class="type">String</span> = <span class="string">"xx"</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testFunction</span><span class="params">(iAge:Int)</span></span>-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> iAge+<span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testFunctionName</span><span class="params">(strName:String)</span></span>-&gt;<span class="type">String</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"oo"</span>+strName</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="②实例"><a href="#②实例" class="headerlink" title="②实例"></a>②实例</h1><blockquote>
+<p>结构体struct</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> structObj = <span class="type">SForm</span>()</span><br><span class="line">structObj.iXX = <span class="number">988</span></span><br><span class="line"><span class="keyword">let</span> iRes = structObj.testFunc(<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>类class</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">let</span> clsObj = <span class="type">CTset</span>()</span><br><span class="line">clsObj.iAge = <span class="number">987</span></span><br><span class="line"><span class="keyword">let</span> iRe:<span class="type">Int</span> = clsObj.testFunction(<span class="number">32</span>)</span><br><span class="line"><span class="keyword">let</span> iStr:<span class="type">String</span> = clsObj.testFunctionName(<span class="string">"sdf"</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="③初始化"><a href="#③初始化" class="headerlink" title="③初始化"></a>③初始化</h1><blockquote>
+<p>结构体有一个自动生成的初始化器<br>新实例中各个属性的初始值可以通过属性的名称传递到成员逐一初始化器之中</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">var objFirst = SForm(iXX:983, strHello:&quot;hel&quot;)</span><br><span class="line">objFirst.iXX = 87</span><br><span class="line"></span><br><span class="line">let objSecond = SForm(iXX:94, strHello:&quot;hwxel&quot;)</span><br><span class="line">//objSecond.iXX = 876 error</span><br></pre></td></tr></table></figure>
+<h1 id="④类型"><a href="#④类型" class="headerlink" title="④类型"></a>④类型</h1><blockquote>
+<p>结构体是值类型</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> objFirst = <span class="type">SForm</span>(iXX:<span class="number">983</span>, strHello:<span class="string">"hel"</span>)</span><br><span class="line"><span class="keyword">var</span> objSecond = objFirst</span><br><span class="line">objSecond.iXX = <span class="number">5775</span></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"objFirst: <span class="subst">\(objFirst.iXX)</span>  objSecond:<span class="subst">\(objSecond.iXX)</span>"</span>)</span><br><span class="line"></span><br><span class="line">输出：objFirst: <span class="number">983</span>  objSecond:<span class="number">5775</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>类是引用类型</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> clsObj = <span class="type">CTset</span>()</span><br><span class="line">clsObj.iAge = <span class="number">987</span></span><br><span class="line"><span class="keyword">var</span> clsObjEx:<span class="type">CTset</span> = clsObj</span><br><span class="line">clsObjEx.iAge = <span class="number">874</span></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"<span class="subst">\(clsObj.iAge)</span>  <span class="subst">\(clsObjEx.iAge)</span>"</span>)</span><br><span class="line">输出：clsObj: <span class="number">874</span> clsObjEx: <span class="number">874</span></span><br></pre></td></tr></table></figure>
+<h1 id="⑤运算"><a href="#⑤运算" class="headerlink" title="⑤运算"></a>⑤运算</h1><blockquote>
+<p>类的等价于运算  === 与 不等价于 !== 运算<br>表示是否是引用到同一个类对象</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> clsObj = <span class="type">CTset</span>()</span><br><span class="line">clsObj.iAge = <span class="number">987</span></span><br><span class="line"><span class="keyword">var</span> clsObjEx:<span class="type">CTset</span> = clsObj</span><br><span class="line">clsObjEx.iAge = <span class="number">874</span></span><br><span class="line"><span class="keyword">if</span> clsObj === clsObjEx &#123;</span><br><span class="line">    <span class="built_in">println</span>(<span class="string">"obj same"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="类和结构体区别"><a href="#类和结构体区别" class="headerlink" title="类和结构体区别"></a>类和结构体区别</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">结构体是值类型，结构体的赋值意味着拷贝行为的发生</span><br><span class="line">而类是引用类型</span><br></pre></td></tr></table></figure>
+<h1 id="集合类型的赋值和拷贝行为"><a href="#集合类型的赋值和拷贝行为" class="headerlink" title="集合类型的赋值和拷贝行为"></a>集合类型的赋值和拷贝行为</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">swift的 数组 和 字典 都是以 值类型 传递的</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>字典的拷贝</p>
+</blockquote>
+<ul>
+<li>当有字典实例的赋值或者是字典做参数的函数调用时候，字典即发生拷贝行为</li>
+<li>字典的key和value的拷贝行为是依赖于她自身到底是引用属性还是值类型</li>
+</ul>
+<blockquote>
+<p>dicSecond的值被更新，而dicFirst的值依然保持不变<br>dicFirst和dicSecond是两个独立的字典<br>它的key和value在赋值时候发生了拷贝，因为都是String类型。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> dicFirst:<span class="type">Dictionary</span> = [<span class="string">"key1"</span>:<span class="string">"value1"</span>, <span class="string">"key2"</span>:<span class="string">"value2"</span>]</span><br><span class="line"><span class="keyword">var</span> dicSecond:<span class="type">Dictionary</span> = dicFirst</span><br><span class="line">dicSecond[<span class="string">"key1"</span>] = <span class="string">"value1Update"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>两个字典dicFirst 和 dicSecond分别为不同的字典，但它的值 clsObjFirst的地址却是同一个<br>因为它是类类型，是引用传递</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">lass <span class="type">CTset</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> iAge:<span class="type">Int</span> = <span class="number">9</span></span><br><span class="line">    <span class="keyword">var</span> strName:<span class="type">String</span> = <span class="string">"xx"</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testFunction</span><span class="params">(iAge:Int)</span></span>-&gt;<span class="type">Int</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> iAge+<span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">testFunctionName</span><span class="params">(strName:String)</span></span>-&gt;<span class="type">String</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"oo"</span>+strName</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> clsObjFirst = <span class="type">CTset</span>()</span><br><span class="line">clsObjFirst.iAge = <span class="number">443</span></span><br><span class="line"><span class="keyword">var</span> dicFirst:<span class="type">Dictionary</span> = [<span class="string">"key1"</span>:clsObjFirst]</span><br><span class="line"><span class="keyword">var</span> dicSecond:<span class="type">Dictionary</span> = dicFirst</span><br></pre></td></tr></table></figure>
+<h2 id="数组的赋值与拷贝"><a href="#数组的赋值与拷贝" class="headerlink" title="数组的赋值与拷贝"></a>数组的赋值与拷贝</h2><ul>
+<li>数组的拷贝行为只有在数组的长度发生变化的时候才会拷贝</li>
+<li>当然数组里面的内容，是要遵循引用类型还是值类型的。</li>
+</ul>
+<blockquote>
+<p>arrayFirst[0]和arraySecond[0] 都会被修改成 89<br>因为数组长度没变化，所以没发生拷贝</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arrayFirst = [<span class="number">1</span>, <span class="number">33</span>]</span><br><span class="line"><span class="keyword">var</span> arraySecond = arrayFirst</span><br><span class="line">arraySecond[<span class="number">0</span>] = <span class="number">89</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>长度变化，arrayFirst拷贝，独立另外一个数组</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arrayFirst = [<span class="number">1</span>, <span class="number">33</span>]</span><br><span class="line"><span class="keyword">var</span> arraySecond = arrayFirst</span><br><span class="line">arrayFirst.append(<span class="number">222</span>)<span class="comment">//长度变化，arrayFirst拷贝，独立另外一个数组</span></span><br><span class="line">arrayFirst[<span class="number">0</span>] = <span class="number">99</span></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"first:<span class="subst">\(arrayFirst)</span>\nsecond:<span class="subst">\(arraySecond)</span>"</span>)</span><br><span class="line">输出：</span><br><span class="line">first:[<span class="number">99</span>, <span class="number">33</span>, <span class="number">222</span>]</span><br><span class="line">second:[<span class="number">1</span>, <span class="number">33</span>]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在用多个变量(var)引用一个数组时候，可以用unshare()方法，强制拷贝数组</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> arrayFirst = [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"><span class="keyword">var</span> arraySecond = arrayFirst</span><br><span class="line"><span class="keyword">var</span> arrayThird = arrayFirst</span><br><span class="line">arraySecond.unshare()<span class="comment">//拷贝独立成另外个数组</span></span><br><span class="line">arrayThird.unshare()<span class="comment">//拷贝独立成另外个数组</span></span><br><span class="line">arrayFirst[<span class="number">0</span>] = <span class="number">3</span></span><br><span class="line">arraySecond[<span class="number">0</span>] = <span class="number">4</span></span><br><span class="line">arrayThird[<span class="number">0</span>]=<span class="number">5</span></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"first:<span class="subst">\(arrayFirst)</span>\nsecond:<span class="subst">\(arraySecond)</span> \nthird:<span class="subst">\(arrayThird)</span>"</span>)</span><br><span class="line">输出：</span><br><span class="line">first:[<span class="number">3</span>, <span class="number">2</span>]</span><br><span class="line">second:[<span class="number">4</span>, <span class="number">2</span>] </span><br><span class="line">third:[<span class="number">5</span>, <span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="数组等价于-和不等价于"><a href="#数组等价于-和不等价于" class="headerlink" title="数组等价于(===)和不等价于(!==)"></a>数组等价于(===)和不等价于(!==)</h2><h2 id="强制复制数组"><a href="#强制复制数组" class="headerlink" title="强制复制数组"></a>强制复制数组</h2><blockquote>
+<p>通过copy强制复制数组，进行的是数组类容浅拷贝，并返回个新的数组引用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> arraySource = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> arrayCopy = arraySource.copy()</span><br><span class="line">arraySource[<span class="number">0</span>] = <span class="number">4</span></span><br><span class="line">arrayCopy[<span class="number">1</span>] = <span class="number">5</span></span><br><span class="line"><span class="built_in">println</span>(<span class="string">"source:<span class="subst">\(arraySource)</span>\n copy:<span class="subst">\(arrayCopy)</span>"</span>)</span><br><span class="line">输出：</span><br><span class="line">source:[<span class="number">4</span>, <span class="number">2</span>, <span class="number">3</span>] </span><br><span class="line">copy:[<span class="number">1</span>, <span class="number">5</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.cnblogs.com/zhidao-chen/p/3881410.html" target="_blank" rel="noopener">more</a></p>
+<p>===========================================</p>
+<h1 id="类和结构体对比"><a href="#类和结构体对比" class="headerlink" title="类和结构体对比"></a>类和结构体对比</h1><h2 id="类和结构体的共同点在于"><a href="#类和结构体的共同点在于" class="headerlink" title="类和结构体的共同点在于"></a>类和结构体的共同点在于</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">定义属性用于存储值</span><br><span class="line">定义方法用于提供功能</span><br><span class="line">定义附属脚本用于访问值</span><br><span class="line">定义构造器用于生成初始化值</span><br><span class="line">通过扩展以增加默认实现的功能</span><br><span class="line">实现协议以提供某种标准功能</span><br></pre></td></tr></table></figure>
+<h2 id="与结构体相比，类有如下的附加功能"><a href="#与结构体相比，类有如下的附加功能" class="headerlink" title="与结构体相比，类有如下的附加功能"></a>与结构体相比，类有如下的附加功能</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">继承允许一个类继承另一个类的特征</span><br><span class="line">类型转换允许在运行时检查和解释一个类实例的类型</span><br><span class="line">析构器允许一个类实例释放任何其所被分配的资源</span><br><span class="line">引用计数允许对一个类的多次引用</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>结构体总是通过被复制的方式在代码中传递，不使用引用计数</p>
+</blockquote>
+<h1 id="定义语法"><a href="#定义语法" class="headerlink" title="定义语法"></a>定义语法</h1><h2 id="使用关键字class和struct表示类和结构体"><a href="#使用关键字class和struct表示类和结构体" class="headerlink" title="使用关键字class和struct表示类和结构体"></a>使用关键字class和struct表示类和结构体</h2><blockquote>
+<p>每次定义一个新类或者结构体的时候，实际上你是定义了一个新的Swift类型<br>因此使用UpperCamelCase这种方式来命名（如SomeClass和SomeStructure等），以便符合标准Swift类型的大写命名风格（如String，Int和Bool）<br>相反的，请使用lowerCamelCase这种方式为属性和方法命名（如framerate和incrementCount），以便和类型名区分</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Resolution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> height = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VideoMode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> resolution = <span class="type">Resolution</span>()</span><br><span class="line">    <span class="keyword">var</span> interlaced = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">var</span> frameRate = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?       <span class="comment">// 可选类型，自动赋值为nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="类和结构实例"><a href="#类和结构实例" class="headerlink" title="类和结构实例"></a>类和结构实例</h1><blockquote>
+<p>结构体和类都使用构造器语法来生成新的实例<br>构造器语法的最简单形式是在结构体或者类的类型名称后跟随一对空括号，如Resolution()或VideoMode()<br>通过这种方式所创建的类或者结构体实例，其属性均会被初始化为默认值<br>属性都必须赋初值！否则编译报错，可选类型可不赋值，实际上默认赋值为nil</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Resolution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> height = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VideoMode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> resolution = <span class="type">Resolution</span>()</span><br><span class="line">    <span class="keyword">var</span> interlaced = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">var</span> frameRate = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?       <span class="comment">// 可选类型，自动赋值为nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> r = <span class="type">Resolution</span>()</span><br><span class="line"><span class="keyword">let</span> v = <span class="type">VideoMode</span>()</span><br><span class="line"><span class="built_in">print</span>(r)    <span class="comment">// Resolution(width: 0, height: 0)</span></span><br><span class="line"><span class="built_in">print</span>(v)    <span class="comment">// VideoMode</span></span><br><span class="line"><span class="built_in">print</span>(v.resolution)     <span class="comment">// Resolution(width: 0, height: 0)</span></span><br><span class="line"><span class="built_in">print</span>(v.interlaced)     <span class="comment">// false</span></span><br><span class="line"><span class="built_in">print</span>(v.frameRate)      <span class="comment">// 0.0</span></span><br><span class="line"><span class="built_in">print</span>(v.name)           <span class="comment">// nil</span></span><br></pre></td></tr></table></figure>
+<h1 id="属性访问"><a href="#属性访问" class="headerlink" title="属性访问"></a>属性访问</h1><blockquote>
+<p>通过使用点语法（dot syntax），你可以访问实例的属性<br>其语法规则是，实例名后面紧跟属性名，两者通过点号(.)连接<br>也可以使用点语法访问子属性。也可以使用点语法为变量属性赋值</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">```</span><br><span class="line">&gt;与<span class="type">Objective</span>-<span class="type">C</span>语言不同的是，<span class="type">Swift</span>允许直接设置结构体属性的子属性，并不需要重新为整个resolution属性设置新值</span><br></pre></td></tr></table></figure>
+<p>struct Resolution {<br>    var width = 0<br>    var height = 0<br>}</p>
+<p>class VideoMode {<br>    var resolution = Resolution()<br>    var interlaced = false<br>    var frameRate = 0.0<br>    var name: String?       // 可选类型，自动赋值为nil<br>}</p>
+<p>let v = VideoMode()<br>print(v.resolution)    // Resolution(width: 0, height: 0)<br>v.resolution.width = 1920<br>v.resolution.height = 1080<br>print(v.resolution.width)   // 1920<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 结构体类型的成员逐一构造器</span><br><span class="line">&gt; 所有结构体都有一个自动生成的成员逐一构造器，用于初始化新结构体实例中成员的属性</span><br><span class="line">&gt; 新实例中各个属性的初始值可以通过属性的名称传递到成员逐一构造器之中</span><br><span class="line">&gt; 与结构体不同，类实例没有默认的成员逐一构造器</span><br><span class="line"></span><br><span class="line">```swift</span><br><span class="line">struct Resolution &#123;</span><br><span class="line">    var width = 0</span><br><span class="line">    var height = 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var r = Resolution(width: 1920, height: 1080)</span><br><span class="line">print(r)    // Resolution(width: 1920, height: 1080)</span><br></pre></td></tr></table></figure></p>
+<h1 id="结构体和枚举是值类型"><a href="#结构体和枚举是值类型" class="headerlink" title="结构体和枚举是值类型"></a>结构体和枚举是值类型</h1><blockquote>
+<p>值类型被赋予给一个变量、常量或者被传递给一个函数的时候，其值会被拷贝<br>面我们已经大量使用了值类型。实际上，在 Swift中，所有的基本类型：整数（Integer）、浮点数（floating-point）、布尔值（Boolean）、字符串（string)、数组（array）和字典（dictionary），都是值类型，并且在底层都是以结构体的形式所实现。<br>在Swift中，所有的结构体和枚举类型都是值类型。这意味着它们的实例，以及实例中所包含的任何值类型属性，在代码中传递的时候都会被复制</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Resolution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> height = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> r = <span class="type">Resolution</span>(width: <span class="number">1920</span>, height: <span class="number">1080</span>)</span><br><span class="line"><span class="built_in">print</span>(r)    <span class="comment">// Resolution(width: 1920, height: 1080)</span></span><br><span class="line"><span class="keyword">var</span> rr = r</span><br><span class="line"><span class="built_in">print</span>(rr)   <span class="comment">// Resolution(width: 1920, height: 1080)，两个完全独立的实例碰巧包含有相同的数值</span></span><br><span class="line">rr.width = <span class="number">2048</span></span><br><span class="line"><span class="built_in">print</span>(r)    <span class="comment">// Resolution(width: 1920, height: 1080)，由于r和rr相互独立，所以值不改变</span></span><br><span class="line"><span class="built_in">print</span>(rr)   <span class="comment">// Resolution(width: 2048, height: 1080)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CompassPoint</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">North</span>, <span class="type">South</span>, <span class="type">East</span>, <span class="type">West</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="type">CompassPoint</span>.<span class="type">North</span></span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line"><span class="built_in">print</span>(b)    <span class="comment">// South</span></span><br><span class="line">b = <span class="type">CompassPoint</span>.<span class="type">South</span></span><br><span class="line"><span class="built_in">print</span>(a)    <span class="comment">// North</span></span><br><span class="line"><span class="built_in">print</span>(b)    <span class="comment">// South</span></span><br></pre></td></tr></table></figure>
+<h1 id="类是引用类型"><a href="#类是引用类型" class="headerlink" title="类是引用类型"></a>类是引用类型</h1><blockquote>
+<p>与值类型不同，引用类型在被赋予到一个变量、常量或者被传递到一个函数时，其值不会被拷贝。因此，引用的是已存在的实例本身而不是其拷贝</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Resolution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> height = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VideoMode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> resolution = <span class="type">Resolution</span>()</span><br><span class="line">    <span class="keyword">var</span> interlaced = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">var</span> frameRate = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?       <span class="comment">// 可选类型，自动赋值为nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="type">VideoMode</span>()</span><br><span class="line">a.frameRate = <span class="number">25</span>    <span class="comment">// a是常量，但是可以修改属性，因为a本身没有改变</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line">b.frameRate = <span class="number">30</span></span><br><span class="line"><span class="built_in">print</span>(a.frameRate)  <span class="comment">// 30.0</span></span><br><span class="line"><span class="comment">// a = VideoMode()     // error: cannot assign to value: 'a' is a 'let' constant</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，a和b被声明为常量而不是变量。然而你依然可以改变a.frameRate和b.frameRate，因为a和b这两个常量的值并未改变。它们并不“存储”这个VideoMode实例，而仅仅是对VideoMode实例的引用。所以，改变的是被引用的VideoMode的frameRate属性，而不是引用VideoMode的常量的值</p>
+</blockquote>
+<h1 id="恒等运算符"><a href="#恒等运算符" class="headerlink" title="恒等运算符"></a>恒等运算符</h1><blockquote>
+<p>因为类是引用类型，有可能有多个常量和变量在幕后同时引用同一个类实例。（对于结构体和枚举来说，这并不成立。因为它们作为值类型，在被赋予到常量、变量或者传递到函数时，其值总是会被拷贝。）<br>如果能够判定两个常量或者变量是否引用同一个类实例将会很有帮助。为了达到这个目的，Swift内建了两个恒等运算符运用这两个运算符检测两个常量或者变量是否引用同一个实例</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">等价于（===）</span><br><span class="line">不等价于（!==）</span><br></pre></td></tr></table></figure>
+<h2 id="等价于”（用三个等号表示，-）与“等于”（用两个等号表示，-）的不同"><a href="#等价于”（用三个等号表示，-）与“等于”（用两个等号表示，-）的不同" class="headerlink" title="等价于”（用三个等号表示，===）与“等于”（用两个等号表示，==）的不同"></a>等价于”（用三个等号表示，===）与“等于”（用两个等号表示，==）的不同</h2><blockquote>
+<p>等价于”表示两个类类型（class type）的常量或者变量引用同一个类实例。<br>“等于”表示两个实例的值“相等”或“相同”，判定时要遵照设计者定义的评判标准，因此相对于“相等”来说，这是一种更加合适的叫法<br>当你在定义你的自定义类和结构体的时候，你有义务来决定判定两个实例“相等”的标准</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Resolution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> width = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> height = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VideoMode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> resolution = <span class="type">Resolution</span>()</span><br><span class="line">    <span class="keyword">var</span> interlaced = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">var</span> frameRate = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?       <span class="comment">// 可选类型，自动赋值为nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="type">VideoMode</span>()</span><br><span class="line">a.frameRate = <span class="number">25</span>    <span class="comment">// a是常量，但是可以修改属性，因为a本身没有改变</span></span><br><span class="line"><span class="keyword">let</span> b = a</span><br><span class="line">b.frameRate = <span class="number">30</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// if a == b &#123;     // 两个引用类型之间使用“==”运算符，会出现编译错误：error: binary operator '==' cannot be applied to two 'VideoMode' operands</span></span><br><span class="line"><span class="keyword">if</span> a === b &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"a === b"</span>)    <span class="comment">// a === b</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"a !== b"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">如果你有<span class="type">C</span>、<span class="type">C</span>++或者<span class="type">Objective</span>-<span class="type">C</span>语言的经验，那么你也许会知道这些语言使用指针来引用内存中的地址。一个引用某个引用类型实例的<span class="type">Swift</span>常量或者变量，与<span class="type">C</span>语言中的指针类似，但是并不直接指向某个内存地址，也不要求你使用星号（*）来表明你在创建一个引用。<span class="type">Swift</span>中的这些引用与其它的常量或变量的定义方式相同</span><br></pre></td></tr></table></figure>
+<h1 id="类和结构体的选择"><a href="#类和结构体的选择" class="headerlink" title="类和结构体的选择"></a>类和结构体的选择</h1><p>可以使用类和结构体来定义你的自定义数据类型。然而，结构体实例总是通过值传递，类实例总是通过引用传递。这意味两者适用不同的任务。当你在考虑一个工程项目的数据结构和功能的时候，你需要决定每个数据结构是定义成类还是结构体。按照通用的准则，当符合一条或多条以下条件时，请考虑构建结构体：</p>
+<pre><code>该数据结构的主要目的是用来封装少量相关简单数据值。
+有理由预计该数据结构的实例在被赋值或传递时，封装的数据将会被拷贝而不是被引用。
+该数据结构中储存的值类型属性，也应该被拷贝，而不是被引用。
+该数据结构不需要去继承另一个既有类型的属性或者行为。
+</code></pre><p>举例来说，以下情境中适合使用结构体：</p>
+<pre><code>几何形状的大小，封装一个width属性和height属性，两者均为Double类型。
+一定范围内的路径，封装一个start属性和length属性，两者均为Int类型。
+三维坐标系内一点，封装x，y和z属性，三者均为Double类型。
+</code></pre><p>在所有其它案例中，定义一个类，生成一个它的实例，并通过引用来管理和传递。实际中，这意味着绝大部分的自定义数据构造都应该是类，而非结构体</p>
+<h1 id="字符串、数组和字典类型的赋值与赋值行为"><a href="#字符串、数组和字典类型的赋值与赋值行为" class="headerlink" title="字符串、数组和字典类型的赋值与赋值行为"></a>字符串、数组和字典类型的赋值与赋值行为</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Swift中，许多基本类型，诸如String，Array和Dictionary类型均以结构体的形式实现。这意味着被赋值给新的常量或变量，或者被传入函数或方法中时，它们的值会被拷贝。</span><br><span class="line"></span><br><span class="line">Objective-C中NSString，NSArray和NSDictionary类型均以类的形式实现，而并非结构体。它们在被赋值或者被传入函数或方法时，不会发生值拷贝，而是传递现有实例的引用。</span><br><span class="line"></span><br><span class="line">注意，以上是对字符串、数组、字典的“拷贝”行为的描述。在你的代码中，拷贝行为看起来似乎总会发生。然而，Swift在幕后只在绝对必要时才执行实际的拷贝。Swift管理所有的值拷贝以确保性能最优化，所以你没必要去回避赋值来保证性能最优化</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/24/Swift/Swift/Grammar/基本类型与运算/" rel="next" title="Swift-Grammar--基本类型与运算">
+                <i class="fa fa-chevron-left"></i> Swift-Grammar--基本类型与运算
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/05/Swift/Swift/Grammar/Function函数/" rel="prev" title="Swift-Grammar-Function函数">
+                Swift-Grammar-Function函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YKK</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#①定义"><span class="nav-number">1.</span> <span class="nav-text">①定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#②实例"><span class="nav-number">2.</span> <span class="nav-text">②实例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#③初始化"><span class="nav-number">3.</span> <span class="nav-text">③初始化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#④类型"><span class="nav-number">4.</span> <span class="nav-text">④类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#⑤运算"><span class="nav-number">5.</span> <span class="nav-text">⑤运算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类和结构体区别"><span class="nav-number">6.</span> <span class="nav-text">类和结构体区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#集合类型的赋值和拷贝行为"><span class="nav-number">7.</span> <span class="nav-text">集合类型的赋值和拷贝行为</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的赋值与拷贝"><span class="nav-number">7.1.</span> <span class="nav-text">数组的赋值与拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组等价于-和不等价于"><span class="nav-number">7.2.</span> <span class="nav-text">数组等价于(===)和不等价于(!==)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强制复制数组"><span class="nav-number">7.3.</span> <span class="nav-text">强制复制数组</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类和结构体对比"><span class="nav-number">8.</span> <span class="nav-text">类和结构体对比</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类和结构体的共同点在于"><span class="nav-number">8.1.</span> <span class="nav-text">类和结构体的共同点在于</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与结构体相比，类有如下的附加功能"><span class="nav-number">8.2.</span> <span class="nav-text">与结构体相比，类有如下的附加功能</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义语法"><span class="nav-number">9.</span> <span class="nav-text">定义语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用关键字class和struct表示类和结构体"><span class="nav-number">9.1.</span> <span class="nav-text">使用关键字class和struct表示类和结构体</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类和结构实例"><span class="nav-number">10.</span> <span class="nav-text">类和结构实例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#属性访问"><span class="nav-number">11.</span> <span class="nav-text">属性访问</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构体和枚举是值类型"><span class="nav-number">12.</span> <span class="nav-text">结构体和枚举是值类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类是引用类型"><span class="nav-number">13.</span> <span class="nav-text">类是引用类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#恒等运算符"><span class="nav-number">14.</span> <span class="nav-text">恒等运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#等价于”（用三个等号表示，-）与“等于”（用两个等号表示，-）的不同"><span class="nav-number">14.1.</span> <span class="nav-text">等价于”（用三个等号表示，===）与“等于”（用两个等号表示，==）的不同</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#指针"><span class="nav-number">15.</span> <span class="nav-text">指针</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类和结构体的选择"><span class="nav-number">16.</span> <span class="nav-text">类和结构体的选择</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串、数组和字典类型的赋值与赋值行为"><span class="nav-number">17.</span> <span class="nav-text">字符串、数组和字典类型的赋值与赋值行为</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YKK</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ARC," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="ARC 自动引用计数Swift引入ARC 对于类实例，它可能存在被多个变量引用的情况如果在还有变量引用的情况下释放了改实例的话，那么其他变量再尝试访问这个实例的方法或属性的时候，程序就会崩溃。所以必须确保在以后都没有变量使用这个实例的情况下，才能去释放这个实例对于值类型（结构体等），因为不存在多个变量对应一个实例的情况，所以不会有上述问题为了解决这个问题，Swift使用自动引用计数(ARC)来管理">
+<meta name="keywords" content="ARC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-Grammar-ARC-自动引用计数">
+<meta property="og:url" content="http://yoursite.com/2017/12/01/Swift/Swift/Grammar/ARC-自动引用计数/index.html">
+<meta property="og:site_name" content="💖区块链💖 💖随心记💖">
+<meta property="og:description" content="ARC 自动引用计数Swift引入ARC 对于类实例，它可能存在被多个变量引用的情况如果在还有变量引用的情况下释放了改实例的话，那么其他变量再尝试访问这个实例的方法或属性的时候，程序就会崩溃。所以必须确保在以后都没有变量使用这个实例的情况下，才能去释放这个实例对于值类型（结构体等），因为不存在多个变量对应一个实例的情况，所以不会有上述问题为了解决这个问题，Swift使用自动引用计数(ARC)来管理">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-19T11:16:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-Grammar-ARC-自动引用计数">
+<meta name="twitter:description" content="ARC 自动引用计数Swift引入ARC 对于类实例，它可能存在被多个变量引用的情况如果在还有变量引用的情况下释放了改实例的话，那么其他变量再尝试访问这个实例的方法或属性的时候，程序就会崩溃。所以必须确保在以后都没有变量使用这个实例的情况下，才能去释放这个实例对于值类型（结构体等），因为不存在多个变量对应一个实例的情况，所以不会有上述问题为了解决这个问题，Swift使用自动引用计数(ARC)来管理">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/01/Swift/Swift/Grammar/ARC-自动引用计数/"/>
+
+
+
+
+
+  <title>Swift-Grammar-ARC-自动引用计数 | 💖区块链💖 💖随心记💖</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">💖区块链💖 💖随心记💖</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/01/Swift/Swift/Grammar/ARC-自动引用计数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YKK">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="💖区块链💖 💖随心记💖">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-Grammar-ARC-自动引用计数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T16:54:28+08:00">
+                2017-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="ARC-自动引用计数"><a href="#ARC-自动引用计数" class="headerlink" title="ARC 自动引用计数"></a>ARC 自动引用计数</h1><h2 id="Swift引入ARC"><a href="#Swift引入ARC" class="headerlink" title="Swift引入ARC"></a>Swift引入ARC</h2><blockquote>
+<p>对于类实例，它可能存在被多个变量引用的情况<br>如果在还有变量引用的情况下释放了改实例的话，那么其他变量再尝试访问这个实例的方法或属性的时候，程序就会崩溃。所以必须确保在以后都没有变量使用这个实例的情况下，才能去释放这个实例<br>对于值类型（结构体等），因为不存在多个变量对应一个实例的情况，所以不会有上述问题<br>为了解决这个问题，Swift使用自动引用计数(ARC)来管理内存。它只对引用类型起作用，对于值类型不起作用</p>
+</blockquote>
+<h2 id="引用计数的概念"><a href="#引用计数的概念" class="headerlink" title="引用计数的概念"></a>引用计数的概念</h2><blockquote>
+<p>当你给一个创建一个类实例，并且把这个类实例赋值给某个变量或常量的时候，那么这个变量或常量就“拥有”这个实例，我们称为有了一个“强引用”。<br>所谓的引用计数，就是这个实例被多少个常量或变量强引用了</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Apple</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">deinit</span>&#123;  </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"deinit"</span>)  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="keyword">var</span> a:<span class="type">Apple</span>! = <span class="type">Apple</span>()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上面这最后一句代码就是变量a对一个Apple类的实例有了一个强引用。这时候这个实例的引用计数为1。<br>因为类实例是引用类型，所以你可以把这个引用传递给其他的常量或变量</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> b = a  </span><br><span class="line"><span class="keyword">let</span> v = a</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这时候这个实例就被三个变量或常量所引用，这个时候它的引用计数为3.<br>当你把其中的b设为nil的时候，引用计数就会变为2.<br>当该实例的引用计数变为0的时候，这个实例就会被销毁，销毁的时候就会调用它的deinit方法。注：因为上面用了常量，所以不能手动把常量设为nil，只能等这个常量离开作用域后被系统自动销毁。(如果你是在main.swift的全局中定义这些变量或常量的话，因为在main执行完之后才会释放这些变量或常量，所以不会打印deinit。但是你可以把他们放到一个函数里面，然后在main.swift里面调用这个函数。当这个函数执行完之后，这些变量或常量就会被释放。)</p>
+</blockquote>
+<blockquote>
+<p>自动引用计数的规：</p>
+</blockquote>
+<ul>
+<li><p>1、赋值给不加修饰符的常量和变量的时候，实例的引用计数加1。</p>
+</li>
+<li><p>2、当一个变量设为nil，或者变量(常量)离开作用域的时候，这个常量或变量所引用实例的引用计数减1。</p>
+</li>
+<li><p>3、当一个实例的引用计数为0的时候，它就会被销毁。</p>
+</li>
+</ul>
+<p>但是上面看似简单的规则也会有很多问题。比如下面的循环引用问题。</p>
+<p>先定义两个类，一个Telephone类和一个Person类。Telephone类有一个Person类的属性，Person类里面有一个Telephone类的属性</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Telephone</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">var</span> person: <span class="type">Person</span>?  </span><br><span class="line">    <span class="keyword">deinit</span>&#123;  </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Telephone deinit"</span>)  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">var</span> telephone: <span class="type">Telephone</span>?  </span><br><span class="line">    <span class="keyword">deinit</span>&#123;  </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Person deinit"</span>)  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>定义一个Person类的实例和一个Telephone类的实例。并对他们赋值</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person = <span class="type">Person</span>()  </span><br><span class="line"><span class="keyword">var</span> telephone = <span class="type">Telephone</span>()  </span><br><span class="line">person.telephone = telephone  </span><br><span class="line">telephone.person = person</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>下面分析一下Person实例和Telephone实例的引用计数。</p>
+</blockquote>
+<blockquote>
+<p>在定义Person实例的时候，赋值给了变量person，所以第一句代码后，Person实例的引用计数为1。同样第二句代码后，Telephone实例的引用计数也为1。</p>
+</blockquote>
+<blockquote>
+<p>然后第三句代码把telephone赋值给了person.telephone。也就是person.telephone也对这个Telephone实例有了强引用，这时候Telephone实例的引用计数为2。</p>
+</blockquote>
+<blockquote>
+<p>同样，第四局过后，Person实例的引用计数也为2。</p>
+</blockquote>
+<blockquote>
+<p>现在的状态是一个Person实例强引用了一个Telephone实例，这个Telephone实例又强引用了这个Person实例。你强引用我，我强引用你。这样就成了一个循环引用。</p>
+</blockquote>
+<blockquote>
+<p>接着执行下面代码，person变量和telephone变量释放对实例的强引用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> person = <span class="literal">nil</span>  </span><br><span class="line">telephone = <span class="literal">nil</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>但是Person实例中的telephone属性仍然强引用着Telephone实例。同样的Telephone实例的person属性也引用着Person实例。所以Person实例和Telephone实例的引用计数都为1。但此时我们已经没办法再访问Person和Telephone的实例了。同时又因为他们的引用计数都为1，系统也不会释放他们。这样就造成了内存泄露。</p>
+</blockquote>
+<blockquote>
+<p>为了解决这种循环引用的问题，办法就是截断这个循环。<br>第一种笨笨的解决方法就是在你把person或telephone变量设为nil之前，把person.telephone或telephone.person设为nil。这样就手动切断了循环引用。<br>而通用的解决方法就是引用一个新概念——弱引用（Weak Reference）<br>弱引用和强引用最大区别就是：当你把一个实例赋值给一个弱引用变量的时候，这个变量的引用计数不会加1。<br>为了实现这一点，在定义变量的时候在最前面加上weak关键字。下面我们重新定义Person类和Telephone类</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Telephone</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">weak</span> <span class="keyword">var</span> person: <span class="type">Person</span>?   <span class="comment">//把这个变量定义为了一个弱引用变量  </span></span><br><span class="line">    <span class="keyword">deinit</span>&#123;  </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Telephone deinit"</span>)  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">var</span> telephone: <span class="type">Telephone</span>?  </span><br><span class="line">    <span class="keyword">deinit</span>&#123;  </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Person deinit"</span>)  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>然后我们再次调用下面的代码</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">var</span> person: <span class="type">Person</span>? = <span class="type">Person</span>()  </span><br><span class="line"><span class="keyword">var</span> telephone: <span class="type">Telephone</span>? = <span class="type">Telephone</span>()  </span><br><span class="line">person!.telephone = telephone  </span><br><span class="line">telephone!.person = person     <span class="comment">//第4句  </span></span><br><span class="line">person = <span class="literal">nil</span>                 <span class="comment">// 执行完这句后打印  Person deinit  </span></span><br><span class="line">telephone = <span class="literal">nil</span>              <span class="comment">// 执行完这句后打印  Telephone deinit</span></span><br></pre></td></tr></table></figure>
+<p>因为Telephone类里面的person属性是弱引用的，所以执行完了第4句之后，Telephone实例被telephone变量和person.telephone实例所引用，引用计数为2。而Person实例只被person变量所引用，引用计数为1.</p>
+<p>当执行完person = nil 之后，person的引用计数就变为了0， 这个时候系统就会释放Person实例，这个过程中，person.telephone也会被释放，所以会导致Telephone实例的引用计数减1，变为1。</p>
+<p>当执行完telephone = nil 之后，Telephone实例的引用计数变为0。系统释放Telephone实例。</p>
+<p>关于这个弱引用再补充几点</p>
+<p>第一、当一个弱引用变量所引用的实例被释放的时候，这个弱引用变量会被自动置为nil。</p>
+<p>第二、因为第一条的内容，所以弱引用只能对变量使用，并且必须是可选类型。</p>
+<p>第三、如果你在创建实例的时候就把它复制给一个弱引用变量，因为弱引用变量不会增加这个实例的引用计数，所以这个实例创建后立马就会被销毁。</p>
+<p>第四、如果你将一个已经赋值的弱引用变量赋值给一个强引用变量(常量)，那么这个实例的引用计数会加1。</p>
+<p>Unowned Reference</p>
+<p>Unowned Reference和弱引用一样，不会对实例产生强引用。区别在于Unowned Reference假设它所指向的实例总是有值的。所以Unowned Reference一般不会设置为可选类型。但缺点就是当Unowned Reference所指向的实例被释放的时候，Unowned Reference变量不会自动置为nil。</p>
+<p>语法就是将weak关键字替换为unowned。但一个变量永远不会为nil的时候，建议使用unowned修饰。</p>
+<p>循环引用第二种情况——闭包循环引用</p>
+<pre><code>在闭包的时候我们说过，闭包是引用类型，且会捕获值。设想，你把一个闭包声明为一个类的属性的时候，这个类的实例拥有了对这个闭包的强引用。此时如果你在这个闭包里面访问了这个类的其他属性(self.someProperty)或者方法(self.someMethod)的话。那么这个闭包就会捕获所访问的属性或方法，统称&quot;捕获了self&quot;。在访问实例的属性或方法的时候，必须使用self.的方式。Swift此意在提醒你可能会产生循环引用。
+</code></pre><p>那么这时候又是一个循环引用了，self引用闭包，闭包引用self。导致这个实例永远不会被释放。</p>
+<p>下面定义一个有闭包的Person类</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> class Person &#123;  </span><br><span class="line">    var name: String?  </span><br><span class="line">    lazy var printName: Void-&gt;Void = &#123;  </span><br><span class="line">        print(self.name)  </span><br><span class="line">    &#125;  </span><br><span class="line">    init(name: String)&#123;  </span><br><span class="line">        self.name = name;  </span><br><span class="line">    &#125;  </span><br><span class="line">    deinit&#123;  </span><br><span class="line">        print(&quot;Person deinit&quot;)  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这个闭包我们声明为了lazy类型，因为如果你想要在闭包里面访问到self的话，必须是在类初始化之后才行。而一般的属性是在类初始化的最开头阶段初始化的，所以不加lazy的闭包不能访问self关键字。上面的代码很明显闭包和类实例已经可能会产生循环引用了。为什么说可能呢？因为如果你一直没用到闭包的话，那么这个闭包就不会被初始化，所以也不会产生闭包对self的强引用，也就谈不上循环引用了。</p>
+</blockquote>
+<p>所以如果仅仅执行下面代码</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> p: <span class="type">Person</span>? = <span class="type">Person</span>(name: <span class="string">"Kate"</span>)  </span><br><span class="line">p = <span class="literal">nil</span>  </span><br><span class="line"><span class="comment">//打印出 Person deinit</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>但是如果执行下面代码 </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var p: Person? = Person(name: &quot;Kate&quot;)  </span><br><span class="line">p?.printName()  </span><br><span class="line">p = nil  </span><br><span class="line">//打印出 Optional(&quot;Kate&quot;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这时候因为循环引用导致Person实例不会被释放。<br>解决这个循环引用同样有两种方式。</p>
+</blockquote>
+<ul>
+<li><p>第一种是在不需要这个实例的时候，将这个可能会引起循环引用的闭包设为nil。</p>
+</li>
+<li><p>第二种是利用闭包的捕获列表。下面是第二种方法的介绍</p>
+</li>
+</ul>
+<blockquote>
+<p>下面是语法定义例子，分别是有参数和没参数的闭包。在这种情况下，闭包对捕获的self不会产生强引用。（题外话，在OC中是通过定义另外一个对self的弱引用变量，然后将这个弱引用变量传递给block来实现的。）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment">//有参数的情况  </span></span><br><span class="line"><span class="built_in">lazy</span> <span class="keyword">var</span> printName: ((<span class="type">String</span>)-&gt;<span class="type">Void</span>)? = &#123;  </span><br><span class="line">    [<span class="keyword">unowned</span> <span class="keyword">self</span>] (say: <span class="type">String</span>) -&gt; <span class="type">Void</span> <span class="keyword">in</span>  </span><br><span class="line">    <span class="built_in">print</span>(say,<span class="keyword">self</span>.name)  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//没参数的情况  </span></span><br><span class="line"><span class="built_in">lazy</span> <span class="keyword">var</span> printName2: (<span class="type">Void</span>-&gt;<span class="type">Void</span>)? = &#123;  </span><br><span class="line">    [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span>  </span><br><span class="line">    <span class="built_in">print</span>(<span class="keyword">self</span>!.name)  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里就是用两个关键字weak和unowned将self修饰。weak和unowned的区别和之前所讲的是一样的。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ARC/" rel="tag"># ARC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/01/Swift/Swift/Grammar/Initialization初始化-析构/" rel="next" title="Swift-Grammar-Initialization初始化&Deinitialization析构">
+                <i class="fa fa-chevron-left"></i> Swift-Grammar-Initialization初始化&Deinitialization析构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/01/Swift/Swift/Grammar/可选链/" rel="prev" title="Swift-Grammar-Optional Chaining-可选链">
+                Swift-Grammar-Optional Chaining-可选链 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YKK</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ARC-自动引用计数"><span class="nav-number">1.</span> <span class="nav-text">ARC 自动引用计数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Swift引入ARC"><span class="nav-number">1.1.</span> <span class="nav-text">Swift引入ARC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用计数的概念"><span class="nav-number">1.2.</span> <span class="nav-text">引用计数的概念</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YKK</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

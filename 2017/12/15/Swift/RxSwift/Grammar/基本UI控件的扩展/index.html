@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Swift,RxSwift," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="UITextField / UITextView监听多个UITextField 监听三个UITextField随便哪个的text变化了，都会引起代码执行，并且结果赋值到result的text     @IBOutlet weak var number1: UITextField!@IBOutlet weak var number2: UITextField!@IBOutlet weak var n">
+<meta name="keywords" content="Swift,RxSwift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-RxSwift-UI控件的扩展">
+<meta property="og:url" content="http://yoursite.com/2017/12/15/Swift/RxSwift/Grammar/基本UI控件的扩展/index.html">
+<meta property="og:site_name" content="💖区块链💖 💖随心记💖">
+<meta property="og:description" content="UITextField / UITextView监听多个UITextField 监听三个UITextField随便哪个的text变化了，都会引起代码执行，并且结果赋值到result的text     @IBOutlet weak var number1: UITextField!@IBOutlet weak var number2: UITextField!@IBOutlet weak var n">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-01T07:42:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-RxSwift-UI控件的扩展">
+<meta name="twitter:description" content="UITextField / UITextView监听多个UITextField 监听三个UITextField随便哪个的text变化了，都会引起代码执行，并且结果赋值到result的text     @IBOutlet weak var number1: UITextField!@IBOutlet weak var number2: UITextField!@IBOutlet weak var n">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/15/Swift/RxSwift/Grammar/基本UI控件的扩展/"/>
+
+
+
+
+
+  <title>Swift-RxSwift-UI控件的扩展 | 💖区块链💖 💖随心记💖</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">💖区块链💖 💖随心记💖</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/Swift/RxSwift/Grammar/基本UI控件的扩展/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YKK">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="💖区块链💖 💖随心记💖">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-RxSwift-UI控件的扩展</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T15:49:44+08:00">
+                2017-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="UITextField-UITextView"><a href="#UITextField-UITextView" class="headerlink" title="UITextField / UITextView"></a>UITextField / UITextView</h1><h2 id="监听多个UITextField"><a href="#监听多个UITextField" class="headerlink" title="监听多个UITextField"></a>监听多个UITextField</h2><blockquote>
+<p>监听三个UITextField随便哪个的text变化了，都会引起代码执行，并且结果赋值到result的text</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">   <span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> number1: <span class="type">UITextField</span>!</span><br><span class="line"><span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> number2: <span class="type">UITextField</span>!</span><br><span class="line"><span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> number3: <span class="type">UITextField</span>!</span><br><span class="line"></span><br><span class="line"><span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> result: <span class="type">UILabel</span>!</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> disposeBag = <span class="type">DisposeBag</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line"></span><br><span class="line">    <span class="type">Observable</span>.combineLatest(number1.rx.text.orEmpty, number2.rx.text.orEmpty, number3.rx.text.orEmpty) &#123; textValue1, textValue2, textValue3 -&gt; <span class="type">Int</span> <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">return</span> (<span class="type">Int</span>(textValue1) ?? <span class="number">0</span>) + (<span class="type">Int</span>(textValue2) ?? <span class="number">0</span>) + (<span class="type">Int</span>(textValue3) ?? <span class="number">0</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    .<span class="built_in">map</span> &#123; $<span class="number">0</span>.description &#125;</span><br><span class="line">    .bindTo(result.rx.text)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="单个UITextField变化监听"><a href="#单个UITextField变化监听" class="headerlink" title="单个UITextField变化监听"></a>单个UITextField变化监听</h2><blockquote>
+<p>官方：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">   <span class="comment">// also test two way binding</span></span><br><span class="line"><span class="keyword">let</span> textValue = <span class="type">Variable</span>(<span class="string">""</span>)</span><br><span class="line"><span class="number">_</span> = textField.rx.textInput &lt;-&gt; textValue</span><br><span class="line"></span><br><span class="line">textValue.asObservable()</span><br><span class="line">    .subscribe(onNext: &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] x <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">self</span>?.debug(<span class="string">"UITextField text <span class="subst">\(x)</span>"</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>例子：单个UITextField事件监听</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">usernameTF.rx.controlEvent([.editingDidBegin]) <span class="comment">//状态可以组合</span></span><br><span class="line"> .asObservable()</span><br><span class="line"> .subscribe(onNext: &#123; <span class="number">_</span> <span class="keyword">in</span></span><br><span class="line">     <span class="built_in">print</span>(<span class="string">"begin edit"</span>)</span><br><span class="line"> &#125;).disposed(by: disposeBag)</span><br></pre></td></tr></table></figure>
+<h2 id="UITextField遇到键盘Next-Go按钮时，焦点的切换"><a href="#UITextField遇到键盘Next-Go按钮时，焦点的切换" class="headerlink" title="UITextField遇到键盘Next/Go按钮时，焦点的切换"></a>UITextField遇到键盘Next/Go按钮时，焦点的切换</h2><blockquote>
+<p>这里有个小坑，如果usernameTF和passwordTF用了Observable.combineLatest然后订阅的话，你会发现下面的delegate代码没用了，在usernameTF点击Next/Go不能切换到passwordTF了</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">func</span> <span class="title">textFieldShouldReturn</span><span class="params">(<span class="number">_</span> textField: UITextField)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> textField == usernameTF &#123;</span><br><span class="line">        passwordTF.becomeFirstResponder()</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        passwordTF.resignFirstResponder()</span><br><span class="line">        <span class="type">Log</span>(<span class="string">"view become"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>用事件监听即可，监听return key结束编辑的事件(editingDidEndOnExit)：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="comment">/* editingDidEndOnExit: UIControlEvents // 'return key' ending editing */</span></span><br><span class="line"></span><br><span class="line">usernameTF.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] (<span class="number">_</span>) <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">self</span>?.passwordTF.becomeFirstResponder()</span><br><span class="line">&#125;).disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">passwordTF.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] (<span class="number">_</span>) <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">self</span>?.passwordTF.resignFirstResponder()</span><br><span class="line">&#125;).disposed(by: disposeBag)</span><br></pre></td></tr></table></figure>
+<h1 id="UITextView变化监听"><a href="#UITextView变化监听" class="headerlink" title="UITextView变化监听"></a>UITextView变化监听</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">   / also test two way binding</span><br><span class="line"><span class="keyword">let</span> textViewValue = <span class="type">Variable</span>(<span class="string">""</span>)</span><br><span class="line"><span class="number">_</span> = textView.rx.textInput &lt;-&gt; textViewValue</span><br><span class="line"></span><br><span class="line">textViewValue.asObservable()</span><br><span class="line">    .subscribe(onNext: &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] x <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">self</span>?.debug(<span class="string">"UITextView text <span class="subst">\(x)</span>"</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure>
+<h1 id="UIButton-UIBarButtonItem"><a href="#UIButton-UIBarButtonItem" class="headerlink" title="UIButton / UIBarButtonItem"></a>UIButton / UIBarButtonItem</h1><h2 id="监听按钮的点击（touchUpInside）"><a href="#监听按钮的点击（touchUpInside）" class="headerlink" title="监听按钮的点击（touchUpInside）"></a>监听按钮的点击（touchUpInside）</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">   <span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> doSomethingOutlet: <span class="type">UIButton</span>!</span><br><span class="line">    </span><br><span class="line">doSomethingOutlet.rx.tap</span><br><span class="line">    .subscribe(onNext: &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span> </span><br><span class="line">        <span class="keyword">self</span>?.showAlert() <span class="comment">//这里self指vc</span></span><br><span class="line">    &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>也可以这样：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">button.rx.tap</span><br><span class="line">  .bindNext &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></span><br><span class="line">      <span class="keyword">self</span>?.openAppPreferences()</span><br><span class="line">  &#125;</span><br><span class="line">  .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure>
+<h1 id="UISegmentedControl-UISwitch"><a href="#UISegmentedControl-UISwitch" class="headerlink" title="UISegmentedControl / UISwitch"></a>UISegmentedControl / UISwitch</h1><blockquote>
+<p>监听状态切换</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">   <span class="comment">// also test two way binding</span></span><br><span class="line"><span class="keyword">let</span> segmentedValue = <span class="type">Variable</span>(<span class="number">0</span>)</span><br><span class="line"><span class="number">_</span> = segmentedControl.rx.value &lt;-&gt; segmentedValue</span><br><span class="line"></span><br><span class="line">segmentedValue.asObservable()</span><br><span class="line">    .subscribe(onNext: &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] x <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">self</span>?.debug(<span class="string">"UISegmentedControl value <span class="subst">\(x)</span>"</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="comment">// also test two way binding</span></span><br><span class="line"><span class="keyword">let</span> switchValue = <span class="type">Variable</span>(<span class="literal">true</span>)</span><br><span class="line"><span class="number">_</span> = switcher.rx.value &lt;-&gt; switchValue</span><br><span class="line"></span><br><span class="line">switchValue.asObservable()</span><br><span class="line">    .subscribe(onNext: &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] x <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">self</span>?.debug(<span class="string">"UISwitch value <span class="subst">\(x)</span>"</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure>
+<h1 id="UIActivityIndicatorView"><a href="#UIActivityIndicatorView" class="headerlink" title="UIActivityIndicatorView"></a>UIActivityIndicatorView</h1><blockquote>
+<p>状态指示器根据UISwitch的状态来决定是否显示旋转</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">switcher.rx.value</span><br><span class="line"> .bindTo(activityIndicator.rx.isAnimating)</span><br><span class="line"> .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure>
+<h1 id="UISlider"><a href="#UISlider" class="headerlink" title="UISlider"></a>UISlider</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">   <span class="comment">// also test two way binding</span></span><br><span class="line"><span class="keyword">let</span> sliderValue = <span class="type">Variable</span>&lt;<span class="type">Float</span>&gt;(<span class="number">1.0</span>)</span><br><span class="line"><span class="number">_</span> = slider.rx.value &lt;-&gt; sliderValue</span><br><span class="line"></span><br><span class="line">sliderValue.asObservable()</span><br><span class="line">    .subscribe(onNext: &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] x <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">self</span>?.debug(<span class="string">"UISlider value <span class="subst">\(x)</span>"</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure>
+<h1 id="UIDatePicker"><a href="#UIDatePicker" class="headerlink" title="UIDatePicker"></a>UIDatePicker</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">   <span class="comment">// also test two way binding</span></span><br><span class="line"><span class="keyword">let</span> dateValue = <span class="type">Variable</span>(<span class="type">Date</span>(timeIntervalSince1970: <span class="number">0</span>))</span><br><span class="line"><span class="number">_</span> = datePicker.rx.date &lt;-&gt; dateValue</span><br><span class="line"></span><br><span class="line">dateValue.asObservable()</span><br><span class="line">    .subscribe(onNext: &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] x <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">self</span>?.debug(<span class="string">"UIDatePicker date <span class="subst">\(x)</span>"</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure>
+<h1 id="UIGestureRecognizer"><a href="#UIGestureRecognizer" class="headerlink" title="UIGestureRecognizer"></a>UIGestureRecognizer</h1><blockquote>
+<p>手势回调，x是UIPanGestureRecognizer对象</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">   mypan.rx.event</span><br><span class="line">.subscribe(onNext: &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] x <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">self</span>?.debug(<span class="string">"UIGestureRecognizer event <span class="subst">\(x.state)</span>"</span>)</span><br><span class="line">    <span class="keyword">let</span> p = x.location(<span class="keyword">in</span>: x.view)</span><br><span class="line">    <span class="keyword">self</span>?.debug(<span class="string">"pan ges point: <span class="subst">\(p)</span>"</span>)</span><br><span class="line">&#125;)</span><br><span class="line">.disposed(by: disposeBag)</span><br></pre></td></tr></table></figure>
+<h1 id="CLLocationManager"><a href="#CLLocationManager" class="headerlink" title="CLLocationManager"></a>CLLocationManager</h1><blockquote>
+<p>还有一堆didxxx方法，自己Command点进去看</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  manager.requestWhenInUseAuthorization()</span><br><span class="line"></span><br><span class="line">manager.rx.didUpdateLocations</span><br><span class="line">    .subscribe(onNext: &#123; x <span class="keyword">in</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"rx.didUpdateLocations <span class="subst">\(x)</span>"</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line"><span class="number">_</span> = manager.rx.didFailWithError</span><br><span class="line">    .subscribe(onNext: &#123; x <span class="keyword">in</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"rx.didFailWithError <span class="subst">\(x)</span>"</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    </span><br><span class="line">manager.rx.didChangeAuthorizationStatus</span><br><span class="line">    .subscribe(onNext: &#123; status <span class="keyword">in</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Authorization status <span class="subst">\(status)</span>"</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line">    </span><br><span class="line">manager.startUpdatingLocation()</span><br></pre></td></tr></table></figure>
+<h1 id="UITableView的扩展"><a href="#UITableView的扩展" class="headerlink" title="UITableView的扩展"></a>UITableView的扩展</h1><h2 id="单个section的情况"><a href="#单个section的情况" class="headerlink" title="单个section的情况"></a>单个section的情况</h2><blockquote>
+<p>除了下面几个最常用的，还有itemDeselected、itemInserted、itemDeleted等等行为可以订阅，自己Command点进去看</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">SimpleTableViewExampleViewController</span> : <span class="title">ViewController</span>, <span class="title">UITableViewDelegate</span> </span>&#123;</span><br><span class="line">    <span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> tableView: <span class="type">UITableView</span>!</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> items = <span class="type">Observable</span>.just(</span><br><span class="line">            (<span class="number">0</span>..&lt;<span class="number">20</span>).<span class="built_in">map</span> &#123; <span class="string">"<span class="subst">\($<span class="number">0</span>)</span>"</span> &#125;</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        <span class="comment">//大概是对cellForRowAtIndexPath的封装</span></span><br><span class="line">        items</span><br><span class="line">            .bindTo(tableView.rx.items(cellIdentifier: <span class="string">"Cell"</span>, cellType: <span class="type">UITableViewCell</span>.<span class="keyword">self</span>)) &#123;</span><br><span class="line">                (row, element, cell) <span class="keyword">in</span></span><br><span class="line">                <span class="comment">//element 是 items[row]元素</span></span><br><span class="line">                cell.textLabel?.text = <span class="string">"<span class="subst">\(element)</span> @ row <span class="subst">\(row)</span>"</span></span><br><span class="line">            &#125;</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//点击某个cell触发, value 是 items[row]，类似的是tableView.rx.itemSelected，都是对didSelectRowAtIndexPath的封装</span></span><br><span class="line">        tableView.rx</span><br><span class="line">            .modelSelected(<span class="type">String</span>.<span class="keyword">self</span>)</span><br><span class="line">            .subscribe(onNext:  &#123; value <span class="keyword">in</span></span><br><span class="line">                <span class="type">DefaultWireframe</span>.presentAlert(<span class="string">"Tapped `<span class="subst">\(value)</span>`"</span>)</span><br><span class="line">            &#125;)</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">        <span class="comment">//accessoryButtonTappedForRowWithIndexPath</span></span><br><span class="line">        tableView.rx</span><br><span class="line">            .itemAccessoryButtonTapped</span><br><span class="line">            .subscribe(onNext: &#123; indexPath <span class="keyword">in</span></span><br><span class="line">                <span class="type">DefaultWireframe</span>.presentAlert(<span class="string">"Tapped Detail @ <span class="subst">\(indexPath.section)</span>,<span class="subst">\(indexPath.row)</span>"</span>)</span><br><span class="line">            &#125;)</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="多section的情况"><a href="#多section的情况" class="headerlink" title="多section的情况"></a>多section的情况</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">SimpleTableViewExampleSectionedViewController</span> : <span class="title">ViewController</span>, <span class="title">UITableViewDelegate</span> </span>&#123;</span><br><span class="line">    <span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> tableView: <span class="type">UITableView</span>!</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> dataSource = <span class="type">RxTableViewSectionedReloadDataSource</span>&lt;<span class="type">SectionModel</span>&lt;<span class="type">String</span>, <span class="type">Double</span>&gt;&gt;()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> dataSource = <span class="keyword">self</span>.dataSource</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> items = <span class="type">Observable</span>.just([</span><br><span class="line">            <span class="type">SectionModel</span>(model: <span class="string">"First section"</span>, items: [</span><br><span class="line">                    <span class="number">11.0</span>,</span><br><span class="line">                    <span class="number">12.0</span>,</span><br><span class="line">                    <span class="number">13.0</span></span><br><span class="line">                ]),</span><br><span class="line">            <span class="type">SectionModel</span>(model: <span class="string">"Second section"</span>, items: [</span><br><span class="line">                    <span class="number">21.0</span>,</span><br><span class="line">                    <span class="number">22.0</span>,</span><br><span class="line">                    <span class="number">23.0</span></span><br><span class="line">                ]),</span><br><span class="line">            <span class="type">SectionModel</span>(model: <span class="string">"Third section"</span>, items: [</span><br><span class="line">                    <span class="number">31.0</span>,</span><br><span class="line">                    <span class="number">32.0</span>,</span><br><span class="line">                    <span class="number">33.0</span></span><br><span class="line">                ]),</span><br><span class="line">            ])</span><br><span class="line"></span><br><span class="line">        dataSource.configureCell = &#123; (<span class="number">_</span>, tv, indexPath, element) <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">let</span> cell = tv.dequeueReusableCell(withIdentifier: <span class="string">"Cell"</span>)!</span><br><span class="line">            cell.textLabel?.text = <span class="string">"<span class="subst">\(element)</span> @ row <span class="subst">\(indexPath.row)</span>"</span></span><br><span class="line">            <span class="keyword">return</span> cell</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        items</span><br><span class="line">            .bindTo(tableView.rx.items(dataSource: dataSource))</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">        tableView.rx</span><br><span class="line">            .itemSelected</span><br><span class="line">            .<span class="built_in">map</span> &#123; indexPath <span class="keyword">in</span></span><br><span class="line">                <span class="keyword">return</span> (indexPath, dataSource[indexPath])</span><br><span class="line">            &#125;</span><br><span class="line">            .subscribe(onNext: &#123; indexPath, model <span class="keyword">in</span></span><br><span class="line">                <span class="type">DefaultWireframe</span>.presentAlert(<span class="string">"Tapped `<span class="subst">\(model)</span>` @ <span class="subst">\(indexPath)</span>"</span>)</span><br><span class="line">            &#125;)</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line"></span><br><span class="line">        tableView.rx</span><br><span class="line">            .setDelegate(<span class="keyword">self</span>)</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, viewForHeaderInSection section: Int)</span></span> -&gt; <span class="type">UIView</span>? &#123;</span><br><span class="line">        <span class="keyword">let</span> label = <span class="type">UILabel</span>(frame: <span class="type">CGRect</span>.zero)</span><br><span class="line">        label.text = dataSource[section].model</span><br><span class="line">        <span class="keyword">return</span> label</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, heightForHeaderInSection section: Int)</span></span> -&gt; <span class="type">CGFloat</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">30</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// to prevent swipe to delete behavior</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, editingStyleForRowAt indexPath: IndexPath)</span></span> -&gt; <span class="type">UITableViewCellEditingStyle</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> .<span class="keyword">none</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.darkhandz.com/2017/02/06/%E5%AD%A6%E4%B9%A0RxSwift%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E7%94%A8%E6%B3%95/" target="_blank" rel="noopener">原文</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/15/Swift/RxSwift/Grammar/简介以及简单学习使用/" rel="next" title="Swift-RxSwift-简介以及简单学习使用">
+                <i class="fa fa-chevron-left"></i> Swift-RxSwift-简介以及简单学习使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/15/Swift/RxSwift/Grammar/RxSwift-资料/" rel="prev" title="Swift-RxSwift-Grammar- 资料">
+                Swift-RxSwift-Grammar- 资料 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YKK</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UITextField-UITextView"><span class="nav-number">1.</span> <span class="nav-text">UITextField / UITextView</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#监听多个UITextField"><span class="nav-number">1.1.</span> <span class="nav-text">监听多个UITextField</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单个UITextField变化监听"><span class="nav-number">1.2.</span> <span class="nav-text">单个UITextField变化监听</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UITextField遇到键盘Next-Go按钮时，焦点的切换"><span class="nav-number">1.3.</span> <span class="nav-text">UITextField遇到键盘Next/Go按钮时，焦点的切换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITextView变化监听"><span class="nav-number">2.</span> <span class="nav-text">UITextView变化监听</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIButton-UIBarButtonItem"><span class="nav-number">3.</span> <span class="nav-text">UIButton / UIBarButtonItem</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#监听按钮的点击（touchUpInside）"><span class="nav-number">3.1.</span> <span class="nav-text">监听按钮的点击（touchUpInside）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UISegmentedControl-UISwitch"><span class="nav-number">4.</span> <span class="nav-text">UISegmentedControl / UISwitch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIActivityIndicatorView"><span class="nav-number">5.</span> <span class="nav-text">UIActivityIndicatorView</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UISlider"><span class="nav-number">6.</span> <span class="nav-text">UISlider</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIDatePicker"><span class="nav-number">7.</span> <span class="nav-text">UIDatePicker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UIGestureRecognizer"><span class="nav-number">8.</span> <span class="nav-text">UIGestureRecognizer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CLLocationManager"><span class="nav-number">9.</span> <span class="nav-text">CLLocationManager</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UITableView的扩展"><span class="nav-number">10.</span> <span class="nav-text">UITableView的扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单个section的情况"><span class="nav-number">10.1.</span> <span class="nav-text">单个section的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多section的情况"><span class="nav-number">10.2.</span> <span class="nav-text">多section的情况</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YKK</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

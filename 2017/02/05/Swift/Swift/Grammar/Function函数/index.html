@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="① 函数定义&amp;amp;&amp;amp;形式 Swift的函数和C的函数定义方式有区别，Swift将返回类型写在函数的最后  func函数名 (参数列表) -&amp;gt; 返回值 &amp;#123;       //函数体&amp;#125;  函数输入一个字符串，然后打印出这个字符串，并且返回一个字符串  //函数定义func printYourName (name: String)-&amp;gt;String &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-Grammar-Function函数">
+<meta property="og:url" content="http://yoursite.com/2017/02/05/Swift/Swift/Grammar/Function函数/index.html">
+<meta property="og:site_name" content="💖区块链💖 💖随心记💖">
+<meta property="og:description" content="① 函数定义&amp;amp;&amp;amp;形式 Swift的函数和C的函数定义方式有区别，Swift将返回类型写在函数的最后  func函数名 (参数列表) -&amp;gt; 返回值 &amp;#123;       //函数体&amp;#125;  函数输入一个字符串，然后打印出这个字符串，并且返回一个字符串  //函数定义func printYourName (name: String)-&amp;gt;String &amp;#123;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-05T05:58:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-Grammar-Function函数">
+<meta name="twitter:description" content="① 函数定义&amp;amp;&amp;amp;形式 Swift的函数和C的函数定义方式有区别，Swift将返回类型写在函数的最后  func函数名 (参数列表) -&amp;gt; 返回值 &amp;#123;       //函数体&amp;#125;  函数输入一个字符串，然后打印出这个字符串，并且返回一个字符串  //函数定义func printYourName (name: String)-&amp;gt;String &amp;#123;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/05/Swift/Swift/Grammar/Function函数/"/>
+
+
+
+
+
+  <title>Swift-Grammar-Function函数 | 💖区块链💖 💖随心记💖</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">💖区块链💖 💖随心记💖</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/05/Swift/Swift/Grammar/Function函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YKK">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="💖区块链💖 💖随心记💖">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-Grammar-Function函数</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-05T12:42:13+08:00">
+                2017-02-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="①-函数定义-amp-amp-形式"><a href="#①-函数定义-amp-amp-形式" class="headerlink" title="① 函数定义&amp;&amp;形式"></a>① 函数定义&amp;&amp;形式</h1><blockquote>
+<p>Swift的函数和C的函数定义方式有区别，<br>Swift将返回类型写在函数的最后</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span>函数名 <span class="params">(参数列表)</span></span> -&gt; 返回值 &#123;</span><br><span class="line">       <span class="comment">//函数体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>函数输入一个字符串，然后打印出这个字符串，并且返回一个字符串</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数定义</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printYourName</span> <span class="params">(name: String)</span></span>-&gt;<span class="type">String</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(name)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Hello, "</span> + name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> s = printYourName(name: <span class="string">"Tom"</span>)   <span class="comment">//函数调用</span></span><br><span class="line"><span class="built_in">print</span>(s)    <span class="comment">//打印 Hello, Tom</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>函数返回值：函数返回值用-&gt;后跟类型说明符号<br>函数的多返回值。可以用元组返回复合多值。当然也可以没有返回值<br>复制代码<br>一个函数没有返回值，那么从 -&gt; 返回值 这个部分可以省略</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数定义</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printYourName</span> <span class="params">(name: String)</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>有多个参数</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printTwoString</span><span class="params">(firstString: String, secondString: String)</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(firstString,secondString)</span><br><span class="line">&#125;</span><br><span class="line">printTwoString(firstString: <span class="string">"hello"</span>, secondString: <span class="string">"Kate"</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>函数参数默认为let类型的<br>如果你想更改参数副本，那么你要显示使用var修饰<br>当然也可以不需要参数的函数<br>如果你像更改参数作为输入输出用inout,调用时候要用取地址符号&amp;</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">func</span> <span class="title">GetName</span><span class="params">(<span class="keyword">inout</span> strName:String)</span></span></span><br><span class="line">&#123;</span><br><span class="line">    strName += <span class="string">" hello"</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> strTest = <span class="string">"oo"</span></span><br><span class="line"><span class="type">GetName</span>(&amp;strTest)</span><br><span class="line"><span class="built_in">println</span>(<span class="string">"<span class="subst">\(strTest)</span>"</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="Function-Argument-Labels-and-Parameter-Names"><a href="#Function-Argument-Labels-and-Parameter-Names" class="headerlink" title="Function Argument Labels and Parameter Names"></a>Function Argument Labels and Parameter Names</h1><blockquote>
+<p>在函数定义时候，参数列表中使用的fristString和secondString称为参数(Parameter).但是参数包含了两个东西</p>
+</blockquote>
+<blockquote>
+<p>1是Argument Label，它是在方法调用的时候写在参数值前面的参数标记，比如下面调用中的firstString和secondString</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">printTwoString(firstString: <span class="string">"hello"</span>, </span><br><span class="line">               secondString: <span class="string">"Kate"</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>2是Parameter Names，它只的是在方法体里面使用到的参数标志<br> printTwoString方法体里面print种使用到的firstString,secondString</p>
+</blockquote>
+<blockquote>
+<p>默认情况下，Argument Label和Parameter Names是一样的。但是你也可以自定义Argument Label，方法是在Parameter Names前面加上另外一个字符串，并用空格相隔，如下，begin是自定义的Argument Label，然后调用的时候就需要使用begin来指定参数</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printTwoString</span><span class="params">(begin firstString: String, secondString: String)</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(firstString,secondString)</span><br><span class="line">&#125;</span><br><span class="line">printTwoString(begin: <span class="string">"hello"</span>, secondString: <span class="string">"Kate"</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用print的时候没有加上任何的Argument Label。如果你不想要Argument Label，那么在定义方法的时候，将Argument Label的字符串写为下划线 _ </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printTwoString</span><span class="params">(firstString: String, <span class="number">_</span> secondString: String)</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(firstString,secondString)</span><br><span class="line">&#125;</span><br><span class="line">printTwoString(firstString: <span class="string">"hello"</span>,  <span class="string">"Kate"</span>)  <span class="comment">//忽略了第二参数的外部参数名之后，这里就不能加上外部参数名了</span></span><br></pre></td></tr></table></figure>
+<h2 id="参数默认值"><a href="#参数默认值" class="headerlink" title="参数默认值"></a>参数默认值</h2><blockquote>
+<p>可以给参数赋值默认值。具有默认值的参数，在调用的时候，可以不用给它赋值。好比print方法，它的原型是</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">_</span>:separator:terminator:)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>但是一般使用的时候都只传了一个字符串，原因就在于它后面的两个参数都是具有默认值的。<br>给参数设置默认值的方法是在方法定义的时候，在参数的后面用 = 加上默认值。<br>如下代码。官方文档建议我们把带默认值的参数放在参数列表的末尾，这样在调用的时候不至于混淆。但是其实可以对每个参数都赋值默认值。比如下面的例子</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printTwoString</span><span class="params">(firstString: String = <span class="string">"hello"</span>, secondString: String = <span class="string">"Lucy"</span>, thirdString: String = <span class="string">"end"</span>)</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(firstString,secondString,thirdString)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">printTwoString( secondString:<span class="string">"two"</span>) </span><br><span class="line"> <span class="comment">//使用外部参数名指定要赋值的参数，其他参数使用默认值，输出 hello two end</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>值得注意的是，如果没有默认值的参数在调用的时候也没有给其赋值，那么会在编译的时候报错。<br>如果你又把参数列表的Argument Label都去掉的话，那么在调用的时候，你给的参数将会从头开始匹配。如果参数类型不匹配的话，就会报错。当然，不建议大家这样做，因为会导致程序的可读性变差</p>
+</blockquote>
+<h1 id="可变参数列表"><a href="#可变参数列表" class="headerlink" title="可变参数列表"></a>可变参数列表</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printStrings</span><span class="params">(strings: String...)</span></span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(strings)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">printStrings(<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="string">"3"</span>)  <span class="comment">//输出 ["1", "2", "3"]</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通过输出我们可以看到，可变参数在函数体内是以数组的类型存在的。这点在官方文档上有说明</p>
+</blockquote>
+<h1 id="In-Out-参数"><a href="#In-Out-参数" class="headerlink" title="In-Out 参数"></a>In-Out 参数</h1><blockquote>
+<p>在默认的情况下，参数传递给方法后都是常量，也就是说不能在函数体里面对参数进行修改。这个常量是个形参，不是之前的实参</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(first: Int, <span class="number">_</span> second: Int)</span></span> -&gt; <span class="type">Int</span>&#123;</span><br><span class="line">    first = <span class="number">2</span>  <span class="comment">//这句报错</span></span><br><span class="line">    <span class="keyword">return</span> first + second</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>有一种情况，我们希望在方法里面改变实参的值，所以有了inout关键字，这个关键字不能对可变参数添加，同时加上了这个keyword之后，不能再添加 var let，也不能有默认值。<br>然后调用的时候，这个参数必须传递一个变量，而不能是常量，并且在变量前加&amp;</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(first: <span class="keyword">inout</span> Int, <span class="number">_</span> second: Int)</span></span> -&gt; <span class="type">Int</span>&#123;</span><br><span class="line">    first = <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> first + second</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"result = <span class="subst">\(add(first: &amp;a, <span class="number">3</span>)</span>), a = <span class="subst">\(a)</span> "</span> )<span class="comment">//输出 result = 5, a = 2</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>关于In-Out，这个实现原理是先将实参copy，然后在方法体内处理，方法结束的时候，再把copy覆盖回原来的实参。所以如果你在方法体里面去改变实参（通过某些方法获得），那么在方法结束的时候，你对实参的改变会被形参覆盖。建议不要在方法体里面操作InOut参数的实参。</p>
+</blockquote>
+<p><a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Declarations.html#//apple_ref/doc/uid/TP40014097-CH34-ID545" target="_blank" rel="noopener">关于InOut参数的捕获问题请参见官方文档</a></p>
+<h1 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h1><blockquote>
+<p>函数也是一种类型。函数类型由函数定义决定</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(first: <span class="keyword">inout</span> Int, <span class="number">_</span> second: Int)</span></span> -&gt; <span class="type">Int</span>&#123;</span><br><span class="line">    first = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> first + second</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>它的函数类型为 (inout Int, Int) -&gt; Int<br>如果没有参数也没有返回值的函数，函数类型为 () -&gt; void，也可以写为 () -&gt; ()<br>函数类型可以和基本类型一样，用来定义变量。继续利用上面定义的add函数</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> mathFunc : (<span class="keyword">inout</span> <span class="type">Int</span>, <span class="type">Int</span>) -&gt; <span class="type">Int</span> = add</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> s = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">let</span> result = mathFunc(&amp;f,s)  <span class="comment">//使用函数类型</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>函数类型可以用做参数或返回值，利用上面定义的mathFunc变量，可以有</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(first: <span class="keyword">inout</span> Int, <span class="number">_</span> second: Int)</span></span> -&gt; <span class="type">Int</span>&#123;</span><br><span class="line">    first = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> first + second</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> mathFunc : (<span class="keyword">inout</span> <span class="type">Int</span>, <span class="type">Int</span>) -&gt; <span class="type">Int</span> = add</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">doMath</span><span class="params">(mathFunc: <span class="params">(<span class="keyword">inout</span> Int, Int)</span></span></span> -&gt; <span class="type">Int</span>, first: <span class="keyword">inout</span> <span class="type">Int</span>, second: <span class="type">Int</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"mathFunc = <span class="subst">\(mathFunc(&amp;first,second)</span>)"</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"first = <span class="subst">\(first)</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> s = <span class="number">2</span>;</span><br><span class="line">doMath(mathFunc: mathFunc, first: &amp;f, second: <span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"f = <span class="subst">\(f)</span>"</span>)</span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="comment">//mathFunc = 4</span></span><br><span class="line"><span class="comment">//first=2</span></span><br><span class="line"><span class="comment">//f=2</span></span><br></pre></td></tr></table></figure>
+<h1 id="嵌套函数"><a href="#嵌套函数" class="headerlink" title="嵌套函数"></a>嵌套函数</h1><blockquote>
+<p>在函数里面再定义函数。这个嵌套函数可以在函数内部调用，也可以作为返回值返回，使得它可以在其他范围内进行使用。例子如下<br>//定义了add 和 sub 两个嵌套函数，然后用于返回。如果输入的不是”+“或”-“，那么返回一个nil。注意giveMeFunc返回的是一个函数类型的可选类型</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">giveMeFunc</span><span class="params">(opt: Character)</span></span> -&gt; ((<span class="type">Int</span>, <span class="type">Int</span>) -&gt; <span class="type">Int</span>)? &#123;</span><br><span class="line">    <span class="keyword">var</span> method : ((<span class="type">Int</span>, <span class="type">Int</span>) -&gt; <span class="type">Int</span>)?</span><br><span class="line">    <span class="keyword">switch</span> opt &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"+"</span> :</span><br><span class="line">        <span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(one: Int, <span class="number">_</span> two: Int)</span></span> -&gt; <span class="type">Int</span> &#123; <span class="keyword">return</span> one + two &#125;</span><br><span class="line">        method = add</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"-"</span> :</span><br><span class="line">        <span class="function"><span class="keyword">func</span> <span class="title">sub</span><span class="params">(one: Int, <span class="number">_</span> two: Int)</span></span> -&gt; <span class="type">Int</span> &#123; <span class="keyword">return</span> one - two &#125;</span><br><span class="line">        method = sub</span><br><span class="line">    <span class="keyword">default</span> :</span><br><span class="line">        method = <span class="literal">nil</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> method</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> m = giveMeFunc(opt:<span class="string">"-"</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(m(<span class="number">1</span>, <span class="number">2</span>))  <span class="comment">// 打印  -1, 留意一下，这里没有Argument Label。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="操作符方法（Operator-Methods）"><a href="#操作符方法（Operator-Methods）" class="headerlink" title="操作符方法（Operator Methods）"></a>操作符方法（Operator Methods）</h1><blockquote>
+<p>swift和C++一样，可以定义操作符函数。操作符指的是+，-，/，%，+=等等。一般我们这些操作符是给数字类型使用的。但是有了操作符函数之后，我们可以自定义这类符号的运算规则。下面是官方的示例</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Vector2D</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">0.0</span>, y = <span class="number">0.0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Vector2D</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> + <span class="params">(<span class="keyword">left</span>: Vector2D, <span class="keyword">right</span>: Vector2D)</span></span> -&gt; <span class="type">Vector2D</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Vector2D</span>(x: <span class="keyword">left</span>.x + <span class="keyword">right</span>.x, y: <span class="keyword">left</span>.y + <span class="keyword">right</span>.y)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上面的例子定义了一个操作符函数 + ，这个操作符函数的参数列表里面有两个参数left和right。分别代表着+号左右两边的两个参数。通过这个函数，我们可以直接将两个Vector示例进行相加。如下：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> vector = <span class="type">Vector2D</span>(x: <span class="number">3.0</span>, y: <span class="number">1.0</span>)</span><br><span class="line"><span class="keyword">let</span> anotherVector = <span class="type">Vector2D</span>(x: <span class="number">2.0</span>, y: <span class="number">4.0</span>)</span><br><span class="line"><span class="keyword">let</span> combinedVector = vector + anotherVector</span><br><span class="line"><span class="comment">// combinedVector is a Vector2D instance with values of (5.0, 5.0)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>除了这种要接受两个参数的操作符之外，还要一些只有一个参数的操作符，比如 -，++，–等等。但是这类操作符有两类：前缀（Prefix）和后缀（Postfix），比如–a，i++；<br>这类操作符的定义要加上prefix或postfix关键字。语法如下</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Vector2D</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">prefix</span> <span class="function"><span class="keyword">func</span> - <span class="params">(vector: Vector2D)</span></span> -&gt; <span class="type">Vector2D</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Vector2D</span>(x: -vector.x, y: -vector.y)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上面定义了一个前缀的 - 操作符函数。用来将一个向量取反。后置操作符的关键字是postfix，中间操作符的关键字是infix</p>
+</blockquote>
+<blockquote>
+<p>另外还有一种计算并赋值的操作符，比如++，+=等等。这类的操作符会对其中的一个操作对象进行操作后的赋值。所以必须将参数设置为inout</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Vector2D</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> += <span class="params">(<span class="keyword">left</span>: <span class="keyword">inout</span> Vector2D, <span class="keyword">right</span>: Vector2D)</span></span> &#123;</span><br><span class="line">        <span class="keyword">left</span> = <span class="keyword">left</span> + <span class="keyword">right</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>除了Swift已经定义的操作符之外，还可以自己定义操作符。比如下面定义了一个+++操作符</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">prefix</span> <span class="keyword">operator</span> +++ </span><br><span class="line"> </span><br><span class="line"> 上面的只是定义，我们还需要实现这个操作符所做的</span><br><span class="line"> </span><br><span class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">Vector2D</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">prefix</span> <span class="function"><span class="keyword">func</span> +++ <span class="params">(vector: <span class="keyword">inout</span> Vector2D)</span></span> -&gt; <span class="type">Vector2D</span> &#123;</span><br><span class="line">        vector += vector</span><br><span class="line">        <span class="keyword">return</span> vector</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>但是这个自定义的操作符有一些规定。<br>自定义的操作符可以由/, =, -, +, !, *, %, &lt;, &gt;, &amp;, |, ^, ?,~，和某些Unicode 字符开始，至于是哪些字符可以参考官网。点击网页，在网页最下面<br>在这些字符之后，可以接上unicode字符。<br>另外有一些禁止的规定：<br>1.不能重写一个单单的 ? 号。（可以在字符里面加入?号）<br>2.不能重写这些操作符 =, -&gt;, //, /, /, ., 但是可以重写两个或更多个点的操作符。</p>
+<ol start="3">
+<li>不能以这些字符开头 ?, &lt;， &amp;<br>4.不能以这些字符结尾 ?， &gt;， !</li>
+</ol>
+</blockquote>
+<p>在定义的操作符的时候末尾的那对大括号是有用的。在数学上，加减乘除是有优先级和结合规则的。同样的，这里的操作符也是。我们可以在定义操作符的大括号里面定义这个操作符的优先级和结合规律</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">infix</span> <span class="keyword">operator</span> +-: <span class="type">AdditionPrecedence</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Vector2D</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> +- <span class="params">(<span class="keyword">left</span>: Vector2D, <span class="keyword">right</span>: Vector2D)</span></span> -&gt; <span class="type">Vector2D</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Vector2D</span>(x: <span class="keyword">left</span>.x + <span class="keyword">right</span>.x, y: <span class="keyword">left</span>.y - <span class="keyword">right</span>.y)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面例子定义的是一个中间的操作符，它的结合规则是向左结合。优先级是AdditionPrecedence组，这个参考下面的Precedence Group Declaration链接。<br>前置操作符和后置操作符不能指定优先级，它们作用在同一个操作数，那么先执行后置操作符。</p>
+<p><a href="http://blog.csdn.net/a709314090/article/details/74007109" target="_blank" rel="noopener">wen</a></p>
+<p><a href="http://www.cnblogs.com/zhidao-chen/p/3868411.html" target="_blank" rel="noopener"></a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/02/Swift/Swift/Grammar/Struct && Class 结构体和类/" rel="next" title="Swift-Grammar-类和结构体">
+                <i class="fa fa-chevron-left"></i> Swift-Grammar-类和结构体
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/23/1/" rel="prev" title="Swift-Document-Develpe文档">
+                Swift-Document-Develpe文档 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YKK</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#①-函数定义-amp-amp-形式"><span class="nav-number">1.</span> <span class="nav-text">① 函数定义&amp;&amp;形式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Function-Argument-Labels-and-Parameter-Names"><span class="nav-number">2.</span> <span class="nav-text">Function Argument Labels and Parameter Names</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参数默认值"><span class="nav-number">2.1.</span> <span class="nav-text">参数默认值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可变参数列表"><span class="nav-number">3.</span> <span class="nav-text">可变参数列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#In-Out-参数"><span class="nav-number">4.</span> <span class="nav-text">In-Out 参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数类型"><span class="nav-number">5.</span> <span class="nav-text">函数类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#嵌套函数"><span class="nav-number">6.</span> <span class="nav-text">嵌套函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#操作符方法（Operator-Methods）"><span class="nav-number">7.</span> <span class="nav-text">操作符方法（Operator Methods）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YKK</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

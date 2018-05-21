@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.基本类型  1.1数字类型  1.2Double  1.3布尔2.不同进制的前缀3.元组（Tuple）4.可选类型(Optionals))5.基本运算6.类型安全7.断言 基本类型  多出来的是 Tuple*8 和 可选类型**常量定义  let 常量名 常量名可以死任意文字，文字长度 给常量一个值，叫赋值 形式： let 常量名 = 值    变量   可主动变更或可预期时间内自耦东有规律或">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-Grammar--基本类型与运算">
+<meta property="og:url" content="http://yoursite.com/2016/11/24/Swift/Swift/Grammar/基本类型与运算/index.html">
+<meta property="og:site_name" content="💖区块链💖 💖随心记💖">
+<meta property="og:description" content="1.基本类型  1.1数字类型  1.2Double  1.3布尔2.不同进制的前缀3.元组（Tuple）4.可选类型(Optionals))5.基本运算6.类型安全7.断言 基本类型  多出来的是 Tuple*8 和 可选类型**常量定义  let 常量名 常量名可以死任意文字，文字长度 给常量一个值，叫赋值 形式： let 常量名 = 值    变量   可主动变更或可预期时间内自耦东有规律或">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-22T07:56:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-Grammar--基本类型与运算">
+<meta name="twitter:description" content="1.基本类型  1.1数字类型  1.2Double  1.3布尔2.不同进制的前缀3.元组（Tuple）4.可选类型(Optionals))5.基本运算6.类型安全7.断言 基本类型  多出来的是 Tuple*8 和 可选类型**常量定义  let 常量名 常量名可以死任意文字，文字长度 给常量一个值，叫赋值 形式： let 常量名 = 值    变量   可主动变更或可预期时间内自耦东有规律或">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/24/Swift/Swift/Grammar/基本类型与运算/"/>
+
+
+
+
+
+  <title>Swift-Grammar--基本类型与运算 | 💖区块链💖 💖随心记💖</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">💖区块链💖 💖随心记💖</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/24/Swift/Swift/Grammar/基本类型与运算/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YKK">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="💖区块链💖 💖随心记💖">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-Grammar--基本类型与运算</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-24T15:39:27+08:00">
+                2016-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1.<a href="#基本类型">基本类型</a><br>  1.1<a href="#数字类型">数字类型</a><br>  1.2<a href="#Double">Double</a><br>  1.3<a href="#布尔">布尔</a><br>2.<a href="#不同进制的前缀">不同进制的前缀</a><br>3.<a href="#元组（Tuple）">元组（Tuple）</a><br>4.<a href="#可选类型(Optionals">可选类型(Optionals)</a>)<br>5.<a href="#基本运算">基本运算</a><br>6.<a href="#类型安全">类型安全</a><br>7.<a href="#断言">断言</a></p>
+<h1 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h1><p><span id="基本类型"></span></p>
+<blockquote>
+<p>多出来的是 <strong>Tuple*8 和 </strong>可选类型**<br>常量定义</p>
+<ul>
+<li>let 常量名</li>
+<li>常量名可以死任意文字，文字长度</li>
+<li>给常量一个值，叫赋值</li>
+<li>形式： let 常量名 = 值</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>变量</p>
+</blockquote>
+<ul>
+<li>可主动变更或可预期时间内自耦东有规律或无规律的量</li>
+</ul>
+<blockquote>
+<p>常量和变量的关系</p>
+<ul>
+<li>变化才是永恒不变的，无论如何，总有规律可循</li>
+<li>变量与常量在一定条件下可以相互转换</li>
+<li>常量局势变量的一种</li>
+</ul>
+</blockquote>
+<h2 id="数字类型"><a href="#数字类型" class="headerlink" title="数字类型"></a>数字类型</h2><p><span id="数字类型"></span></p>
+<blockquote>
+<p><strong>Int 整型</strong></p>
+<blockquote>
+<p>类型可以不写，swift有类型推算功能</p>
+</blockquote>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a:<span class="type">Int</span> = <span class="number">101</span>    <span class="comment">//定义一个整型 初始化为101</span></span><br><span class="line"><span class="keyword">var</span> aa:<span class="type">UInt</span> = <span class="number">201</span>  <span class="comment">//无符号的整型 （不能为负数）</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>在32位机器上是Int32 </li>
+<li>在64位机器上是Int64</li>
+<li>除了Int之外，还有Int，Int8，Int16，Int32，Int64.</li>
+</ul>
+<blockquote>
+<p>各个取值范围</p>
+<blockquote>
+<p>其实取值范围就是 负2的n-1次方 ~ 2的n-1次方-1</p>
+</blockquote>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="type">UInt8</span>.<span class="built_in">max</span>)  <span class="comment">//255</span></span><br><span class="line"><span class="built_in">print</span>(<span class="type">UInt8</span>.<span class="built_in">min</span>)  <span class="comment">//0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="type">Int8</span>.<span class="built_in">max</span>) <span class="comment">//127</span></span><br><span class="line"><span class="built_in">print</span>(<span class="type">Int8</span>.<span class="built_in">min</span>) <span class="comment">//-128</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="type">Int16</span>.<span class="built_in">max</span>)    <span class="comment">//32767</span></span><br><span class="line"><span class="built_in">print</span>(<span class="type">Int16</span>.<span class="built_in">min</span>)    <span class="comment">//-32768</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="type">Int32</span>.<span class="built_in">max</span>)    <span class="comment">//2147483647</span></span><br><span class="line"><span class="built_in">print</span>(<span class="type">Int32</span>.<span class="built_in">min</span>)    <span class="comment">//-2147483648</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="type">Int64</span>.<span class="built_in">max</span>)    <span class="comment">//9223372036854775807</span></span><br><span class="line"><span class="built_in">print</span>(<span class="type">Int64</span>.<span class="built_in">min</span>)    <span class="comment">//-9223372036854775808</span></span><br></pre></td></tr></table></figure>
+<h2 id="Double"><a href="#Double" class="headerlink" title="Double"></a>Double</h2><p><span id="Double"></span></p>
+<ul>
+<li>swift 默认 浮点型是 Double（双精度）</li>
+<li>64位浮点数</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span>  yue = <span class="number">3.5</span></span><br><span class="line">或</span><br><span class="line"><span class="keyword">var</span>  yue : <span class="type">Double</span> = <span class="number">3.5</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Float </p>
+</blockquote>
+<ul>
+<li>32位浮点数</li>
+</ul>
+<blockquote>
+<p>Swift不支持数字类型之间的自动转换。必须显式手动转换<br>数值类字面量可以包括额外的格式来增强可读性。整数和浮点数都可以添加额外的零并且包含下划线，并不会影响字面量</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> i: <span class="type">Int</span> = <span class="number">2_000</span>   <span class="comment">//这个表示2000  </span></span><br><span class="line"><span class="keyword">var</span> d: <span class="type">Double</span> = <span class="number">5.3</span>  </span><br><span class="line"><span class="keyword">var</span> e = d * <span class="type">Double</span>(i)</span><br></pre></td></tr></table></figure>
+<h2 id="布尔"><a href="#布尔" class="headerlink" title="布尔"></a>布尔</h2><p><span id="布尔"></span></p>
+<blockquote>
+<p>Bool 表示逻辑上的真假： true、false<br>Swift和java一样，对boolean类型是强要求的，不能在if里面传一个整形用于判断</p>
+</blockquote>
+<h1 id="不同进制的前缀"><a href="#不同进制的前缀" class="headerlink" title="不同进制的前缀"></a>不同进制的前缀</h1><p><span id="不同进制的前缀"></span><br>|||<br>|—|—|<br>|十进制|没有|<br>|二进制   |     0b|<br>|八进制  |      0o|<br>|十六进制 |     0x|<br>|科学计数|<br>|1.25e2 |代表   1.25乘上10的2次方|<br>|0xFp2  |代表   15乘上2的2次方|<br>|typealias|    关键字，用来个类型起别名|</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">typealias</span> ii = <span class="type">Int8</span>  </span><br><span class="line">  <span class="keyword">var</span> mm = ii.<span class="built_in">min</span> <span class="comment">//这里的ii代表了Int8 </span></span><br><span class="line">  <span class="keyword">var</span> data1 = <span class="number">17</span>     <span class="comment">//17</span></span><br><span class="line"><span class="keyword">var</span> data2 = <span class="number">0b1010111</span>   <span class="comment">//87</span></span><br><span class="line"><span class="keyword">var</span> data3 = <span class="number">0o713</span>   <span class="comment">//459</span></span><br><span class="line"><span class="keyword">var</span> data4 = <span class="number">0xaf7</span>   <span class="comment">//2807</span></span><br></pre></td></tr></table></figure>
+<h1 id="元组-Tuple"><a href="#元组-Tuple" class="headerlink" title="元组(Tuple)"></a>元组(Tuple)</h1><p><span id="元组(Tuple)"></span></p>
+<blockquote>
+<p>Tuple:定义变量组合<br>其实就是一群数据组合，可以将其解出来输出<br>注意的是tuple不只是两个元素，你可以自己扩展成多个元素</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> var x= 1</span><br><span class="line"> var y = 2</span><br><span class="line"> var z = 3</span><br><span class="line"> </span><br><span class="line">var 向量 = （1，2，3）</span><br><span class="line">print (向量.0 ,向量.1 ,向量.2)</span><br><span class="line"></span><br><span class="line">var (x,y,z) = (1,2,3)</span><br><span class="line">print (x,y,z)</span><br><span class="line"></span><br><span class="line">// 值前加前缀</span><br><span class="line">var 课程 = (day:100,unit:&quot;天&quot;,lanage:&quot;swift&quot;,version:&quot;3.0&quot;);</span><br><span class="line">print课程. day)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> menu = (<span class="string">"apple"</span>, <span class="number">20</span>)  <span class="comment">//定义一个Tuple  </span></span><br><span class="line"><span class="keyword">var</span> menu2 = (name: <span class="string">"banana"</span>, price:<span class="number">10</span>)  <span class="comment">//可以在定义的时候指定元素名字  </span></span><br><span class="line"><span class="keyword">let</span> (name,price) = menu   <span class="comment">//解Tuple，如果某个元素不想要的话，用 _ 代替  </span></span><br><span class="line"><span class="built_in">print</span>(name, price)   <span class="comment">//输出  apple 20  </span></span><br><span class="line"><span class="built_in">print</span>(menu.<span class="number">0</span>,menu.<span class="number">1</span>)  <span class="comment">//不解Tuple直接输出  </span></span><br><span class="line"><span class="built_in">print</span>(menu2.name,menu2.price)  <span class="comment">//利用元素名字解Tuple</span></span><br></pre></td></tr></table></figure>
+<h2 id="可选类型-Optionals"><a href="#可选类型-Optionals" class="headerlink" title="可选类型(Optionals)"></a>可选类型(Optionals)</h2><p><span id="可选类型(Optionals)"></span></p>
+<blockquote>
+<p>当一个方法可以返回一个对象的时候，它有可能返回一个空值<br>比如将字符串转换为数字的方法。为了处理这种情况，有了可选类型。<br>可选类型表示一个数据，它可能有值，也可能为空。基本语法是在类型的后面加上问号 ？</p>
+</blockquote>
+<blockquote>
+<p>定义形式</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">形式: var 变量：类型?,默认无值（nil）</span><br><span class="line"> </span><br><span class="line">var addressStr:String  </span><br><span class="line">print(addressStr)  //这里报错说str没初始化  </span><br><span class="line"></span><br><span class="line">var addressStr:String?</span><br><span class="line">addressStr = &quot;杭州&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>但是如果将str改为可选类型，那么这就可以输出</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str:<span class="type">String</span>?  </span><br><span class="line"><span class="built_in">print</span>(str)  <span class="comment">//输出 nil</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可选类型转换为对应的类型 –&gt;对可选类型解包<br>强制解包有个注意点，就是如果这个可选类型是nil的话，那么强制解包的语句会在运行时报错</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str:<span class="type">String</span>? = <span class="string">"fe"</span>  </span><br><span class="line"><span class="keyword">var</span> s = str! <span class="comment">//将str解包为s，但是如果str没有赋值的话，那么这句会在运行时报错  </span></span><br><span class="line"><span class="built_in">print</span>(s)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>解决强制解包的时候，可选类型可能为nil的问题。if语句里面多了一个 Optional Binding 的概念。就是将可选类型解包后判断是否为nil，然后执行不同的分支代码 </p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//因为没给str赋值，所以输出  str为空  </span></span><br><span class="line"><span class="keyword">var</span> str:<span class="type">String</span>?  </span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> s = str &#123;  </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"str有值"</span>)  </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"str为空"</span>)  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在编程中，我们可以确保可选类型一定不为nil的，那么每次要将可选类型解包都要加个 !，很麻烦。所以有了隐式可选类型，它是用 ! 代替了 ? 号。然后在需要将可选类型转换为对应类型的时候就不用加 ! 了</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str:<span class="type">String</span>! = <span class="string">"string"</span>  </span><br><span class="line"><span class="keyword">var</span> s = str</span><br></pre></td></tr></table></figure>
+<h1 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h1><p><span id="基本运算"></span></p>
+<h2 id="一些和C完全一样的基本运算"><a href="#一些和C完全一样的基本运算" class="headerlink" title="一些和C完全一样的基本运算"></a>一些和C完全一样的基本运算</h2><blockquote>
+<p>加减乘除，负号，自增（++）自减（–），+=等， 判断大小之类（==，!=，&gt;=…），三元运算符，逻辑运算（!，&amp;&amp;，||）</p>
+</blockquote>
+<h2 id="不一样的运算符"><a href="#不一样的运算符" class="headerlink" title="不一样的运算符"></a>不一样的运算符</h2><p><span id="不一样的运算符"></span></p>
+<h3 id="取模"><a href="#取模" class="headerlink" title="取模%"></a>取模%</h3><blockquote>
+<p>在C中，只能对整形进行运算<br>Swift中可以对浮点数进行运算。结果就是多出来的那部分</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">比如 <span class="number">7.1</span>%<span class="number">2.5</span>  得到<span class="number">2.1</span>，因为<span class="number">7.1</span>可以最多减去<span class="number">2</span>个<span class="number">2.5</span>，然后剩下<span class="number">2.1</span></span><br></pre></td></tr></table></figure>
+<h3 id="范围运算符"><a href="#范围运算符" class="headerlink" title="范围运算符"></a>范围运算符</h3><blockquote>
+<p> … 和 ..&lt;两个运算符可以用在for里面</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">//输出 1 2 3    包含最后一个元素3  </span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>...<span class="number">3</span> &#123;  </span><br><span class="line">    <span class="built_in">print</span>(i)  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">//输出 1 2  不包含最后一个元素3  </span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>..&lt;<span class="number">3</span> &#123;  </span><br><span class="line">    <span class="built_in">print</span>(i)  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="单范围运算符"><a href="#单范围运算符" class="headerlink" title="单范围运算符"></a>单范围运算符</h3><blockquote>
+<p>对于下标运算可以这样用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> names = [<span class="string">"Anna"</span>, <span class="string">"Alex"</span>, <span class="string">"Brian"</span>, <span class="string">"Jack"</span>]  </span><br><span class="line"><span class="keyword">for</span> name <span class="keyword">in</span> names[<span class="number">2</span>...] &#123;  </span><br><span class="line">    <span class="built_in">print</span>(name)  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">// Brian  </span></span><br><span class="line"><span class="comment">// Jack  </span></span><br><span class="line">   </span><br><span class="line"><span class="keyword">for</span> name <span class="keyword">in</span> names[...<span class="number">2</span>] &#123;  </span><br><span class="line">    <span class="built_in">print</span>(name)  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">// Anna  </span></span><br><span class="line"><span class="comment">// Alex  </span></span><br><span class="line"><span class="comment">// Brian  </span></span><br><span class="line"><span class="keyword">for</span> name <span class="keyword">in</span> names[..&lt;<span class="number">2</span>] &#123;  </span><br><span class="line">    <span class="built_in">print</span>(name)  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="comment">// Anna  </span></span><br><span class="line"><span class="comment">// Alex</span></span><br></pre></td></tr></table></figure>
+<h3 id="几元操作符"><a href="#几元操作符" class="headerlink" title="几元操作符"></a>几元操作符</h3><ul>
+<li><p>操作几个对象 ，被称之为几元操作符</p>
+<blockquote>
+<p>一元运算符</p>
+<ul>
+<li>操作一个目标，是一元操作符 </li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-6    // 符号 紧跟 6，是一元运算符</span><br><span class="line">let b = -a</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p> 二元运算符</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="number">3</span> + <span class="number">4</span> <span class="comment">//两个目标之间，操作2个对象，习惯左右留空格</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a ?? b</span><br><span class="line"></span><br><span class="line">它的意思是：如果可选类型a不是<span class="literal">nil</span>，那么解包a并返回解包值，如果a为<span class="literal">nil</span>，那么返回b</span><br><span class="line"></span><br><span class="line">相当于 a != <span class="literal">nil</span> ? a! : b</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>赋值操作符</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> yue = <span class="number">3</span>  <span class="comment">// 用等号右边的值来更新左边变量的值</span></span><br><span class="line">yue = <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>数学操作符(+ - * /)</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+<h1 id="类型安全"><a href="#类型安全" class="headerlink" title="类型安全"></a>类型安全</h1><p><span id="类型安全"></span></p>
+<blockquote>
+<p>变量（包含let）一旦定义，其类型不可改变，不能给一个变量一个类型不同的值</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span>  电费 = <span class="number">3.5</span></span><br><span class="line">点费 = <span class="number">5</span> </span><br><span class="line"><span class="built_in">print</span> (电费)     打印：<span class="number">5.0</span></span><br><span class="line">电费 = “五”       <span class="type">Error</span></span><br></pre></td></tr></table></figure>
+<p>#断言<br><span id="断言"></span></p>
+<blockquote>
+<p>在某些情况下，如果值缺失或者值并不满足特定的条件，你的代码可能并不需要继续执行。这时，你可以在你的代码中触发一个断言(assertion)来结束代码运行并通过调试来找到值缺失的原因。<br>如果条件判断为true，代码运行会继续进行；如果条件判断为false，代码运行停止，你的应用被终止</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> age = -<span class="number">10</span></span><br><span class="line"> <span class="comment">//你可以在断言加一个信息</span></span><br><span class="line"> <span class="built_in">assert</span>(age&gt;<span class="number">0</span> , <span class="string">"age can not be less than zero"</span>)</span><br><span class="line"> <span class="comment">//程序运行到这里会crash掉 后面的程序不会再执行</span></span><br><span class="line"> <span class="built_in">print</span>(<span class="string">"hello"</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/02/Swift/Swift/Grammar/Struct && Class 结构体和类/" rel="prev" title="Swift-Grammar-类和结构体">
+                Swift-Grammar-类和结构体 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YKK</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本类型"><span class="nav-number">1.</span> <span class="nav-text">基本类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数字类型"><span class="nav-number">1.1.</span> <span class="nav-text">数字类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Double"><span class="nav-number">1.2.</span> <span class="nav-text">Double</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#布尔"><span class="nav-number">1.3.</span> <span class="nav-text">布尔</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不同进制的前缀"><span class="nav-number">2.</span> <span class="nav-text">不同进制的前缀</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#元组-Tuple"><span class="nav-number">3.</span> <span class="nav-text">元组(Tuple)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#可选类型-Optionals"><span class="nav-number">3.1.</span> <span class="nav-text">可选类型(Optionals)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本运算"><span class="nav-number">4.</span> <span class="nav-text">基本运算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一些和C完全一样的基本运算"><span class="nav-number">4.1.</span> <span class="nav-text">一些和C完全一样的基本运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不一样的运算符"><span class="nav-number">4.2.</span> <span class="nav-text">不一样的运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#取模"><span class="nav-number">4.2.1.</span> <span class="nav-text">取模%</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范围运算符"><span class="nav-number">4.2.2.</span> <span class="nav-text">范围运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单范围运算符"><span class="nav-number">4.2.3.</span> <span class="nav-text">单范围运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几元操作符"><span class="nav-number">4.2.4.</span> <span class="nav-text">几元操作符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类型安全"><span class="nav-number">5.</span> <span class="nav-text">类型安全</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YKK</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

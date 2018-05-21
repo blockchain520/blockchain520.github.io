@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="StringString 的定义 字符串是有序的字符集合，或者叫文本String 是字符串类型。单个字，Character是字符类型2个字符串可以用 + 链接通过字符插值可以合成一个长字符串  public struct String &amp;#123;    public init()     // An empty `String`&amp;#125; 字符串创建和空判断 字符串字面量，包含双引号的值  v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-Grammar-String-Character">
+<meta property="og:url" content="http://yoursite.com/2017/11/24/Swift/Swift/Grammar/String-字符串/index.html">
+<meta property="og:site_name" content="💖区块链💖 💖随心记💖">
+<meta property="og:description" content="StringString 的定义 字符串是有序的字符集合，或者叫文本String 是字符串类型。单个字，Character是字符类型2个字符串可以用 + 链接通过字符插值可以合成一个长字符串  public struct String &amp;#123;    public init()     // An empty `String`&amp;#125; 字符串创建和空判断 字符串字面量，包含双引号的值  v">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-14T07:10:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-Grammar-String-Character">
+<meta name="twitter:description" content="StringString 的定义 字符串是有序的字符集合，或者叫文本String 是字符串类型。单个字，Character是字符类型2个字符串可以用 + 链接通过字符插值可以合成一个长字符串  public struct String &amp;#123;    public init()     // An empty `String`&amp;#125; 字符串创建和空判断 字符串字面量，包含双引号的值  v">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/24/Swift/Swift/Grammar/String-字符串/"/>
+
+
+
+
+
+  <title>Swift-Grammar-String-Character | 💖区块链💖 💖随心记💖</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">💖区块链💖 💖随心记💖</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/24/Swift/Swift/Grammar/String-字符串/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YKK">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="💖区块链💖 💖随心记💖">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-Grammar-String-Character</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-24T16:11:26+08:00">
+                2017-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Grammar/String/" itemprop="url" rel="index">
+                    <span itemprop="name">String</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><h2 id="String-的定义"><a href="#String-的定义" class="headerlink" title="String 的定义"></a>String 的定义</h2><blockquote>
+<p><strong>字符串</strong>是有序的字符集合，或者叫文本<br>String 是字符串类型。单个字，Character是字符类型<br>2个字符串可以用 + 链接<br>通过字符插值可以合成一个长字符串</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">struct</span> <span class="title">String</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">init</span>()     <span class="comment">// An empty `String`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="字符串创建和空判断"><a href="#字符串创建和空判断" class="headerlink" title="字符串创建和空判断"></a>字符串创建和空判断</h2><blockquote>
+<p>字符串字面量，包含双引号的值</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"Yue ke kui"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>创建空串</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> yue  = <span class="string">""</span></span><br><span class="line">或</span><br><span class="line"><span class="keyword">var</span> yue = <span class="type">String</span>()  <span class="comment">//结构体方式创建</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ke = <span class="string">"  "</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">yue.isEmpty    <span class="comment">// 判断字符串是否为空</span></span><br><span class="line">ke.isEmpty   <span class="comment">// 不为空。有空格</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用三个引号来创建一段话的string<br>开始的三个引号的第一行后面的空格都会忽略，但是第二行的空格不会</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> quotation = <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">The White Rabbit put on his spectacles.  "</span><span class="type">Where</span> shall <span class="type">I</span> begin,</span><br><span class="line">please your <span class="type">Majesty</span>?<span class="string">" he asked.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span><span class="type">Begin</span> at the beginning,<span class="string">" the King said gravely, "</span>and go on</span><br><span class="line">till you come to the end; then stop.<span class="string">"</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br></pre></td></tr></table></figure>
+<h2 id="可修改字符串"><a href="#可修改字符串" class="headerlink" title="可修改字符串"></a>可修改字符串</h2><blockquote>
+<p>Swift 3.0 用 var 和 let 来判断字符串是否可以被修改(类似OC可变字符串)<br>let修饰 不可变字符串  不能拼接追加等<br>var修饰 可变字符串<br><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> variableString = <span class="string">"Hello"</span></span><br><span class="line">variableString += <span class="string">"Swift 3.0"</span>;</span><br><span class="line"><span class="built_in">print</span>(variableString);</span><br><span class="line"><span class="comment">//打印</span></span><br><span class="line"><span class="type">HelloSwift</span> <span class="number">3.0</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="Character-字符"><a href="#Character-字符" class="headerlink" title="Character 字符"></a>Character 字符</h2><blockquote>
+<p>创建一个Character，必须显式声明类型</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> c1:<span class="type">Character</span> = <span class="string">"c"</span>  <span class="comment">//注意是 双引号</span></span><br><span class="line"><span class="keyword">var</span> c2 = <span class="string">"c"</span>           <span class="comment">//c2被认为是String类型</span></span><br><span class="line"><span class="keyword">var</span> c3 = '<span class="built_in">c</span>'           <span class="comment">//编译错误</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Character可以赋值为Unicode</span></span><br><span class="line"><span class="keyword">let</span> eAcute: <span class="type">Character</span> = <span class="string">"\u&#123;E9&#125;"</span>      <span class="comment">// é</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 挨个 取 字符</span></span><br><span class="line"><span class="keyword">let</span> string = <span class="string">"Swift"</span>;</span><br><span class="line"><span class="keyword">var</span> arrays = string.characters;</span><br><span class="line"><span class="keyword">for</span> charactor <span class="keyword">in</span> arrays&#123;</span><br><span class="line">    <span class="built_in">print</span>(charactor);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//一次打印 </span></span><br><span class="line"> <span class="type">S</span>  w  i  f t</span><br></pre></td></tr></table></figure>
+<h2 id="字符串是值类型"><a href="#字符串是值类型" class="headerlink" title="字符串是值类型"></a>字符串是值类型</h2><blockquote>
+<p>改变String，这个语法和java一样的，不过内存管理层面已经是不同的对象<br>字符串是值类型: 创建了一个新的字符串，那么当其进行常量、变量赋值操作，或在函数/方法中传递时，会进行值拷贝。在实际编译时，Swift 编译器会优化字符串的使用，使实际的复制只发生在绝对必要的情况下，这意味着您将字符串作为值类型的同时可以获得极高的性能</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str:<span class="type">String</span> = <span class="string">"first"</span></span><br><span class="line"><span class="keyword">var</span> c1:<span class="type">Character</span> = <span class="string">"c"</span>          <span class="comment">//注意是双引号</span></span><br><span class="line"><span class="keyword">var</span> c2 = <span class="string">"c"</span>                    <span class="comment">//c2被认为是String类型</span></span><br><span class="line">str += <span class="string">"sceond"</span>                 <span class="comment">//str变为firstsceond,此时的str和之前的str内存地址不同</span></span><br><span class="line">str += c2                      <span class="comment">//str变为firstc,此时的str和之前的str内存地址不同</span></span><br><span class="line">str.appendContentsOf(<span class="string">"second"</span>) <span class="comment">// 和使用+=是一样的</span></span><br><span class="line">str.appendContentsOf(c2)       <span class="comment">//和使用+=是一样的</span></span><br><span class="line">str.append(c1);                <span class="comment">//添加Character的方法</span></span><br></pre></td></tr></table></figure>
+<h2 id="遍历String字符"><a href="#遍历String字符" class="headerlink" title="遍历String字符"></a>遍历String字符</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str:<span class="type">String</span> = <span class="string">"first"</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">c</span> <span class="keyword">in</span> str.characters &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">c</span>)</span><br><span class="line">&#125;</span><br><span class="line"> ------ 或</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> str.characters.<span class="built_in">indices</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(str[index])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="获取String长度"><a href="#获取String长度" class="headerlink" title="获取String长度"></a>获取String长度</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">"dfe"</span></span><br><span class="line"><span class="built_in">print</span>(s.<span class="built_in">count</span>)  <span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>swift里面有extended grapheme clusters(An extended grapheme cluster is a sequence of one or more Unicode scalars that (when combined) produce a single human-readable character.) 也就是几个Unicode字符组合成一个人类可以识别的字符。</li>
+<li>当string里面添加了characters后，count不一定会增加。<br>string的count不一定和NSString的length一致。<br>(The length of an NSString is based on the number of 16-bit code units within the string’s UTF-16 representation and not the number of Unicode extended grapheme clusters within the string.)</li>
+</ul>
+<h2 id="运算符-其他方式，赋值"><a href="#运算符-其他方式，赋值" class="headerlink" title="运算符+其他方式，赋值"></a>运算符+其他方式，赋值</h2><p> 符附字符尾部 append</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="comment">// 通过加法运算符（+）相加在一起（或称“连接”）创建一个新的字符串</span></span><br><span class="line"> <span class="keyword">let</span> string1 = <span class="string">"chen"</span>;</span><br><span class="line"> <span class="keyword">let</span> string2 = <span class="string">"jian"</span>;</span><br><span class="line"> <span class="keyword">let</span> string3 =  string1 + string2;</span><br><span class="line"> <span class="built_in">print</span>(<span class="string">"string3 is  <span class="subst">\(string3)</span>"</span>);  <span class="comment">// chen  jian</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//通过加法赋值运算符 (+=) 将一个字符串添加到一个已经存在字符串变量上</span></span><br><span class="line"><span class="keyword">var</span> variablestring = <span class="string">"da shen chen jian"</span>;</span><br><span class="line">variablestring += string2;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"variablestring is <span class="subst">\(variablestring)</span>"</span>);<span class="comment">// da shen chen jianjian </span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 用append()方法将一个字符附加到一个字符串变量的尾部</span></span><br><span class="line">  variablestring.append(<span class="string">" !"</span>);</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"variablestring is <span class="subst">\(variablestring)</span>"</span>);</span><br><span class="line">  <span class="comment">// da shen chen jianjian !</span></span><br></pre></td></tr></table></figure>
+<h2 id="String的Index"><a href="#String的Index" class="headerlink" title="String的Index"></a>String的Index</h2><ul>
+<li>不像java里面的Index直接就是一个数字</li>
+<li>String的Index是在不同的extension中定义的。 </li>
+</ul>
+<h2 id="获得String里面的某个字符的过程"><a href="#获得String里面的某个字符的过程" class="headerlink" title="获得String里面的某个字符的过程"></a>获得String里面的某个字符的过程</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> greeting = <span class="string">"Guten Tag!"</span></span><br><span class="line">greeting[greeting.startIndex]</span><br><span class="line"><span class="comment">// G</span></span><br><span class="line">greeting[greeting.index(before: greeting.endIndex)]</span><br><span class="line"><span class="comment">// !</span></span><br><span class="line">greeting[greeting.index(after: greeting.startIndex)]</span><br><span class="line"><span class="comment">// u</span></span><br><span class="line"><span class="keyword">let</span> index = greeting.index(greeting.startIndex, offsetBy: <span class="number">7</span>)</span><br><span class="line">greeting[index]</span><br><span class="line"><span class="comment">// a</span></span><br></pre></td></tr></table></figure>
+<h2 id="插入和移除字符"><a href="#插入和移除字符" class="headerlink" title="插入和移除字符"></a>插入和移除字符</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> welcome = <span class="string">"hello"</span></span><br><span class="line">welcome.insert(<span class="string">"!"</span>, at: welcome.endIndex)</span><br><span class="line"><span class="comment">// welcome now equals "hello!"</span></span><br><span class="line"></span><br><span class="line">welcome.insert(contentsOf: <span class="string">" there"</span>, at: welcome.index(before: welcome.endIndex))</span><br><span class="line"><span class="comment">// welcome now equals "hello there!"</span></span><br><span class="line">welcome.remove(at: welcome.index(before: welcome.endIndex))</span><br><span class="line"><span class="comment">// welcome now equals "hello there"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> range = welcome.index(welcome.endIndex, offsetBy: -<span class="number">6</span>)..&lt;welcome.endIndex</span><br><span class="line">welcome.removeSubrange(range)</span><br><span class="line"><span class="comment">// welcome now equals "hello"</span></span><br></pre></td></tr></table></figure>
+<h2 id="截串"><a href="#截串" class="headerlink" title="截串"></a>截串</h2><ul>
+<li>Swift引入了一个SubString类，用来截串</li>
+</ul>
+ <figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">let</span> greeting = <span class="string">"Hello, world!"</span></span><br><span class="line"><span class="keyword">let</span> index = greeting.index(of: <span class="string">","</span>) ?? greeting.endIndex</span><br><span class="line"><span class="keyword">let</span> beginning = greeting[..&lt;index]</span><br><span class="line"><span class="comment">// beginning is "Hello"</span></span><br><span class="line">但是注意<span class="type">SubString</span>可能会用到原来string的内存。官方建议是短时间使用，如果想要长时间保持，需要转为<span class="type">String</span></span><br><span class="line"><span class="comment">// Convert the result to a String for long-term storage.</span></span><br><span class="line"><span class="keyword">let</span> newString = <span class="type">String</span>(beginning)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>将String转换为NSString，然后调用NSString的截串方法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"123456789"</span></span><br><span class="line"><span class="keyword">var</span> ns = (str <span class="keyword">as</span> <span class="type">NSString</span>).substringWithRange(<span class="type">NSMakeRange</span>(<span class="number">1</span>, <span class="number">4</span>))</span><br><span class="line"><span class="built_in">print</span>(ns) <span class="comment">//输出  2345</span></span><br></pre></td></tr></table></figure>
+<h2 id="xtension来扩展String-最简单"><a href="#xtension来扩展String-最简单" class="headerlink" title="xtension来扩展String(最简单)"></a>xtension来扩展String(最简单)</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">mport <span class="type">Foundation</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">String</span> </span>&#123;</span><br><span class="line">    <span class="comment">//获取部分字符串，如果不在范围内，返回nil.如果end大于字符串长度，那么截取到最后</span></span><br><span class="line">    <span class="keyword">subscript</span> (start: <span class="type">Int</span>, end: <span class="type">Int</span>) -&gt; <span class="type">String</span>? &#123;</span><br><span class="line">        <span class="keyword">if</span> start &gt; <span class="keyword">self</span>.<span class="built_in">count</span> || start &lt; <span class="number">0</span> || start &gt; end &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> begin = <span class="keyword">self</span>.index(<span class="keyword">self</span>.startIndex, offsetBy: start)</span><br><span class="line">        <span class="keyword">var</span> terminal: <span class="type">Index</span></span><br><span class="line">        <span class="keyword">if</span> end &gt;= length &#123;</span><br><span class="line">            terminal = <span class="keyword">self</span>.index(<span class="keyword">self</span>.startIndex, offsetBy: <span class="built_in">count</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            terminal = <span class="keyword">self</span>.index(<span class="keyword">self</span>.startIndex, offsetBy: end + <span class="number">1</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> range = (begin ..&lt; terminal)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.substring(with: range)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获取某个字符，如果不在范围内，返回nil</span></span><br><span class="line">    <span class="keyword">subscript</span> (index: <span class="type">Int</span>) -&gt; <span class="type">Character</span>? &#123;</span><br><span class="line">        <span class="keyword">if</span> index &gt; <span class="keyword">self</span>.<span class="built_in">count</span> - <span class="number">1</span> || index &lt; <span class="number">0</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>[<span class="keyword">self</span>.index(<span class="keyword">self</span>.startIndex, offsetBy: index)]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="计算字符数量"><a href="#计算字符数量" class="headerlink" title="计算字符数量"></a>计算字符数量</h2><blockquote>
+<p>如果想要获得一个字符串中Character值的数量，可以使用字符串的characters属性的count属性</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">let</span>  calculstring = <span class="string">"chenjian"</span>;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"calculstring has <span class="subst">\(calculstring.characters.<span class="built_in">count</span>)</span> charactor"</span>);</span><br><span class="line"><span class="comment">//输出结果 calculstring has 8 charactor</span></span><br></pre></td></tr></table></figure>
+<h2 id="访问字符串"><a href="#访问字符串" class="headerlink" title="访问字符串"></a>访问字符串</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">let</span> visitString = <span class="string">"Hello Swift"</span>;</span><br><span class="line"><span class="comment">//获取第一个字符</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"visitString 的第一个字符 :<span class="subst">\(visitString[visitString.startIndex])</span>"</span>);</span><br><span class="line"><span class="comment">// 这里输出 visitString 的第一个字符 :H</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取最后一个字符</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"visitString 的最后一个字符 :<span class="subst">\(visitString[visitString.index(before: visitString.endIndex)</span>])"</span>);</span><br><span class="line"><span class="comment">// 这里输出  visitString 的最后一个字符 :t</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取下第二个字符</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"visitString 的第二个字符 : <span class="subst">\(visitString[visitString.index(after: visitString.startIndex)</span>])"</span>)</span><br><span class="line"><span class="comment">// 这里输出 visitString 的第二个字符 : e</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过偏移量获取索引 第一个字符 往后偏移 4个单位(不包括起始位置) （备注： 如果你把字符串当数组来理解，你会发现 0 就在数组的自四个位置）</span></span><br><span class="line"><span class="keyword">let</span> index = visitString.index(visitString.startIndex, offsetBy: <span class="number">4</span>);</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"<span class="subst">\(visitString[index])</span>"</span>);</span><br><span class="line"><span class="comment">// 这里输出  o</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 characters 属性的 indices 属性会创建一个包含全部索引的范围(Range)，用来在一个字符串中访问单个字符</span></span><br><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> visitString.characters.<span class="built_in">indices</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"通过下标得到每一个字符:<span class="subst">\(visitString[index])</span>"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这里输出</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">通过下标得到每一个字符:H</span></span><br><span class="line"><span class="comment">通过下标得到每一个字符:e</span></span><br><span class="line"><span class="comment">通过下标得到每一个字符:l</span></span><br><span class="line"><span class="comment">通过下标得到每一个字符:l</span></span><br><span class="line"><span class="comment">通过下标得到每一个字符:o</span></span><br><span class="line"><span class="comment">通过下标得到每一个字符: </span></span><br><span class="line"><span class="comment">通过下标得到每一个字符:S</span></span><br><span class="line"><span class="comment">通过下标得到每一个字符:w</span></span><br><span class="line"><span class="comment">通过下标得到每一个字符:i</span></span><br><span class="line"><span class="comment">通过下标得到每一个字符:f</span></span><br><span class="line"><span class="comment">通过下标得到每一个字符:t</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="大小写转化"><a href="#大小写转化" class="headerlink" title="大小写转化"></a>大小写转化</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> changeString = <span class="string">"hello"</span>;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"<span class="subst">\(changeString.uppercased()</span>)"</span>)  <span class="comment">//转化成大写</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"<span class="subst">\(changeString.lowercased()</span>)"</span>)  <span class="comment">// 转化成小写</span></span><br></pre></td></tr></table></figure>
+<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><blockquote>
+<p>调用 insert(_:at:) 方法可以在一个字符串的指定索引插入一个字符，调用 insert(contentsOf:at:) 方法可以在一个字符串的指定索引插入一个段字符串</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="comment">//插入单个字符</span></span><br><span class="line"><span class="keyword">var</span> welocome = <span class="string">"hello"</span>;</span><br><span class="line">welocome.insert(<span class="string">"!"</span>, at: welocome.endIndex);</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"welocome = <span class="subst">\(welocome)</span>"</span>);</span><br><span class="line"><span class="comment">//welocome = hello!</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//插入一段字符串到某个位置   contentsOf ： "字符串".characters 固定语法</span></span><br><span class="line">welocome.insert(contentsOf: <span class="string">"there"</span>.characters, at: welocome.index(before: welocome.endIndex));</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"welocome = <span class="subst">\(welocome)</span>"</span>);</span><br><span class="line"><span class="comment">//welocome = hello there!</span></span><br></pre></td></tr></table></figure>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><blockquote>
+<p>调用 remove(at:) 方法可以在一个字符串的指定索引删除一个字符</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  welocome.remove(at: welocome.index(before: welocome.endIndex));</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"welocome = <span class="subst">\(welocome)</span>"</span>);</span><br><span class="line"><span class="comment">//welocome = hello there</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用 removeSubrange(_:) 方法可以在一个字符串的指定索引删除一个子字符串。</span></span><br><span class="line"><span class="keyword">let</span> range = welocome.index(welocome.startIndex,offsetBy:<span class="number">6</span>)..&lt;welocome.endIndex;</span><br><span class="line">welocome.removeSubrange(range);</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"welocome = <span class="subst">\(welocome)</span>"</span>);</span><br><span class="line"><span class="comment">// welocome = hello</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//指定位置删除</span></span><br><span class="line">welocome.remove(at: welocome.index(before: welocome.endIndex));</span><br><span class="line"><span class="built_in">print</span>(welocome);</span><br><span class="line"><span class="comment">//hello</span></span><br></pre></td></tr></table></figure>
+<h2 id="比较字符串"><a href="#比较字符串" class="headerlink" title="比较字符串"></a>比较字符串</h2><blockquote>
+<p>字符串/字符可以用等于操作符(==)和不等于操作符(!=)</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">   <span class="keyword">let</span> quotation = <span class="string">"We're a lot alike, you and I."</span></span><br><span class="line"><span class="keyword">let</span> sameQuotation = <span class="string">"We're a lot alike, you and I."</span></span><br><span class="line"><span class="keyword">if</span> quotation == sameQuotation&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"相等"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 前缀相等</span></span><br><span class="line"><span class="keyword">let</span> preString01 = <span class="string">"date"</span>;</span><br><span class="line"><span class="keyword">if</span> preString01.hasPrefix(<span class="string">"da"</span>)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"preString01 前缀有da"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 后缀相等</span></span><br><span class="line"><span class="keyword">if</span> preString01.hasSuffix(<span class="string">"te"</span>)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"preString01 后缀有te"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
+<li>不能将一个字符串或者字符添加到一个已经存在的字符变量上，因为字符变量只能包含一个字符</li>
+</ul>
+<h2 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h2><ul>
+<li>字符串字面量可以包含以下特殊字符：转义字符\0(空字符)、(反斜线)、\t(水平制表符)、\n(换行符)、\r(回车符)、\”(双引号)、\’(单引号)</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/24/Swift/Swift/Grammar/嵌套类型&类型转换/" rel="next" title="Swift-Grammar-嵌套类型&类型转换">
+                <i class="fa fa-chevron-left"></i> Swift-Grammar-嵌套类型&类型转换
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/24/Swift/Swift/Grammar/集合类型/" rel="prev" title="Swift-Grammar-集合类型">
+                Swift-Grammar-集合类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YKK</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#String"><span class="nav-number">1.</span> <span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#String-的定义"><span class="nav-number">1.1.</span> <span class="nav-text">String 的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串创建和空判断"><span class="nav-number">1.2.</span> <span class="nav-text">字符串创建和空判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可修改字符串"><span class="nav-number">1.3.</span> <span class="nav-text">可修改字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Character-字符"><span class="nav-number">1.4.</span> <span class="nav-text">Character 字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串是值类型"><span class="nav-number">1.5.</span> <span class="nav-text">字符串是值类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历String字符"><span class="nav-number">1.6.</span> <span class="nav-text">遍历String字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取String长度"><span class="nav-number">1.7.</span> <span class="nav-text">获取String长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符-其他方式，赋值"><span class="nav-number">1.8.</span> <span class="nav-text">运算符+其他方式，赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String的Index"><span class="nav-number">1.9.</span> <span class="nav-text">String的Index</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获得String里面的某个字符的过程"><span class="nav-number">1.10.</span> <span class="nav-text">获得String里面的某个字符的过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入和移除字符"><span class="nav-number">1.11.</span> <span class="nav-text">插入和移除字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#截串"><span class="nav-number">1.12.</span> <span class="nav-text">截串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xtension来扩展String-最简单"><span class="nav-number">1.13.</span> <span class="nav-text">xtension来扩展String(最简单)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算字符数量"><span class="nav-number">1.14.</span> <span class="nav-text">计算字符数量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问字符串"><span class="nav-number">1.15.</span> <span class="nav-text">访问字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大小写转化"><span class="nav-number">1.16.</span> <span class="nav-text">大小写转化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入"><span class="nav-number">1.17.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除"><span class="nav-number">1.18.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比较字符串"><span class="nav-number">1.19.</span> <span class="nav-text">比较字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">1.20.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊字符"><span class="nav-number">1.21.</span> <span class="nav-text">特殊字符</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YKK</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

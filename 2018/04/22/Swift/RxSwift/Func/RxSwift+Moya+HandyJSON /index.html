@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Swift,RxSwift,Func," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="资料alibaba/HandyJSON原文参考 集成Podfilepod &apos;Moya&apos;, &apos;~&amp;gt; 10.0&apos;# or pod &apos;Moya/RxSwift&apos;, &apos;~&amp;gt; 10.0&apos; 导入import Moya 简单使用定义枚举，存储网络请求 定义一个枚举，存放我们的网络请求  enum ApiManager &amp;#123;    case login(username:String,">
+<meta name="keywords" content="Swift,RxSwift,Func">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxSwift+Moya+HandyJSON">
+<meta property="og:url" content="http://yoursite.com/2018/04/22/Swift/RxSwift/Func/RxSwift+Moya+HandyJSON /index.html">
+<meta property="og:site_name" content="💖区块链💖 💖随心记💖">
+<meta property="og:description" content="资料alibaba/HandyJSON原文参考 集成Podfilepod &apos;Moya&apos;, &apos;~&amp;gt; 10.0&apos;# or pod &apos;Moya/RxSwift&apos;, &apos;~&amp;gt; 10.0&apos; 导入import Moya 简单使用定义枚举，存储网络请求 定义一个枚举，存放我们的网络请求  enum ApiManager &amp;#123;    case login(username:String,">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-25T10:50:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RxSwift+Moya+HandyJSON">
+<meta name="twitter:description" content="资料alibaba/HandyJSON原文参考 集成Podfilepod &apos;Moya&apos;, &apos;~&amp;gt; 10.0&apos;# or pod &apos;Moya/RxSwift&apos;, &apos;~&amp;gt; 10.0&apos; 导入import Moya 简单使用定义枚举，存储网络请求 定义一个枚举，存放我们的网络请求  enum ApiManager &amp;#123;    case login(username:String,">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/22/Swift/RxSwift/Func/RxSwift+Moya+HandyJSON /"/>
+
+
+
+
+
+  <title>RxSwift+Moya+HandyJSON | 💖区块链💖 💖随心记💖</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">💖区块链💖 💖随心记💖</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/22/Swift/RxSwift/Func/RxSwift+Moya+HandyJSON /">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YKK">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="💖区块链💖 💖随心记💖">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RxSwift+Moya+HandyJSON</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T20:32:50+08:00">
+                2018-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/Func/" itemprop="url" rel="index">
+                    <span itemprop="name">Func</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><p><a href="https://github.com/alibaba/HandyJSON/blob/master/README_cn.md" target="_blank" rel="noopener">alibaba/HandyJSON</a><br><a href="https://blog.csdn.net/lvchenqiang_/article/details/79177444" target="_blank" rel="noopener">原文参考</a></p>
+<h1 id="集成"><a href="#集成" class="headerlink" title="集成"></a>集成</h1><h2 id="Podfile"><a href="#Podfile" class="headerlink" title="Podfile"></a>Podfile</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">pod '<span class="type">Moya'</span>, '~&gt; <span class="number">10.0</span>'</span><br><span class="line"># or </span><br><span class="line">pod '<span class="type">Moya</span>/<span class="type">RxSwift'</span>, '~&gt; <span class="number">10.0</span>'</span><br></pre></td></tr></table></figure>
+<h2 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import Moya</span><br></pre></td></tr></table></figure>
+<h1 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h1><h2 id="定义枚举，存储网络请求"><a href="#定义枚举，存储网络请求" class="headerlink" title="定义枚举，存储网络请求"></a>定义枚举，存储网络请求</h2><blockquote>
+<p>定义一个枚举，存放我们的网络请求</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">ApiManager</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> login(username:<span class="type">String</span>,</span><br><span class="line">               password:<span class="type">String</span>,</span><br><span class="line">                  token:<span class="type">String</span>)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="moya的TargetType协议"><a href="#moya的TargetType协议" class="headerlink" title="moya的TargetType协议"></a>moya的TargetType协议</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ApiManager</span>:<span class="title">TargetType</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> baseURL: <span class="type">URL</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">URL</span>.<span class="keyword">init</span>(string: <span class="type">BaseURL</span>)!</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//请求路径</span></span><br><span class="line">    <span class="keyword">var</span> path:<span class="type">String</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> .login(username: <span class="number">_</span>, password:<span class="number">_</span> , token:<span class="number">_</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"login/accountLogin"</span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> headers: [<span class="type">String</span>: <span class="type">String</span>]? &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//请求的参数</span></span><br><span class="line">    <span class="keyword">var</span> parameters: [<span class="type">String</span>: <span class="type">Any</span>]? &#123;</span><br><span class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> .login(username: <span class="keyword">let</span> userName, password: <span class="keyword">let</span> pwd, token: <span class="keyword">let</span> token):</span><br><span class="line">            <span class="keyword">return</span> [<span class="string">"account"</span>:userName,<span class="string">"pwd"</span>:pwd,<span class="string">"deviceToken"</span>:token];</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">///请求方式</span></span><br><span class="line">    <span class="keyword">var</span> method: <span class="type">Moya</span>.<span class="type">Method</span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> .login(username: <span class="number">_</span>, password: <span class="number">_</span>, token: <span class="number">_</span>):</span><br><span class="line">        <span class="keyword">return</span> .post;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// The method used for parameter encoding.</span></span><br><span class="line">    <span class="keyword">var</span> parameterEncoding: <span class="type">ParameterEncoding</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">URLEncoding</span>.<span class="keyword">default</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// Provides stub data for use in testing.</span></span><br><span class="line">    <span class="keyword">var</span> sampleData: <span class="type">Data</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span>.data(using: <span class="type">String</span>.<span class="type">Encoding</span>.utf8)!</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//MARK:task type</span></span><br><span class="line">    <span class="keyword">var</span> task: <span class="type">Task</span> &#123;</span><br><span class="line">       <span class="keyword">return</span> .requestPlain</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> validate: <span class="type">Bool</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="发起网络请求"><a href="#发起网络请求" class="headerlink" title="发起网络请求"></a>发起网络请求</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> provider = <span class="type">MoyaProvider</span>&lt;<span class="type">ApiManager</span>&gt;();</span><br><span class="line"></span><br><span class="line">   provider.request(.login(username: <span class="string">"haha"</span>, password: <span class="string">"123456"</span>, token: <span class="string">"qwe"</span>)) &#123; (result) <span class="keyword">in</span></span><br><span class="line">          <span class="keyword">if</span> result.error == <span class="literal">nil</span>&#123;</span><br><span class="line">              <span class="type">LLog</span>(result.value);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="处理网络请求"><a href="#处理网络请求" class="headerlink" title="处理网络请求"></a>处理网络请求</h2><blockquote>
+<p>使用HanyJSON处理接口返回数据，因为我们使用RxSwift,在处理网络请求，所有我们是对ObservableType 数据类型 扩展mapModel</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ObservableType</span> <span class="title">where</span> <span class="title">E</span> == <span class="title">Response</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">mapModel</span>&lt;T: HandyJSON&gt;<span class="params">(<span class="number">_</span> type: T.<span class="keyword">Type</span>)</span></span> -&gt; <span class="type">Observable</span>&lt;<span class="type">T</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> flatMap &#123; response -&gt; <span class="type">Observable</span>&lt;<span class="type">T</span>&gt; <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">return</span> <span class="type">Observable</span>.just(response.mapModel(<span class="type">T</span>.<span class="keyword">self</span>))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Response</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">mapModel</span>&lt;T: HandyJSON&gt;<span class="params">(<span class="number">_</span> type: T.<span class="keyword">Type</span>)</span></span> -&gt; <span class="type">T</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> jsonString = <span class="type">String</span>.<span class="keyword">init</span>(data: data, encoding: .utf8)</span><br><span class="line">        <span class="keyword">return</span> <span class="type">JSONDeserializer</span>&lt;<span class="type">T</span>&gt;.deserializeFrom(json: jsonString)!</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="调用示例"><a href="#调用示例" class="headerlink" title="调用示例"></a>调用示例</h1><h2 id="使用provider异步请求，并处理返回数据"><a href="#使用provider异步请求，并处理返回数据" class="headerlink" title="使用provider异步请求，并处理返回数据"></a>使用provider异步请求，并处理返回数据</h2><blockquote>
+<p>接口请求完成后， subscribe 会收到next和complete两个事件 当event.element不为空时即为next事件</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">provider.rx.request(.login(username: <span class="string">"151xxxxxxxxxx"</span>, password: <span class="string">"123456"</span>, token: <span class="string">""</span>)).asObservable().mapModel(<span class="type">LoginResponseModel</span> .<span class="keyword">self</span>).subscribe &#123; (event) <span class="keyword">in</span></span><br><span class="line">             <span class="comment">//当event.element 不为空时，返回的就是我们之前mapModel的类</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">let</span> model = event.element&#123;</span><br><span class="line">                 <span class="type">LLog</span>(model.data.accessToken);</span><br><span class="line">                 <span class="type">LLog</span>(model.data.crowdToken);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="type">LLog</span>(<span class="string">"当前事件:<span class="subst">\(event)</span>"</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            &#125;.disposed(by: disposeBag);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>直接处理next事件，error和completed分开处理</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">provider.rx.request(.login(username: <span class="string">"15136176473"</span>, password: <span class="string">"123456"</span>, token: <span class="string">""</span>)).asObservable().mapModel(<span class="type">LoginResponseModel</span> .<span class="keyword">self</span>).subscribe(onNext: &#123; (model) <span class="keyword">in</span></span><br><span class="line">            <span class="type">LLog</span>(model.data.crowdToken)</span><br><span class="line">        &#125;, onError: &#123; (error) <span class="keyword">in</span></span><br><span class="line">            <span class="type">LLog</span>(<span class="string">"请求出错"</span>)</span><br><span class="line">        &#125;, onCompleted: <span class="literal">nil</span>, onDisposed: <span class="literal">nil</span>).disposed(by: disposeBag);</span><br></pre></td></tr></table></figure>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public init(endpointClosure: @escaping EndpointClosure = MoyaProvider.defaultEndpointMapping,</span><br><span class="line">               requestClosure: @escaping RequestClosure = MoyaProvider.defaultRequestMapping,</span><br><span class="line">               stubClosure: @escaping StubClosure = MoyaProvider.neverStub,</span><br><span class="line">               callbackQueue: DispatchQueue? = nil,</span><br><span class="line">               manager: Manager = MoyaProvider&lt;Target&gt;.defaultAlamofireManager(),</span><br><span class="line">               plugins: [PluginType] = [],</span><br><span class="line">               trackInflights: Bool = false) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Moya"><a href="#Moya" class="headerlink" title="Moya"></a>Moya</h1><blockquote>
+<p>Moya是一个比较全面的好用的网络管理工具,在上面我们只是使用了部分功能。通过provider的初始化，我们可以发现在开发中我们还可以处理很多。比如：</p>
+</blockquote>
+<h2 id="插件机制"><a href="#插件机制" class="headerlink" title="插件机制"></a>插件机制</h2><blockquote>
+<p>Moya 的插件机制也很好用，提供了以下接口:</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// Called to modify a request before sending</span></span><br><span class="line">   <span class="function"><span class="keyword">func</span> <span class="title">prepare</span><span class="params">(<span class="number">_</span> request: URLRequest, target: TargetType)</span></span> -&gt; <span class="type">URLRequest</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">/// Called immediately before a request is sent over the network (or stubbed).</span></span><br><span class="line">   <span class="function"><span class="keyword">func</span> <span class="title">willSend</span><span class="params">(<span class="number">_</span> request: RequestType, target: TargetType)</span></span></span><br><span class="line"></span><br><span class="line">   <span class="comment">/// Called after a response has been received, but before the MoyaProvider has invoked its completion handler.</span></span><br><span class="line">   <span class="function"><span class="keyword">func</span> <span class="title">didReceive</span><span class="params">(<span class="number">_</span> result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType)</span></span></span><br><span class="line"></span><br><span class="line">   <span class="comment">/// Called to modify a result before completion</span></span><br><span class="line">   <span class="function"><span class="keyword">func</span> <span class="title">process</span><span class="params">(<span class="number">_</span> result: Result&lt;Moya.Response, MoyaError&gt;, target: TargetType)</span></span> -&gt; <span class="type">Result</span>&lt;<span class="type">Moya</span>.<span class="type">Response</span>, <span class="type">MoyaError</span>&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>与主功能接口脱离，降低了耦合度我们可以再这里处理请求的权限、token、loading等。 例如：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">RequestLoadingPlugin</span>:<span class="title">PluginType</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">willSend</span><span class="params">(<span class="number">_</span> request: RequestType, target: TargetType)</span></span> &#123;</span><br><span class="line">        <span class="type">LLog</span>(<span class="string">"接口开始请求"</span>)</span><br><span class="line">    <span class="keyword">self</span>.showHUD()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">didReceive</span><span class="params">(<span class="number">_</span> result: Result&lt;Response, MoyaError&gt;, target: TargetType)</span></span> &#123;</span><br><span class="line">        <span class="type">LLog</span>(<span class="string">"接口请求完成"</span>)</span><br><span class="line">        <span class="keyword">self</span>.dismissHUD();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//MARK:-是否显示请求加载框</span></span><br><span class="line">    <span class="keyword">fileprivate</span>  <span class="function"><span class="keyword">func</span>  <span class="title">showHUD</span><span class="params">(<span class="number">_</span> isShow:Bool = <span class="literal">true</span>)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(isShow)&#123;</span><br><span class="line">            <span class="type">SVProgressHUD</span>.show();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//MARK:-隐藏请求加载框</span></span><br><span class="line">    <span class="keyword">fileprivate</span>  <span class="function"><span class="keyword">func</span> <span class="title">dismissHUD</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="type">SVProgressHUD</span>.dismiss();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在provider的初始化注册我们初始化的插件即可</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> provider = <span class="type">MoyaProvider</span>&lt;<span class="type">ApiManager</span>&gt;(plugins:[<span class="type">RequestLoadingPlugin</span>()]);</span><br></pre></td></tr></table></figure>
+<h2 id="请求处理机制"><a href="#请求处理机制" class="headerlink" title="请求处理机制"></a>请求处理机制</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">EndpointClosure</span> = (<span class="type">Target</span>) -&gt; <span class="type">Endpoint</span>&lt;<span class="type">Target</span>&gt;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">RequestClosure</span> = (<span class="type">Endpoint</span>&lt;<span class="type">Target</span>&gt;, @escaping <span class="type">RequestResultClosure</span>) -&gt; <span class="type">Void</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">StubClosure</span> = (<span class="type">Target</span>) -&gt; <span class="type">Moya</span>.<span class="type">StubBehavior</span></span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">RequestResultClosure</span> = (<span class="type">Result</span>&lt;<span class="type">URLRequest</span>, <span class="type">MoyaError</span>&gt;) -&gt; <span class="type">Void</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>从上面的三个闭包中，我们可以看出</p>
+</blockquote>
+<ul>
+<li>EndpointClosure 是输入一个Target 返回一个Endpoint 也就是完成Target-&gt;Endpoint</li>
+</ul>
+<blockquote>
+<p>Endpoint的数据结构</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Endpoint</span>&lt;<span class="title">Target</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">SampleResponseClosure</span> = () -&gt; <span class="type">EndpointSampleResponse</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">open</span> <span class="keyword">let</span> url: <span class="type">String</span></span><br><span class="line">    <span class="keyword">open</span> <span class="keyword">let</span> sampleResponseClosure: <span class="type">SampleResponseClosure</span></span><br><span class="line">    <span class="keyword">open</span> <span class="keyword">let</span> method: <span class="type">Moya</span>.<span class="type">Method</span></span><br><span class="line">    <span class="keyword">open</span> <span class="keyword">let</span> task: <span class="type">Task</span></span><br><span class="line">    <span class="keyword">open</span> <span class="keyword">let</span> httpHeaderFields: [<span class="type">String</span>: <span class="type">String</span>]?</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>初始化的默认值是</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">defaultEndpointMapping</span>(<span class="title">for</span> <span class="title">target</span>: <span class="title">Target</span>) -&gt; <span class="title">Endpoint</span>&lt;<span class="title">Target</span>&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Endpoint</span>(</span><br><span class="line">            url: <span class="type">URL</span>(target: target).absoluteString,</span><br><span class="line">            sampleResponseClosure: &#123; .networkResponse(<span class="number">200</span>, target.sampleData) &#125;,</span><br><span class="line">            method: target.method,</span><br><span class="line">            task: target.task,</span><br><span class="line">            httpHeaderFields: target.headers</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上面的代码只是创建并返回Endpoint实例。很多时候，我们可以自定义这个闭包来做更多额外的事情。比如我们处理一些网络状态码、或者结合stub 模拟网络数据等</p>
+</blockquote>
+<ul>
+<li>RequestClosure 是输入一个Endpoint和RequestResultClosure闭包 返回Void<br>RequestClosure主要是实现Endpoint-&gt;NSURLRequest 用于发起真正的网络请求</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">RequestResultClosure</span> = (<span class="type">Result</span>&lt;<span class="type">URLRequest</span>, <span class="type">MoyaError</span>&gt;) -&gt; <span class="type">Void</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在输入中RequestResultClosure就是对接口请求完成后的返回<br>初始化的默认值是：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">defaultRequestMapping</span>(<span class="title">for</span> <span class="title">endpoint</span>: <span class="title">Endpoint</span>&lt;<span class="title">Target</span>&gt;, <span class="title">closure</span>: <span class="title">RequestResultClosure</span>) </span>&#123;</span><br><span class="line">       <span class="keyword">do</span> &#123;</span><br><span class="line">           <span class="keyword">let</span> urlRequest = <span class="keyword">try</span> endpoint.urlRequest()</span><br><span class="line">           closure(.success(urlRequest))</span><br><span class="line">       &#125; <span class="keyword">catch</span> <span class="type">MoyaError</span>.requestMapping(<span class="keyword">let</span> url) &#123;</span><br><span class="line">           closure(.failure(<span class="type">MoyaError</span>.requestMapping(url)))</span><br><span class="line">       &#125; <span class="keyword">catch</span> <span class="type">MoyaError</span>.parameterEncoding(<span class="keyword">let</span> error) &#123;</span><br><span class="line">           closure(.failure(<span class="type">MoyaError</span>.parameterEncoding(error)))</span><br><span class="line">       &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">           closure(.failure(<span class="type">MoyaError</span>.underlying(error, <span class="literal">nil</span>)))</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里就是处理最后的urlRequest。如果你想设置全局的urlRequest，这里也是最后的机会了。我们可以再这里修改请求的超时时间、缓存策略、cookie等。<br>示例：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> requestClosure = &#123; (endpoint: <span class="type">Endpoint</span>&lt;<span class="type">ApiManager</span>&gt;, closure: (<span class="type">Result</span>&lt;<span class="type">URLRequest</span>, <span class="type">MoyaError</span>&gt;) -&gt; <span class="type">Void</span>)  -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="keyword">var</span>  urlRequest = <span class="keyword">try</span> endpoint.urlRequest()</span><br><span class="line">            urlRequest.timeoutInterval = <span class="number">30.0</span></span><br><span class="line">            urlRequest.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData</span><br><span class="line">            urlRequest.httpShouldHandleCookies = <span class="literal">false</span></span><br><span class="line">            closure(.success(urlRequest))</span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="type">MoyaError</span>.requestMapping(<span class="keyword">let</span> url) &#123;</span><br><span class="line">            closure(.failure(<span class="type">MoyaError</span>.requestMapping(url)))</span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="type">MoyaError</span>.parameterEncoding(<span class="keyword">let</span> error) &#123;</span><br><span class="line">            closure(.failure(<span class="type">MoyaError</span>.parameterEncoding(error)))</span><br><span class="line">        &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">            closure(.failure(<span class="type">MoyaError</span>.underlying(error, <span class="literal">nil</span>)))</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> provider = <span class="type">MoyaProvider</span>&lt;<span class="type">ApiManager</span>&gt;(requestClosure:requestClosure,plugins:[<span class="type">RequestLoadingPlugin</span>()]);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>StubClosure 是输入一个Target 返回一个StubBehavior的闭包。</li>
+<li>默认是：neverStub</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">StubClosure</span> = (<span class="type">Target</span>) -&gt; <span class="type">Moya</span>.<span class="type">StubBehavior</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">StubBehavior</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 不使用Stub来返回模拟的网络数据   </span></span><br><span class="line">     <span class="keyword">case</span> never</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 立刻返回Stub的数据</span></span><br><span class="line">    <span class="keyword">case</span> immediate</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 在几秒后返回stub的数据</span></span><br><span class="line">    <span class="keyword">case</span> delayed(seconds: <span class="type">TimeInterval</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h1><blockquote>
+<p>编写测试数据</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ApiManager</span>:<span class="title">TargetType</span></span>&#123;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// Provides stub data for use in testing.</span></span><br><span class="line">    <span class="keyword">var</span> sampleData: <span class="type">Data</span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> .login(username: <span class="number">_</span>, password: <span class="number">_</span>, token: <span class="number">_</span>):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"&#123;'code': 200,'Token':'123455'&#125;"</span>.data(using: <span class="type">String</span>.<span class="type">Encoding</span>.utf8)!</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>.data(using: <span class="type">String</span>.<span class="type">Encoding</span>.utf8)!</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>初始化EndpointClosure</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> endPointAction = &#123; (target: <span class="type">ApiManager</span>) -&gt; <span class="type">Endpoint</span>&lt;<span class="type">ApiManager</span>&gt; <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">let</span> url = target.baseURL.appendingPathComponent(target.path).absoluteString</span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span> target &#123;</span><br><span class="line">    <span class="keyword">case</span> .login(username: <span class="number">_</span>, password:<span class="number">_</span> , token:<span class="number">_</span>):</span><br><span class="line">        <span class="keyword">return</span>  <span class="type">Endpoint</span>(</span><br><span class="line">            url: url,</span><br><span class="line">            sampleResponseClosure: &#123; .networkResponse(<span class="number">200</span>, target.sampleData) &#125;,</span><br><span class="line">            method: target.method,</span><br><span class="line">            task: target.task,</span><br><span class="line">            httpHeaderFields: target.headers</span><br><span class="line">        )&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>初始化StubClosure</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> stubAction: (<span class="number">_</span> type:<span class="type">ApiManager</span>) -&gt; <span class="type">Moya</span>.<span class="type">StubBehavior</span> = &#123; type <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">switch</span> type &#123;</span><br><span class="line">    <span class="keyword">case</span> .login(username: <span class="number">_</span>, password:<span class="number">_</span> , token:<span class="number">_</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Moya</span>.<span class="type">StubBehavior</span>.delayed(seconds: <span class="number">3.0</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>初始化provider</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> provider = <span class="type">MoyaProvider</span>&lt;<span class="type">ApiManager</span>&gt;(endpointClosure:endPointAction,requestClosure:_requestClosure,stubClosure:stubAction,plugins:[<span class="type">RequestLoadingPlugin</span>()]);</span><br></pre></td></tr></table></figure>
+<h1 id="Manager"><a href="#Manager" class="headerlink" title="Manager"></a>Manager</h1><blockquote>
+<p>Moya本身并不是直接处理网络请求的第三方库。它只是一个抽象的网络层，对真正发起网络请求的Manager进行管理：例如Alamofire<br>默认参数:</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">defaultAlamofireManager</span>() -&gt; <span class="title">Manager</span> </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> configuration = <span class="type">URLSessionConfiguration</span>.<span class="keyword">default</span></span><br><span class="line">        configuration.httpAdditionalHeaders = <span class="type">Manager</span>.defaultHTTPHeaders</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> manager = <span class="type">Manager</span>(configuration: configuration)</span><br><span class="line">        manager.startRequestsImmediately = <span class="literal">false</span></span><br><span class="line">        <span class="keyword">return</span> manager</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>封装Alamofire,使Moya.Manager == Alamofire.SessionManager</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="type">Manager</span> = <span class="type">Alamofire</span>.<span class="type">SessionManager</span></span><br><span class="line"><span class="keyword">internal</span> <span class="keyword">typealias</span> <span class="type">Request</span> = <span class="type">Alamofire</span>.<span class="type">Request</span></span><br><span class="line"><span class="keyword">internal</span> <span class="keyword">typealias</span> <span class="type">DownloadRequest</span> = <span class="type">Alamofire</span>.<span class="type">DownloadRequest</span></span><br><span class="line"><span class="keyword">internal</span> <span class="keyword">typealias</span> <span class="type">UploadRequest</span> = <span class="type">Alamofire</span>.<span class="type">UploadRequest</span></span><br><span class="line"><span class="keyword">internal</span> <span class="keyword">typealias</span> <span class="type">DataRequest</span> = <span class="type">Alamofire</span>.<span class="type">DataRequest</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>所以，当我们想要定义自己的Manager，我们也可以传入自己的Manager到Moya的provider中。<br>示例</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> policies: [<span class="type">String</span>: <span class="type">ServerTrustPolicy</span>] = [</span><br><span class="line">    <span class="string">"example.com"</span>: .<span class="type">PinPublicKeys</span>(</span><br><span class="line">        publicKeys: <span class="type">ServerTrustPolicy</span>.publicKeysInBundle(),</span><br><span class="line">        validateCertificateChain: <span class="literal">true</span>,</span><br><span class="line">        validateHost: <span class="literal">true</span></span><br><span class="line">    )</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> policies: [<span class="type">String</span>: <span class="type">ServerTrustPolicy</span>] = [</span><br><span class="line">    <span class="string">"example.com"</span>: .pinPublicKeys(</span><br><span class="line">        publicKeys: <span class="type">ServerTrustPolicy</span>.publicKeys(),</span><br><span class="line">        validateCertificateChain: <span class="literal">true</span>,</span><br><span class="line">        validateHost: <span class="literal">true</span></span><br><span class="line">    )</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> manager:<span class="type">Manager</span> = <span class="type">Manager</span>(configuration: <span class="type">URLSessionConfiguration</span>.<span class="keyword">default</span>, delegate: <span class="type">SessionDelegate</span>(), serverTrustPolicyManager: <span class="type">ServerTrustPolicyManager</span>(policies: policies))</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> provider = <span class="type">MoyaProvider</span>&lt;<span class="type">ApiManager</span>&gt;(manager: manager)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+            <a href="/tags/Func/" rel="tag"># Func</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/14/Swift/Swift/Grammar/ControlFlow控制流/" rel="next" title="Swift-Grammar-ControlFlow控制流">
+                <i class="fa fa-chevron-left"></i> Swift-Grammar-ControlFlow控制流
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/25/Swift/Swift/Lib/ObjectMapper-数据转模型/" rel="prev" title="Swift-Lib-ObjectMapper-数据转模型">
+                Swift-Lib-ObjectMapper-数据转模型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YKK</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#资料"><span class="nav-number">1.</span> <span class="nav-text">资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#集成"><span class="nav-number">2.</span> <span class="nav-text">集成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Podfile"><span class="nav-number">2.1.</span> <span class="nav-text">Podfile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导入"><span class="nav-number">2.2.</span> <span class="nav-text">导入</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简单使用"><span class="nav-number">3.</span> <span class="nav-text">简单使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义枚举，存储网络请求"><span class="nav-number">3.1.</span> <span class="nav-text">定义枚举，存储网络请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#moya的TargetType协议"><span class="nav-number">3.2.</span> <span class="nav-text">moya的TargetType协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发起网络请求"><span class="nav-number">3.3.</span> <span class="nav-text">发起网络请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理网络请求"><span class="nav-number">3.4.</span> <span class="nav-text">处理网络请求</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调用示例"><span class="nav-number">4.</span> <span class="nav-text">调用示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用provider异步请求，并处理返回数据"><span class="nav-number">4.1.</span> <span class="nav-text">使用provider异步请求，并处理返回数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展"><span class="nav-number">4.2.</span> <span class="nav-text">扩展</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Moya"><span class="nav-number">5.</span> <span class="nav-text">Moya</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插件机制"><span class="nav-number">5.1.</span> <span class="nav-text">插件机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求处理机制"><span class="nav-number">5.2.</span> <span class="nav-text">请求处理机制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例"><span class="nav-number">6.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例："><span class="nav-number">7.</span> <span class="nav-text">示例：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Manager"><span class="nav-number">8.</span> <span class="nav-text">Manager</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YKK</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

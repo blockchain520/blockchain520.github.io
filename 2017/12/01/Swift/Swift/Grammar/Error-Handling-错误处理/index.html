@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Swift-错误 Swift提供了一套完整的错误抛出-捕获-处理机制Swift采用Error协议来表示错误类型，通过do-try-catch的方式来处理可能会抛出异常的代码  Optional 可选值表示一个值要么有值，要么是nil。在Swift中，Optional是用enum写的，     public enum Optional&amp;lt;Wrapped&amp;gt; : ExpressibleByNi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-Grammar-Error-Handling错误处理">
+<meta property="og:url" content="http://yoursite.com/2017/12/01/Swift/Swift/Grammar/Error-Handling-错误处理/index.html">
+<meta property="og:site_name" content="💖区块链💖 💖随心记💖">
+<meta property="og:description" content="Swift-错误 Swift提供了一套完整的错误抛出-捕获-处理机制Swift采用Error协议来表示错误类型，通过do-try-catch的方式来处理可能会抛出异常的代码  Optional 可选值表示一个值要么有值，要么是nil。在Swift中，Optional是用enum写的，     public enum Optional&amp;lt;Wrapped&amp;gt; : ExpressibleByNi">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-11T07:21:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-Grammar-Error-Handling错误处理">
+<meta name="twitter:description" content="Swift-错误 Swift提供了一套完整的错误抛出-捕获-处理机制Swift采用Error协议来表示错误类型，通过do-try-catch的方式来处理可能会抛出异常的代码  Optional 可选值表示一个值要么有值，要么是nil。在Swift中，Optional是用enum写的，     public enum Optional&amp;lt;Wrapped&amp;gt; : ExpressibleByNi">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/01/Swift/Swift/Grammar/Error-Handling-错误处理/"/>
+
+
+
+
+
+  <title>Swift-Grammar-Error-Handling错误处理 | 💖区块链💖 💖随心记💖</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">💖区块链💖 💖随心记💖</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/01/Swift/Swift/Grammar/Error-Handling-错误处理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YKK">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="💖区块链💖 💖随心记💖">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-Grammar-Error-Handling错误处理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-01T17:12:37+08:00">
+                2017-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Grammar/Error/" itemprop="url" rel="index">
+                    <span itemprop="name">Error</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Swift-错误"><a href="#Swift-错误" class="headerlink" title="Swift-错误"></a>Swift-错误</h1><blockquote>
+<p>Swift提供了一套完整的错误抛出-捕获-处理机制<br>Swift采用Error协议来表示错误类型，通过do-try-catch的方式来处理可能会抛出异常的代码</p>
+</blockquote>
+<h1 id="Optional"><a href="#Optional" class="headerlink" title="Optional"></a>Optional</h1><blockquote>
+<p>可选值表示一个值要么有值，要么是nil。在Swift中，Optional是用enum写的，</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Optional</span>&lt;<span class="title">Wrapped</span>&gt; : <span class="title">ExpressibleByNilLiteral</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">none</span></span><br><span class="line">    <span class="keyword">case</span> some(<span class="type">Wrapped</span>)</span><br><span class="line">     <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当发生错误的时候，返回一个可选值是常见的处理方式。但是，这种方式的有一个很明显的缺点</p>
+</blockquote>
+<ul>
+<li>调用者不清楚为什么失败</li>
+<li>不好进行相关的处理</li>
+</ul>
+<h1 id="Error协议与throws"><a href="#Error协议与throws" class="headerlink" title="Error协议与throws"></a>Error协议与throws</h1><ul>
+<li>Error是一个空的协议，用来表示错误类型</li>
+<li>NSError和CFError都遵循了这个协议</li>
+</ul>
+<blockquote>
+<p>在Swfit中，枚举是一个特别适合用来处理Error的数据类型。<br>首先定义一个类Person表示人</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Sex</span></span>&#123;</span><br><span class="line">	<span class="keyword">case</span> male</span><br><span class="line">	<span class="keyword">case</span> female</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">	<span class="keyword">let</span> sex:<span class="type">Sex</span></span><br><span class="line">	<span class="keyword">var</span> money:<span class="type">CGFloat</span></span><br><span class="line">	<span class="keyword">init</span>(sex:<span class="type">Sex</span> ,money:<span class="type">CGFloat</span>) &#123;</span><br><span class="line">	    <span class="keyword">self</span>.sex = sex</span><br><span class="line">	    <span class="keyword">self</span>.money = money</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Person可以结婚，结婚的时候会发生一些错误，比如钱不够，比如性别不对，用枚举来表示</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">MarryError</span> : <span class="title">Error</span></span>&#123;</span><br><span class="line">    <span class="keyword">case</span> lackMoney</span><br><span class="line">    <span class="keyword">case</span> wrongSex</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>方法的实现如下</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">marry</span><span class="params">(with another: Person)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Bool</span>&#123;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">self</span>.sex != another.sex <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="type">MarryError</span>.wrongSex</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">self</span>.money + another.money &gt; <span class="number">100000</span> <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="type">MarryError</span>.lackMoney</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>一个带有throws关键字的函数，调用的时候有两种方式选择</p>
+</blockquote>
+<blockquote>
+<p>①❶使用 do-try-catch 代码块</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">let</span> tom = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</span><br><span class="line"><span class="keyword">let</span> jack = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    <span class="keyword">try</span> tom.marry(with: jack)</span><br><span class="line">&#125;<span class="keyword">catch</span> <span class="type">MarryError</span>.wrongSex &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Two Person have same sex"</span>)</span><br><span class="line">&#125;<span class="keyword">catch</span> <span class="type">MarryError</span>.lackMoney&#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Oh, they do not have enough moeny"</span>)</span><br><span class="line">&#125;<span class="keyword">catch</span> <span class="keyword">let</span> error&#123;</span><br><span class="line">    <span class="built_in">print</span>(error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>❷不需要区分每一个Error，也可以这么调用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">do</span>&#123;</span><br><span class="line">    <span class="keyword">try</span> tom.marry(with: jack)</span><br><span class="line">&#125;<span class="keyword">catch</span> <span class="keyword">let</span> error&#123;</span><br><span class="line">    <span class="built_in">print</span>(error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>②使用 try?，对于有返回值的throws函数，使用try?会把结果转换为可选值</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">let</span> tom = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</span><br><span class="line"><span class="keyword">let</span> jack = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> result = <span class="keyword">try</span>? tom.marry(with: jack)&#123;<span class="comment">//成功</span></span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Error happen"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="defer关键字"><a href="#defer关键字" class="headerlink" title="defer关键字"></a>defer关键字</h1><blockquote>
+<p>defer关键字用来处理类似Ojective C中@try-@catch-@finally中，@finally的作用<br>比如，打开文件，如果抛出错误的话，我们总希望关闭这个文件句柄</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">func</span> <span class="title">contents</span><span class="params">(of filePath:String)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> file = <span class="keyword">open</span>(filePath,<span class="type">O_RDWR</span>)</span><br><span class="line">    <span class="keyword">defer</span> &#123;</span><br><span class="line">        close(file)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">defer</span>代码块的内容在退出作用域之前会被执行</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>关于defer的注意</p>
+</blockquote>
+<ul>
+<li>多个defer会按照逆序的方式执行。</li>
+<li>当你的程序遇到严重错误，比如fatalError,或者强制解析nil，或者segfaults的时候，defer的代码块并不会执行。</li>
+</ul>
+<h1 id="rethrow"><a href="#rethrow" class="headerlink" title="rethrow"></a>rethrow</h1><blockquote>
+<p>rethrow关键字在高阶函数中比较常见，所谓高阶函数，就是一个函数的参数或者返回值是函数类型<br>最常见的比如，Sequence协议map方法<br>比如：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> result = array.<span class="built_in">map</span>&#123;$<span class="number">0</span> * <span class="number">2</span>&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>由于map函数传入的是一个闭包，这个闭包可能会抛出错误<br>由参数抛出的错误最后会向上传递给map函数</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">MapError</span> : <span class="title">Error</span></span>&#123;</span><br><span class="line">    <span class="keyword">case</span> invalid</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">customMapper</span><span class="params">(input:Int)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Int</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> input &lt; <span class="number">10</span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="type">MapError</span>.invalid</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> input + <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> array = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> result = array.<span class="built_in">map</span>(customMapper)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这样是编译不通过的<br>调用的时候需要：按照上文提到的throws关键字的路子来</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">do</span> &#123;</span><br><span class="line">   <span class="keyword">let</span> result = <span class="keyword">try</span> array.<span class="built_in">map</span>(customMapper)</span><br><span class="line">&#125; <span class="keyword">catch</span> <span class="keyword">let</span> error&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这就是rethrows关键字的精髓所在<br>rethrows 关键字表示当参数闭包标记为throws的时候，函数本身为throws。如果参数闭包不会抛出错误，则函数也不会<br>通过这个关键字，你不必每次都进行try-catch</p>
+</blockquote>
+<h1 id="Result类型"><a href="#Result类型" class="headerlink" title="Result类型"></a>Result类型</h1><blockquote>
+<p>一个函数执行要么成功，要么失败。成功的时候我们希望返回数据，失败的时候我们希望得到错误信息，这就是Result类型，一个典型的Result类型如下：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">Result</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">case</span> success(<span class="type">T</span>)</span><br><span class="line">    <span class="keyword">case</span> failure(error:<span class="type">Error</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通过Result类型，不再需要可选值或者do-try-catch来包裹你的代码<br>用Result类型对上述marry函数进行重写</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">marry</span><span class="params">(with another: Person)</span></span>  -&gt; <span class="type">Result</span>&lt;<span class="type">Bool</span>&gt;&#123;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">self</span>.sex != another.sex <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> .failure(error: <span class="type">MarryError</span>.wrongSex)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">self</span>.money + another.money &gt; <span class="number">100000</span> <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> .failure(error: <span class="type">MarryError</span>.lackMoney)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> .success(<span class="literal">true</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>然后，这么调用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">let</span> tom = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</span><br><span class="line"> <span class="keyword">let</span> jack = <span class="type">Person</span>(sex: .male, money: <span class="number">100000</span>)</span><br><span class="line"> <span class="keyword">let</span> result = tom.marry(with: jack)</span><br><span class="line">  <span class="keyword">switch</span> result &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">let</span> .success(value):</span><br><span class="line">        <span class="built_in">print</span>(value)</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">let</span> .failure(error):</span><br><span class="line">        <span class="built_in">print</span>(error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Result链"><a href="#Result链" class="headerlink" title="Result链"></a>Result链</h1><blockquote>
+<p>Swift中有可选链，来处理多个可选值的连续调用。同样的，我们也可以为Result类型来添加链式调用：</p>
+</blockquote>
+<ul>
+<li>如果上一个调用结果是.success, 则继续调用下一个</li>
+<li>如果上一个调用结果是.failure, 则传递failure给下一个<blockquote>
+<p>用extension来实现</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">Result</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">flatMap</span>&lt;V&gt;<span class="params">(transform:<span class="params">(T)</span></span></span> <span class="keyword">throws</span> -&gt; (<span class="type">V</span>)) <span class="keyword">rethrows</span> -&gt; <span class="type">Result</span>&lt;<span class="type">V</span>&gt;&#123;</span><br><span class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .failure(error):</span><br><span class="line">            <span class="keyword">return</span> .failure(error: error)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> <span class="keyword">let</span> .success(data):</span><br><span class="line">            <span class="keyword">return</span> .success(<span class="keyword">try</span> transform(data))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>于是，可以这么调用</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">resut.flatMap(&#123;<span class="comment">//转换1&#125;).flatMap(//转换2)...</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>一旦失败，中间有一次flatMap转换失败，则之后的转换逻辑都不会执行<br>进阶：Result类型在Swift版本的Promise中大行其道，可以参见PromiseKit的源码，promise让异步处理变得优雅</p>
+</blockquote>
+<h1 id="assert-precondition"><a href="#assert-precondition" class="headerlink" title="assert/precondition"></a>assert/precondition</h1><blockquote>
+<p>Swift也有断言支持<br>在Swfit中，断言是一个函数<br>断言仅在Debug模式下进行检查，帮助开发者发现代码中的问题</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">assert</span><span class="params">(<span class="number">_</span> condition: @autoclosure <span class="params">()</span></span></span> -&gt; <span class="type">Bool</span>, </span><br><span class="line">             <span class="number">_</span> message: <span class="meta">@autoclosure</span> () -&gt; <span class="type">String</span> = <span class="keyword">default</span>, </span><br><span class="line">                  file: <span class="type">StaticString</span> = #file, </span><br><span class="line">                  line: <span class="type">UInt</span> = #line)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果需要在Relase模式下也进行检查，则使用precondition</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">precondition</span><span class="params">(<span class="number">_</span> condition: @autoclosure <span class="params">()</span></span></span> -&gt; <span class="type">Bool</span>, </span><br><span class="line">             <span class="number">_</span> message: <span class="meta">@autoclosure</span> () -&gt; <span class="type">String</span> = <span class="keyword">default</span>, </span><br><span class="line">                  file: <span class="type">StaticString</span> = #file, </span><br><span class="line">                  line: <span class="type">UInt</span> = #line)</span><br></pre></td></tr></table></figure>
+<h1 id="桥接到Objective-C"><a href="#桥接到Objective-C" class="headerlink" title="桥接到Objective C"></a>桥接到Objective C</h1><blockquote>
+<p>使用NSError来处理错误的的Objective 方法</p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="code"><pre><span class="line"> <span class="comment">//NSFileManager</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)removeItemAtURL:(<span class="built_in">NSURL</span> *)URL error:(<span class="built_in">NSError</span> * _Nullable *)error;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在Swift中会被自动的转换成</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeItem</span><span class="params">(at URL: URL)</span></span> <span class="keyword">throws</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>但是，纯Swfit的Error桥接的Objective C的时候，会有一些问题<br>因为NSError需要 domain和code等详细信息<br>可以让Swift的Error实现CustomNSError协议，来提供这些需要的信息</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">MarryError</span> : <span class="title">Error</span></span>&#123;</span><br><span class="line">    <span class="keyword">case</span> lackMoney</span><br><span class="line">    <span class="keyword">case</span> wrongSex</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">MarryError</span> : <span class="title">CustomNSError</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> errorDomain = <span class="string">"com.person.marryError"</span></span><br><span class="line">    <span class="keyword">var</span> erroCode:<span class="type">Int</span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> .lackMoney:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">100001</span></span><br><span class="line">        <span class="keyword">case</span> .wrongSex:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">100002</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> errorUserInfo:[<span class="type">String</span>:<span class="type">Any</span>]&#123;</span><br><span class="line">        <span class="keyword">return</span> [:]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>相关的，还有两个协议LocalizedError和RecoverableError</p>
+</blockquote>
+<h1 id="Swift的错误处理是用来处理运行时错误的"><a href="#Swift的错误处理是用来处理运行时错误的" class="headerlink" title="Swift的错误处理是用来处理运行时错误的"></a>Swift的错误处理是用来处理运行时错误的</h1><blockquote>
+<p>当错误发生时，你可以选择抓错误，或者继续往上抛出错误。当一个运行时错误最终没办法处理的时候，程序就会崩溃。</p>
+</blockquote>
+<blockquote>
+<p>Swift中有一个空的协议用来给用户自定义错误。一般使用枚举类实现这个协议来自定义错误。如下</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">ComputerError</span>: <span class="title">ErrorType</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">case</span> <span class="type">NoGameError</span>  </span><br><span class="line">    <span class="keyword">case</span> <span class="type">MemoryError</span>  </span><br><span class="line">    <span class="keyword">case</span> <span class="type">HardDiskError</span>  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里定义了三种error。当你要抛出一个error的时候，使用throw关键字。如下</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">throw</span> <span class="type">ComputerError</span>.<span class="type">NoGameError</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以抛出错误的函数的定义</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">func</span> <span class="title">canThrowErrors</span><span class="params">()</span></span> <span class="keyword">throws</span> -&gt; <span class="type">String</span>  </span><br><span class="line">   </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">cannotThrowErrors</span><span class="params">()</span></span> -&gt; <span class="type">String</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>利用上面的语法，我们定义一个Computer类，这个类有一个playGame方法，它会在某些情况下抛出错误</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Computer</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">var</span> memory = <span class="number">1024</span>  </span><br><span class="line">    <span class="keyword">var</span> hardDisk = <span class="number">4000</span>  </span><br><span class="line">      </span><br><span class="line">    <span class="keyword">var</span> games = [  </span><br><span class="line">        <span class="string">"War3"</span>: <span class="type">Requirement</span>(memory: <span class="number">512</span>, <span class="type">HardDisk</span>: <span class="number">1500</span>),  </span><br><span class="line">        <span class="string">"LOL"</span>: <span class="type">Requirement</span>(memory: <span class="number">1500</span>, <span class="type">HardDisk</span>: <span class="number">3000</span>),  </span><br><span class="line">        <span class="string">"My World"</span>: <span class="type">Requirement</span>(memory: <span class="number">256</span>, <span class="type">HardDisk</span>: <span class="number">500</span>)]  </span><br><span class="line">      </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">playGame</span><span class="params">(gameName: String)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Bool</span>&#123;  </span><br><span class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> game = <span class="keyword">self</span>.games[gameName] <span class="keyword">else</span> &#123;  </span><br><span class="line">            <span class="keyword">throw</span> <span class="type">ComputerError</span>.<span class="type">NoGameError</span>  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">guard</span> game.<span class="type">HardDisk</span> &lt; <span class="keyword">self</span>.hardDisk <span class="keyword">else</span> &#123;  </span><br><span class="line">            <span class="keyword">throw</span> <span class="type">ComputerError</span>.<span class="type">HardDiskError</span>  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">guard</span> game.memory &lt; <span class="keyword">self</span>.memory <span class="keyword">else</span> &#123;  </span><br><span class="line">            <span class="keyword">throw</span> <span class="type">ComputerError</span>.<span class="type">MemoryError</span>  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意一点的是，如果你要调用能抛出错误的函数的时候，必须使用try、try?或者try!关键字在前面，如下</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> myPC.playGame(<span class="string">"War4"</span>)   <span class="comment">//这句会因为没有War4这个游戏而抛出NoGameError错误</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>下面是处理错误的部分。<br>当调用一个可以抛出错误的方法的时候，一般有三种处理方法。<br>第一种是调用者继续向上抛出这个错误。这种情况下，这个调用者也必须是一个可以抛出错误的函数。如果最后没处理这个错误，那么程序崩溃。<br>第二种是使用do…catch语句对错误进行处理。<br>第三种是使用try?或try!调用会抛出错误的函数</p>
+</blockquote>
+<blockquote>
+<p>第一种方法举例，再定义一个Person类，它的play方法里面调用了Computer的playGame方法，然后继续抛出这个错误</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">var</span> pc = <span class="type">Computer</span>()  </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">play</span><span class="params">()</span></span> <span class="keyword">throws</span> &#123;  </span><br><span class="line">        <span class="keyword">try</span> <span class="keyword">self</span>.pc.playGame(<span class="string">"SC2"</span>)  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>第二种方法举例，使用do…catch语句处理。在do范围里面，我们可以调用会产生错误的方法。接着的catch语句可以接上要处理的错误类型</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">var</span> pc = <span class="type">Computer</span>()  </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">play</span><span class="params">()</span></span> &#123;  </span><br><span class="line">        <span class="keyword">do</span> &#123;  </span><br><span class="line">            <span class="keyword">try</span> <span class="keyword">self</span>.pc.playGame(<span class="string">"LOL"</span>)  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"have fun"</span>)  </span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">NoGameError</span> &#123;  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"NoGameError"</span>)  </span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">MemoryError</span> &#123;  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"MemoryError"</span>)  </span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">HardDiskError</span> &#123;  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"HardDiskError"</span>)  </span><br><span class="line">        &#125; <span class="keyword">catch</span> &#123;  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"other error"</span>,error)  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>值得注意的是最后一个catch。这里并没有加上要处理的错误。这的catch会捕捉所有类型的错误。<br>另外还有一个问题，如果不加上这个捕捉所有类型的catch语句。调用playGame的那句会报错说catch没有穷尽会抛出的错误。但是我只有三个错误，照理来讲应该是已经穷尽的了。不知道是Swift的问题，还是我代码哪里有问题。但如果把这个调用放到main.swift中去，也是只使用3个catch，就不会报错。搞不懂。<br>我现在的处理方式是把这个play方法继续写成一个可以抛出错误的方法。只处理自定义的三种错误。其他错误往上抛</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">var</span> pc = <span class="type">Computer</span>()  </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">play</span><span class="params">()</span></span> <span class="keyword">throws</span> &#123;  </span><br><span class="line">        <span class="keyword">do</span> &#123;  </span><br><span class="line">            <span class="keyword">try</span> <span class="keyword">self</span>.pc.playGame(<span class="string">"LOL"</span>)  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"have fun"</span>)  </span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">NoGameError</span> &#123;  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"NoGameError"</span>)  </span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">MemoryError</span>&#123;  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"MemoryError"</span>)  </span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">HardDiskError</span> &#123;  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"HardDiskError"</span>)  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>第三种是使用try?或try!调用会抛出错误的函数。<br>在官方文档里面，它原意是使用try?去处理一个会抛出错误的方法的返回值，如果这个方法抛出错误，那么会得到nil。如果没有错误，那么将函数返回值包装成可选类型后返回</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> myPC = <span class="type">Computer</span>()  </span><br><span class="line"><span class="keyword">var</span> result = <span class="keyword">try</span>? myPC.playGame(<span class="string">"War3"</span>)   <span class="comment">//这里playGame没有抛出错误，所以返回了Bool可选类型，值为true</span></span><br></pre></td></tr></table></figure>
+<p>ry!的区别是它默认调用方法是不会报错的，如果调用的方法报错，那么会得到运行时错误。即使你将这个try!写到了一个会抛出错误的方法里面，它也不会向上抛出这个错误。而是直接崩溃。</p>
+<p>try? 、try!   和try 三者的区别：</p>
+<p>try在一个会抛出错误的方法里面，它会把产生的错误交由catch处理或者向上抛出。</p>
+<p>try?是出错的时候返回一个nil，屏蔽错误。没错的话，将结果包装成一个可选类型返回。</p>
+<p>try!是在没错的情况下返回函数返回值。出错的情况下直接崩溃。错误不会再交给catch处理或者向上抛出。</p>
+<p>所以如果在do catch里面将try改为try?或者try!，那么会有一个警告说catch永远不会执行。</p>
+<h1 id="defer语句"><a href="#defer语句" class="headerlink" title="defer语句"></a>defer语句</h1><blockquote>
+<p>熟悉java的朋友应该知道finally语句。这个是在try..catch里面无论是否有错误，在退出try..catch范围的时候，最后都会执行finally范围内的代码。一般是用来做一些诸如关闭文件的工作。因为无论出不出错，最后都必须关闭打开的文件。<br>Swift也弄了一个defer语句，同样也是想在最后做这样的一些事情。但是这个defer远远没有finally那么好用。<br>先来开开defer的语法。学过java的朋友知道finally只能用在try..catch里面。但是defer可以不用在do..catch里面。并且defer里面不能用return、break或者抛出错误的语句。</p>
+</blockquote>
+<blockquote>
+<p>下面是一个没有用在do..catch中的例子</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">readFile</span><span class="params">()</span></span> &#123;  </span><br><span class="line">    <span class="keyword">defer</span> &#123;  </span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Close file"</span>)  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Open file"</span>)  </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Deal with file"</span>)  </span><br><span class="line">&#125;  </span><br><span class="line">readFile()  </span><br><span class="line"><span class="comment">//打印  </span></span><br><span class="line"><span class="comment">//Open file  </span></span><br><span class="line"><span class="comment">//Deal with file  </span></span><br><span class="line"><span class="comment">//Close file</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>留意上面的打印顺序，可以看出defer中的语句是在最后才执行的。单从这里看，和设计初衷一致：在最后面才执行。<br>但是一旦将这个defer用到do..catch里面，你就会觉得很恶心。<br>我们先来看一个和我们想象中一致的代码，首先改写上面用到的Person类。我们的原意是这样的：Person的play方法调用了Computer的会产生错误的playGame方法。我们定义了一个result的可选变量，用于接收playGame方法的返回值。在退出do..catch的时候，会调用defer语句。我们在里面判断result是否为nil。然后输出心情。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">var</span> pc = <span class="type">Computer</span>()  </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">play</span><span class="params">()</span></span> <span class="keyword">throws</span> &#123;  </span><br><span class="line">        <span class="keyword">do</span> &#123;  </span><br><span class="line">            <span class="keyword">var</span> result: <span class="type">Bool</span>?  </span><br><span class="line">            <span class="keyword">defer</span> &#123;  </span><br><span class="line">                <span class="keyword">if</span> result != <span class="literal">nil</span> &#123;  </span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">"have fun"</span>)  </span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">"sad"</span>)  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">            result = <span class="keyword">try</span> <span class="keyword">self</span>.pc.playGame(<span class="string">"LOL"</span>)  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"playGame"</span>)  </span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">NoGameError</span> &#123;  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"NoGameError"</span>)  </span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">MemoryError</span>&#123;  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"MemoryError"</span>)  </span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">HardDiskError</span> &#123;  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"HardDiskError"</span>)  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>然后我们执行下面代码，因为默认的Computer类的hardDisk不足。所以会报MemoryError错误</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> p = <span class="type">Person</span>()  </span><br><span class="line"><span class="keyword">try</span> p.play()  </span><br><span class="line"><span class="comment">//打印  </span></span><br><span class="line"><span class="comment">//sad  </span></span><br><span class="line"><span class="comment">//MemoryError</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意打印顺序，可以看出defer是先与catch执行的。这个和java的finally是不一样的。finally是在catch执行完后执行。其次是playGame没有打印，说明报错之后的语句不会执行。<br>如果playGame的参数是“War3”，那么程序不会报错。输出是</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> playGame  </span><br><span class="line">have fun</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>从以上来看，似乎还是符合我们的原意。<br>但是当你把defer的位置改改，变为下面这样</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">var</span> pc = <span class="type">Computer</span>()  </span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">play</span><span class="params">()</span></span> <span class="keyword">throws</span> &#123;  </span><br><span class="line">        <span class="keyword">do</span> &#123;  </span><br><span class="line">            <span class="keyword">var</span> result: <span class="type">Bool</span>?  </span><br><span class="line">            result = <span class="keyword">try</span> <span class="keyword">self</span>.pc.playGame(<span class="string">"LOL"</span>)  </span><br><span class="line">            <span class="keyword">defer</span> &#123;  </span><br><span class="line">                <span class="keyword">if</span> result != <span class="literal">nil</span> &#123;  </span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">"have fun"</span>)  </span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">"sad"</span>)  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"playGame"</span>)  </span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">NoGameError</span> &#123;  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"NoGameError"</span>)  </span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">MemoryError</span>&#123;  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"MemoryError"</span>)  </span><br><span class="line">        &#125; <span class="keyword">catch</span> <span class="type">ComputerError</span>.<span class="type">HardDiskError</span> &#123;  </span><br><span class="line">            <span class="built_in">print</span>(<span class="string">"HardDiskError"</span>)  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>你会发现输出只有一个MemoryError。也就是说当定义defer前面的语句报错之后，defer得不到执行。这样就要求这个defer必须写在一个合理的位置才行。</p>
+</blockquote>
+<h2 id="另外如果我们再改改上面的代码，使用try"><a href="#另外如果我们再改改上面的代码，使用try" class="headerlink" title="另外如果我们再改改上面的代码，使用try!"></a>另外如果我们再改改上面的代码，使用try!</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> </span><br><span class="line">你会发现输出只有一个<span class="type">MemoryError</span>。也就是说当定义<span class="keyword">defer</span>前面的语句报错之后，<span class="keyword">defer</span>得不到执行。这样就要求这个<span class="keyword">defer</span>必须写在一个合理的位置才行。</span><br><span class="line"></span><br><span class="line">另外如果我们再改改上面的代码，使用<span class="keyword">try</span>!</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这时候什么都没有打印，程序直接崩溃掉了。这个defer的初衷完全不同。<br>Swift的错误处理也是近几个版本才出现的。估计以后会继续改进</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/01/Swift/Swift/Grammar/可选链/" rel="next" title="Swift-Grammar-Optional Chaining-可选链">
+                <i class="fa fa-chevron-left"></i> Swift-Grammar-Optional Chaining-可选链
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/01/Swift/Swift/Grammar/Extension扩展/" rel="prev" title="Swift-Grammar-Extension扩展">
+                Swift-Grammar-Extension扩展 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YKK</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift-错误"><span class="nav-number">1.</span> <span class="nav-text">Swift-错误</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Optional"><span class="nav-number">2.</span> <span class="nav-text">Optional</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Error协议与throws"><span class="nav-number">3.</span> <span class="nav-text">Error协议与throws</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#defer关键字"><span class="nav-number">4.</span> <span class="nav-text">defer关键字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rethrow"><span class="nav-number">5.</span> <span class="nav-text">rethrow</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Result类型"><span class="nav-number">6.</span> <span class="nav-text">Result类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Result链"><span class="nav-number">7.</span> <span class="nav-text">Result链</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#assert-precondition"><span class="nav-number">8.</span> <span class="nav-text">assert/precondition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#桥接到Objective-C"><span class="nav-number">9.</span> <span class="nav-text">桥接到Objective C</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift的错误处理是用来处理运行时错误的"><span class="nav-number">10.</span> <span class="nav-text">Swift的错误处理是用来处理运行时错误的</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#defer语句"><span class="nav-number">11.</span> <span class="nav-text">defer语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#另外如果我们再改改上面的代码，使用try"><span class="nav-number">11.1.</span> <span class="nav-text">另外如果我们再改改上面的代码，使用try!</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YKK</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

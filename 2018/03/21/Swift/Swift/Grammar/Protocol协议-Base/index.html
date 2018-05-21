@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Swift,Grammar,Protocol," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="相关资料1相关资料2相关资料3 1.Protocol   1.1Protocol语法      1.2格式      1.3对属性的使用      1.4方法要求      1.5Mutating方法要求      1.6使用协议规范构造函数      1.7协议类型2.委托/代理设计模式3.协议的使用  3.1在扩展中添加协议成员  3.2通过扩展补充协议声明  3.3集合中的协议类型  3.4">
+<meta name="keywords" content="Swift,Grammar,Protocol">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-Grammar-Protocol协议-基础">
+<meta property="og:url" content="http://yoursite.com/2018/03/21/Swift/Swift/Grammar/Protocol协议-Base/index.html">
+<meta property="og:site_name" content="💖区块链💖 💖随心记💖">
+<meta property="og:description" content="相关资料1相关资料2相关资料3 1.Protocol   1.1Protocol语法      1.2格式      1.3对属性的使用      1.4方法要求      1.5Mutating方法要求      1.6使用协议规范构造函数      1.7协议类型2.委托/代理设计模式3.协议的使用  3.1在扩展中添加协议成员  3.2通过扩展补充协议声明  3.3集合中的协议类型  3.4">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-22T08:31:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-Grammar-Protocol协议-基础">
+<meta name="twitter:description" content="相关资料1相关资料2相关资料3 1.Protocol   1.1Protocol语法      1.2格式      1.3对属性的使用      1.4方法要求      1.5Mutating方法要求      1.6使用协议规范构造函数      1.7协议类型2.委托/代理设计模式3.协议的使用  3.1在扩展中添加协议成员  3.2通过扩展补充协议声明  3.3集合中的协议类型  3.4">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/21/Swift/Swift/Grammar/Protocol协议-Base/"/>
+
+
+
+
+
+  <title>Swift-Grammar-Protocol协议-基础 | 💖区块链💖 💖随心记💖</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">💖区块链💖 💖随心记💖</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/21/Swift/Swift/Grammar/Protocol协议-Base/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YKK">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="💖区块链💖 💖随心记💖">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-Grammar-Protocol协议-基础</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-21T21:50:59+08:00">
+                2018-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://blog.csdn.net/flyingkuikui/article/details/77717480" target="_blank" rel="noopener">相关资料1</a><br><a href="http://blog.csdn.net/u010586842/article/details/47971853" target="_blank" rel="noopener">相关资料2</a><br><a href="http://blog.csdn.net/u010586842/article/details/47971853" target="_blank" rel="noopener">相关资料3</a></p>
+<p>1.<a href="#Protocol">Protocol</a><br>   1.1<a href="#Protocol语法">Protocol语法</a><br>      1.2<a href="#格式">格式</a><br>      1.3<a href="#对属性的使用">对属性的使用</a><br>      1.4<a href="#方法要求">方法要求</a><br>      1.5<a href="#Mutating方法要求">Mutating方法要求</a><br>      1.6<a href="#使用协议规范构造函数">使用协议规范构造函数</a><br>      1.7<a href="#协议类型">协议类型</a><br>2.<a href="#委托/代理设计模式">委托/代理设计模式</a><br>3.<a href="#协议的使用">协议的使用</a><br>  3.1<a href="#在扩展中添加协议成员">在扩展中添加协议成员</a><br>  3.2<a href="#通过扩展补充协议声明">通过扩展补充协议声明</a><br>  3.3<a href="#集合中的协议类型">集合中的协议类型</a><br>  3.4<a href="#仅在类中使用协议">仅在类中使用协议</a><br>4.<a href="#协议的继承">协议的继承</a><br>  4.1<a href="#protocolComposition协议的合成">protocolComposition协议的合成</a><br>  4.2<a href="#检验协议的一致性">检验协议的一致性</a><br>   4.3<a href="#可选协议要求">可选协议要求</a></p>
+<h1 id="Protocol"><a href="#Protocol" class="headerlink" title="Protocol"></a>Protocol</h1><p><span id="Protocol"></span></p>
+<ul>
+<li>协议：代理设计模式</li>
+<li>协议能够被 类、枚举、结构体 实现，满足协议要求的类、枚举、结构体被称为协议的是实现者</li>
+<li>官方的定义：协议定义了一个蓝图 ， 规定了用来实现某一特定工作或者功能所必须的方法和属性，类、结构体、或者枚举类型都可以遵循协议， 并提供具体实现来完成协议定义的方法和功能 。 任意能够满足协议要求的类型都被成为遵循了这个协议</li>
+</ul>
+<h1 id="Protocol语法"><a href="#Protocol语法" class="headerlink" title="Protocol语法"></a>Protocol语法</h1><p><span id="Protocol语法"></span></p>
+<h2 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h2><p><span id="格式"></span></p>
+<ul>
+<li>在类、枚举、结构体的名称后加上协议名称，中间以冒号(:)分隔，即可实现协议，当实现多个协议时，多个协议间用逗号(,)隔开</li>
+<li>类含有父类,则应当将父类放在所有的协议之前</li>
+</ul>
+<blockquote>
+<p>协议实现书写格式</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 类名 : 协议1 , 协议<span class="title">n</span></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> 类名:父类,协议1,协议<span class="title">n</span></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="对属性的使用"><a href="#对属性的使用" class="headerlink" title="对属性的使用"></a>对属性的使用</h2><p><span id="对属性的使用"></span></p>
+<ul>
+<li>无论声明的属性为类属性还是对象属性，均需要在属性声明后加上{get}或{get set}，代表属性只读或读写</li>
+<li>属性被声明为{get}，为可读的属性实现{setter}方法，也不会报错。</li>
+<li>在声明类属性时，需要在声明的属性前添加关键字static。</li>
+<li>在实现者内，必须实现协议的类属性的getter方法，如果协议内定义的类属性是读写的，则还必须实现setter方法</li>
+<li>在协议中使用类型属性 总是使用static</li>
+</ul>
+<blockquote>
+<p>协议1</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">oneProtocol</span></span>&#123;</span><br><span class="line">    <span class="comment">// 定义变量，必须在属性声明后添加&#123;get&#125;或者&#123;get set&#125;</span></span><br><span class="line">    <span class="keyword">var</span> argumentOne:<span class="type">Int</span>&#123;<span class="keyword">get</span>&#125; <span class="comment">// 只读</span></span><br><span class="line">    <span class="keyword">var</span> argumentTwo:<span class="type">Int</span>&#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125; <span class="comment">// 读写</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> argumentClass:<span class="type">Int</span>&#123;<span class="keyword">get</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>类</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:<span class="title">oneProtocol</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> argumentOne: <span class="type">Int</span></span><br><span class="line">    <span class="keyword">var</span> argumentTwo: <span class="type">Int</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> argumentClass: <span class="type">Int</span>&#123;</span><br><span class="line">        <span class="keyword">get</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">30</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">init</span>(argumentOne:<span class="type">Int</span>,argumentTwo:<span class="type">Int</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.argumentOne = argumentOne</span><br><span class="line">        <span class="keyword">self</span>.argumentTwo = argumentTwo</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> per = <span class="type">Person</span>(argumentOne: <span class="number">90</span>, argumentTwo: <span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"<span class="subst">\(per.argumentOne)</span>"</span>) <span class="comment">// 90</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"<span class="subst">\(Person.argumentClass)</span>"</span>) <span class="comment">// 30</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>协议2</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Pro1</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name:<span class="type">String</span>&#123;<span class="keyword">set</span> <span class="keyword">get</span>&#125;  <span class="comment">//可读可写</span></span><br><span class="line">    <span class="keyword">var</span> age:<span class="type">Int</span> &#123; <span class="keyword">get</span> &#125;  <span class="comment">//只读属性</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> status:<span class="type">Int</span> &#123;<span class="keyword">set</span> <span class="keyword">get</span>&#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>遵循协议</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Struct1</span> : <span class="title">Pro1</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> _name = <span class="string">""</span></span><br><span class="line">    <span class="keyword">var</span> name:<span class="type">String</span>   &#123;</span><br><span class="line">        <span class="keyword">set</span>&#123;</span><br><span class="line">           _name = newValue</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">get</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> _name</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> age = <span class="number">18</span> <span class="comment">//可以声明为可读可写的</span></span><br><span class="line">    <span class="keyword">static</span>  <span class="keyword">var</span> status = <span class="number">1</span>  <span class="comment">//类型方法。</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Class1</span>: <span class="title">Pro1</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">"class"</span></span><br><span class="line">    <span class="keyword">var</span> age:<span class="type">Int</span>&#123; <span class="keyword">return</span>  <span class="number">19</span> &#125; <span class="comment">//也可以是只读</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">var</span> status = <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="方法要求"><a href="#方法要求" class="headerlink" title="方法要求"></a>方法要求</h2><p><span id="方法要求"></span></p>
+<ul>
+<li>协议内声明的方法不需要协议进行方法的实现(OC差不多)</li>
+<li>类方法，需要使用关键字 <strong>static</strong></li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">funcProtocol</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">sayBad</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:<span class="title">funcProtocol</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Hello"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">sayBad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Bad"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Mutating方法要求"><a href="#Mutating方法要求" class="headerlink" title="Mutating方法要求"></a>Mutating方法要求</h2><p><span id="Mutating方法要求"></span></p>
+<ul>
+<li>能在方法或者函数内部改变字段的方法称为Mutating方法。</li>
+<li>mutating关键字表示该函数允许改变该示例和其属性的类型。</li>
+<li>一般mutating用在值拷贝的地方，例如：结构体、枚举。对于类或者类绑定协议中的方法无效</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Togglable</span></span>&#123;</span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">toggle</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">OnOffSwitch</span>:<span class="title">Togglable</span></span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">On</span>,<span class="type">Off</span></span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">toggle</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> .<span class="type">Off</span>:</span><br><span class="line">            <span class="keyword">self</span> = .<span class="type">On</span></span><br><span class="line">        <span class="keyword">case</span> .<span class="type">On</span>:</span><br><span class="line">            <span class="keyword">self</span> = .<span class="type">Off</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> light = <span class="type">OnOffSwitch</span>.<span class="type">Off</span> <span class="comment">//Off</span></span><br><span class="line">light.toggle()  <span class="comment">// On</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">OnOFF</span>:<span class="title">Togglable</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> one:<span class="type">Int</span></span><br><span class="line">    <span class="keyword">var</span> two:<span class="type">Int</span></span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">toggle</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">self</span>.one &gt; <span class="number">10</span> &#123;</span><br><span class="line">            <span class="keyword">self</span>.two = <span class="number">30</span></span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">self</span>.two = <span class="number">20</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> <span class="type">LIGHT</span> = <span class="type">OnOFF</span>(one: <span class="number">2</span>, two: <span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"<span class="subst">\(LIGHT.two)</span>"</span>) <span class="comment">// 3</span></span><br><span class="line"><span class="type">LIGHT</span>.toggle()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"<span class="subst">\(LIGHT.two)</span>"</span>) <span class="comment">// 20</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用协议规范构造函数"><a href="#使用协议规范构造函数" class="headerlink" title="使用协议规范构造函数"></a>使用协议规范构造函数</h2><p><span id="使用协议规范构造函数"></span></p>
+<ul>
+<li>协议可以规定必须实现指定的构造函数，比如一些类中必须要求实现init构造函数，这样就可以制造一个协议，让实现协议的类必须实现该构造函数。</li>
+<li>实现构造协议的类，必须使用关键字required</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">TwoProtocol</span></span>&#123;</span><br><span class="line">    <span class="keyword">init</span>(twoArgument:<span class="type">Int</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">two</span>:<span class="title">TwoProtocol</span></span>&#123;</span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init</span>(twoArgument: <span class="type">Int</span>) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>父类中存在与协议内相同的构造方法，则子类在实现构造方法时，需要同时使用关键字required和override</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">TwoProtocol</span></span>&#123;</span><br><span class="line">    <span class="keyword">init</span>()</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TwoSuperClass</span></span>&#123;</span><br><span class="line">    <span class="keyword">init</span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Two</span>:<span class="title">TwoSuperClass</span>,<span class="title">TwoProtocol</span></span>&#123;</span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">override</span> <span class="keyword">init</span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>不能在final类中实现构造函数协议，因为final类是不能被继承的，因此不能实现构造函数协议</li>
+<li>父类内被final修饰的方法与协议内相同，则该方法不能被遵循协议的子类实现</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">protocol</span> <span class="title">TwoProtocol</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">say</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TwoSuperClass</span></span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="function"><span class="keyword">func</span> <span class="title">say</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Super Say Hello"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Two</span>:<span class="title">TwoSuperClass</span>,<span class="title">TwoProtocol</span></span>&#123;</span><br><span class="line">    <span class="comment">// 无法实现say方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="协议类型"><a href="#协议类型" class="headerlink" title="协议类型"></a>协议类型</h2><p><span id="协议类型"></span></p>
+<ul>
+<li>协议本身不实现任何功能，但是可以将它当作类型来使用。</li>
+<li>协议作为类型使用的场景：<br>  ⒈作为函数、方法或构造器中的参数类型，返回值类型。<br>  ⒉作为常量、变量、属性的类型。<br>  ⒊作为数组、字典或其它容器中的元素类型</li>
+</ul>
+<h1 id="委托-代理设计模式"><a href="#委托-代理设计模式" class="headerlink" title="委托/代理设计模式"></a>委托/代理设计模式</h1><p><span id="委托/代理设计模式"></span></p>
+<ul>
+<li>委托/代理是一种设计模式，它允许类或者结构体将一些需要它们负责的功能交由给其他类型。</li>
+<li>委托模式的实现：定义协议来封装那些需要被委托的函数和方法，使实现者拥有数据源的类型</li>
+</ul>
+<h1 id="协议的使用"><a href="#协议的使用" class="headerlink" title="协议的使用"></a>协议的使用</h1><p><span id="协议的使用"></span></p>
+<h2 id="在扩展中添加协议成员"><a href="#在扩展中添加协议成员" class="headerlink" title="在扩展中添加协议成员"></a>在扩展中添加协议成员</h2><p><span id="在扩展中添加协议成员"></span></p>
+<ul>
+<li>当无法修改原代码时，可以通过扩展来补充已经存在的类型。</li>
+<li>扩展可以为已经存在的类型添加属性、方法、下标、协议等成员。</li>
+<li>通过扩展为已存在的类型实现协议时，该类型的所有实例也会随之添加协议中的方法</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">TextProtocol</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">printSomeMessage</span><span class="params">(message:String)</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dice</span></span>&#123;</span><br><span class="line">&#125;]</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Dice</span>:<span class="title">TextProtocol</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">printSomeMessage</span><span class="params">(message: String)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"<span class="subst">\(message)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> dic = <span class="type">Dice</span>()</span><br><span class="line">dic.printSomeMessage(message: <span class="string">"hello"</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="通过扩展补充协议声明"><a href="#通过扩展补充协议声明" class="headerlink" title="通过扩展补充协议声明"></a>通过扩展补充协议声明</h2><p><span id="通过扩展补充协议声明"></span></p>
+<ul>
+<li>当一个类型已经实现了协议中的所有要求，却没有声明时，可以通过扩展补充协议的声明。</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">TextProtocol</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">printSomeMessage</span><span class="params">(message:String)</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Hamster</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">printSomeMessage</span><span class="params">(message: String)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"<span class="subst">\(message)</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Hamster</span>:<span class="title">TextProtocol</span></span>&#123;</span><br><span class="line">   <span class="comment">// 此时，Hamster的实例也可以作为TextProtocol类型使用</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> hamster = <span class="type">Hamster</span>()</span><br></pre></td></tr></table></figure>
+<h2 id="集合中的协议类型"><a href="#集合中的协议类型" class="headerlink" title="集合中的协议类型"></a>集合中的协议类型</h2><p><span id="集合中的协议类型"></span></p>
+<ul>
+<li>协议也可以作为类型在集合中被使用，表示集合中的元素均为协议类型</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> things:[<span class="type">TextProtocol</span>] = [dic,hamster]</span><br><span class="line"><span class="keyword">for</span> thing <span class="keyword">in</span> things &#123;</span><br><span class="line">    thing.printSomeMessage(message: <span class="string">"Hello Word"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 由于thing被当作是TextProtocol类型，故都能调用printSomeMessage方法</span></span><br></pre></td></tr></table></figure>
+<h2 id="仅在类中使用协议"><a href="#仅在类中使用协议" class="headerlink" title="仅在类中使用协议"></a>仅在类中使用协议</h2><p><span id="仅在类中使用协议"></span></p>
+<ul>
+<li>通过在协议中增加class关键字，可以实现协议只让类来实现。</li>
+<li>如果该协议同时继承其它协议，则需要在class后添加，并且用逗号隔开</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">protocol</span> <span class="title">SomeOnlyClassProtocol</span>:<span class="title">class</span></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 协议SomeOnlyClassProtocol实现者只能是类</span></span><br></pre></td></tr></table></figure>
+<h1 id="协议的继承"><a href="#协议的继承" class="headerlink" title="协议的继承"></a>协议的继承</h1><p><span id="协议的继承"></span></p>
+<ul>
+<li>协议可以继承一个或者多个其他协议，多个协议间用逗号隔开。</li>
+<li>当类或者枚举等遵循协议时，不仅仅要实现当前协议的方法，也需要实现所遵循协议继承的其他协议</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">OneProtocol</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayOne</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 协议的继承</span></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">TwoProtocol</span>:<span class="title">OneProtocol</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayTwo</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:<span class="title">TwoProtocol</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayOne</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">// 协议OneProtocol的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">sayTwo</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">// 协议TwoProtocol的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="protocolComposition协议的合成"><a href="#protocolComposition协议的合成" class="headerlink" title="protocolComposition协议的合成"></a>protocolComposition协议的合成</h2><p><span id="protocolComposition协议的合成"></span></p>
+<ul>
+<li>一个协议可以由多个协议采用protocol&lt;NamedProtocol,GenderProtocol&gt;这样的格式进行组合，称之为协议的合成(protocol composition)。</li>
+<li>协议合成并不会产生一个新的协议，而是将多个协议合成一个临时的协议，超出范围后立即失效</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">NamedProtocol</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name:<span class="type">String</span>&#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">GenderProtocol</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> gender:<span class="type">String</span>&#123;<span class="keyword">get</span> <span class="keyword">set</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">AgedProtocol</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> age:<span class="type">Int</span>&#123;<span class="keyword">get</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Person</span>:<span class="title">NamedProtocol</span>,<span class="title">GenderProtocol</span>,<span class="title">AgedProtocol</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> gender: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> age: <span class="type">Int</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">wishBirthday</span><span class="params">(celebrator:NamedProtocol &amp; GenderProtocol)</span></span>&#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"姓名：<span class="subst">\(celebrator.name)</span>，性别：<span class="subst">\(celebrator.gender)</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> per = <span class="type">Person</span>(name: <span class="string">"wang"</span>, gender: <span class="string">"man"</span>,age:<span class="number">20</span>)</span><br><span class="line">wishBirthday(celebrator: per)</span><br><span class="line"><span class="comment">// 形参celebrator的类型为protocol&lt;NamedProtocol,GenderProtocol&gt;，可以传入任何实现这两个协议的实例。即使此实例不仅仅遵循这两个协议。</span></span><br><span class="line"><span class="comment">// swift3.0之后，protocol&lt;NamedProtocol,GenderProtocol&gt;被NamedProtocol &amp; GenderProtocol替换。</span></span><br></pre></td></tr></table></figure>
+<h2 id="检验协议的一致性"><a href="#检验协议的一致性" class="headerlink" title="检验协议的一致性"></a>检验协议的一致性</h2><p><span id="检验协议的一致性"></span></p>
+<ul>
+<li>用is检验协议的一致性，使用as将协议类型向下转换为其他协议类型。</li>
+<li>is操作符用来检查实例是否实现了某个协议。返回值true/false。</li>
+<li>as?返回一个可选值，当实例实现协议时，返回该协议类型；否则返回nil。</li>
+<li>as用以强制向下转化类型。</li>
+<li>@objc用来表示协议时可选的，还可以表示暴露给Objective-C的代码，。</li>
+<li>@objc型协议只对类有效，因此只能在类中检查协议的一致性。</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="meta">@objc</span> <span class="class"><span class="keyword">protocol</span> <span class="title">HasArea</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> area:<span class="type">Double</span>&#123;<span class="keyword">get</span>&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span>:<span class="title">HasArea</span></span>&#123;</span><br><span class="line">    <span class="keyword">let</span> pi = <span class="number">3.1415927</span></span><br><span class="line">    <span class="keyword">var</span> radius:<span class="type">Double</span></span><br><span class="line">    <span class="keyword">var</span> area: <span class="type">Double</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> pi * radius * radius</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">init</span>(radius:<span class="type">Double</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.radius = radius</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Country</span>:<span class="title">HasArea</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> area: <span class="type">Double</span></span><br><span class="line">    <span class="keyword">init</span>(area:<span class="type">Double</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.area = area</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> legs:<span class="type">Int</span></span><br><span class="line">    <span class="keyword">init</span>(legs:<span class="type">Int</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.legs = legs</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> objects:[<span class="type">AnyObject</span>] = [</span><br><span class="line">    <span class="type">Circle</span>(radius: <span class="number">20</span>),</span><br><span class="line">    <span class="type">Country</span>(area: <span class="number">200</span>),</span><br><span class="line">    <span class="type">Animal</span>(legs: <span class="number">10</span>)</span><br><span class="line">]</span><br><span class="line"><span class="keyword">for</span> object <span class="keyword">in</span> objects &#123;</span><br><span class="line">    <span class="keyword">var</span> objectWithArea = object <span class="keyword">as</span>? <span class="type">HasArea</span></span><br><span class="line">    <span class="keyword">if</span> objectWithArea != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"<span class="subst">\(objectWithArea)</span>"</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"遵循了HasArea协议，<span class="subst">\(object.area)</span>"</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"没有遵循HasArea协议"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"--------------------"</span>)</span><br><span class="line"><span class="keyword">for</span> object <span class="keyword">in</span> objects &#123;</span><br><span class="line">    <span class="comment">// 返回值 true/false</span></span><br><span class="line">    <span class="keyword">var</span> objectWithArea = object <span class="keyword">is</span> <span class="type">HasArea</span></span><br><span class="line">    <span class="keyword">if</span> objectWithArea &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"<span class="subst">\(objectWithArea)</span>"</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"遵循了HasArea协议，<span class="subst">\(object.area)</span>"</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"没有遵循HasArea协议"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">打印结果：</span></span><br><span class="line"><span class="comment">Optional(__lldb_expr_386.Circle)</span></span><br><span class="line"><span class="comment">遵循了HasArea协议，Optional(1256.63708)</span></span><br><span class="line"><span class="comment">Optional(__lldb_expr_386.Country)</span></span><br><span class="line"><span class="comment">遵循了HasArea协议，Optional(200.0)</span></span><br><span class="line"><span class="comment">没有遵循HasArea协议</span></span><br><span class="line"><span class="comment">--------------------</span></span><br><span class="line"><span class="comment">true</span></span><br><span class="line"><span class="comment">遵循了HasArea协议，Optional(1256.63708)</span></span><br><span class="line"><span class="comment">true</span></span><br><span class="line"><span class="comment">遵循了HasArea协议，Optional(200.0)</span></span><br><span class="line"><span class="comment">没有遵循HasArea协议</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>##可选协议要求<br>  <span id="可选协议要求"></span></p>
+<ul>
+<li>可选协议含有可选成员，其实现者可以选择是否实现这些成员。</li>
+<li>在协议中使用关键字optional关键字作为前缀来定义可选成员</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="meta">@objc</span> <span class="class"><span class="keyword">protocol</span> <span class="title">HasArea</span></span>&#123;</span><br><span class="line">    <span class="meta">@objc</span> <span class="keyword">optional</span> <span class="keyword">var</span> area:<span class="type">Double</span>&#123;<span class="keyword">get</span>&#125;</span><br><span class="line">    <span class="keyword">var</span> width:<span class="type">Double</span>&#123;<span class="keyword">get</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span>:<span class="title">HasArea</span></span>&#123;</span><br><span class="line">    <span class="keyword">let</span> pi = <span class="number">3.1415927</span></span><br><span class="line">    <span class="keyword">var</span> radius:<span class="type">Double</span> = <span class="number">10.0</span></span><br><span class="line">    <span class="keyword">var</span> width: <span class="type">Double</span> = <span class="number">20.0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/Grammar/" rel="tag"># Grammar</a>
+          
+            <a href="/tags/Protocol/" rel="tag"># Protocol</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/07/Swift/Swift/Grammar/关键字-typealias:associatedtype/" rel="next" title="Swift-Grammar-关键字-typealias/associatedtype">
+                <i class="fa fa-chevron-left"></i> Swift-Grammar-关键字-typealias/associatedtype
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/27/Swift/RxSwift/Grammar/基本概念小结/" rel="prev" title="RxSwift-Grammar-基本概念小结">
+                RxSwift-Grammar-基本概念小结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YKK</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Protocol"><span class="nav-number">1.</span> <span class="nav-text">Protocol</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Protocol语法"><span class="nav-number">2.</span> <span class="nav-text">Protocol语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#格式"><span class="nav-number">2.1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对属性的使用"><span class="nav-number">2.2.</span> <span class="nav-text">对属性的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法要求"><span class="nav-number">2.3.</span> <span class="nav-text">方法要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mutating方法要求"><span class="nav-number">2.4.</span> <span class="nav-text">Mutating方法要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用协议规范构造函数"><span class="nav-number">2.5.</span> <span class="nav-text">使用协议规范构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协议类型"><span class="nav-number">2.6.</span> <span class="nav-text">协议类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#委托-代理设计模式"><span class="nav-number">3.</span> <span class="nav-text">委托/代理设计模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#协议的使用"><span class="nav-number">4.</span> <span class="nav-text">协议的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在扩展中添加协议成员"><span class="nav-number">4.1.</span> <span class="nav-text">在扩展中添加协议成员</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过扩展补充协议声明"><span class="nav-number">4.2.</span> <span class="nav-text">通过扩展补充协议声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合中的协议类型"><span class="nav-number">4.3.</span> <span class="nav-text">集合中的协议类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#仅在类中使用协议"><span class="nav-number">4.4.</span> <span class="nav-text">仅在类中使用协议</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#协议的继承"><span class="nav-number">5.</span> <span class="nav-text">协议的继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#protocolComposition协议的合成"><span class="nav-number">5.1.</span> <span class="nav-text">protocolComposition协议的合成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检验协议的一致性"><span class="nav-number">5.2.</span> <span class="nav-text">检验协议的一致性</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YKK</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

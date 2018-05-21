@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+<meta name="theme-color" content="#222">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="参考01参考02 ①Moya Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装了一层官方说moya有以下特性:   编译时检查正确的API端点访问. 使你定义不同端点枚举值对应相应的用途更加明晰. 提高测试地位从而使单元测试更加容易.   ②开始❶创建枚举API 首先创建一个 enum 来枚举你所有的 API targets关于这个API的信息放在这个枚举">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-Lib-Moya-网络封装(RxSwift)">
+<meta property="og:url" content="http://yoursite.com/2018/03/07/Swift/RxSwift/Lib/Moya -网络封装(RxSwift)/index.html">
+<meta property="og:site_name" content="💖区块链💖 💖随心记💖">
+<meta property="og:description" content="参考01参考02 ①Moya Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装了一层官方说moya有以下特性:   编译时检查正确的API端点访问. 使你定义不同端点枚举值对应相应的用途更加明晰. 提高测试地位从而使单元测试更加容易.   ②开始❶创建枚举API 首先创建一个 enum 来枚举你所有的 API targets关于这个API的信息放在这个枚举">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ot0mms4k8.bkt.clouddn.com/%20Swift-Lib-Moya-%E7%BD%91%E7%BB%9C%E5%B0%81%E8%A3%85%28RxSwift%29-001.png">
+<meta property="og:updated_time" content="2018-04-22T11:25:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift-Lib-Moya-网络封装(RxSwift)">
+<meta name="twitter:description" content="参考01参考02 ①Moya Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装了一层官方说moya有以下特性:   编译时检查正确的API端点访问. 使你定义不同端点枚举值对应相应的用途更加明晰. 提高测试地位从而使单元测试更加容易.   ②开始❶创建枚举API 首先创建一个 enum 来枚举你所有的 API targets关于这个API的信息放在这个枚举">
+<meta name="twitter:image" content="http://ot0mms4k8.bkt.clouddn.com/%20Swift-Lib-Moya-%E7%BD%91%E7%BB%9C%E5%B0%81%E8%A3%85%28RxSwift%29-001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/07/Swift/RxSwift/Lib/Moya -网络封装(RxSwift)/"/>
+
+
+
+
+
+  <title>Swift-Lib-Moya-网络封装(RxSwift) | 💖区块链💖 💖随心记💖</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">💖区块链💖 💖随心记💖</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/07/Swift/RxSwift/Lib/Moya -网络封装(RxSwift)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YKK">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="💖区块链💖 💖随心记💖">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift-Lib-Moya-网络封装(RxSwift)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T16:57:29+08:00">
+                2018-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/" itemprop="url" rel="index">
+                    <span itemprop="name">Swift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Lib/" itemprop="url" rel="index">
+                    <span itemprop="name">Lib</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Swift/Lib/Moya/" itemprop="url" rel="index">
+                    <span itemprop="name">Moya</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://zjqian.github.io/2017/03/13/moya/" target="_blank" rel="noopener">参考01</a><br><a href="https://www.jianshu.com/p/c1494681400b" target="_blank" rel="noopener">参考02</a></p>
+<h1 id="①Moya"><a href="#①Moya" class="headerlink" title="①Moya"></a>①Moya</h1><blockquote>
+<p>Swift我们用Alamofire来做网络库.而Moya在Alamofire的基础上又封装了一层<br>官方说moya有以下特性:</p>
+</blockquote>
+<ul>
+<li>编译时检查正确的API端点访问.</li>
+<li>使你定义不同端点枚举值对应相应的用途更加明晰.</li>
+<li>提高测试地位从而使单元测试更加容易.</li>
+</ul>
+<p><img src="http://ot0mms4k8.bkt.clouddn.com/%20Swift-Lib-Moya-%E7%BD%91%E7%BB%9C%E5%B0%81%E8%A3%85%28RxSwift%29-001.png" alt="001"></p>
+<h1 id="②开始"><a href="#②开始" class="headerlink" title="②开始"></a>②开始</h1><h2 id="❶创建枚举API"><a href="#❶创建枚举API" class="headerlink" title="❶创建枚举API"></a>❶创建枚举API</h2><blockquote>
+<p>首先创建一个 enum 来枚举你所有的 API targets<br>关于这个API的信息放在这个枚举类型中</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">APIManager</span> </span>&#123;</span><br><span class="line">   <span class="keyword">case</span> getNewsLatest      <span class="comment">//获取最新消息</span></span><br><span class="line">   <span class="keyword">case</span> getStartImage      <span class="comment">//启动界面图像获取</span></span><br><span class="line">   <span class="keyword">case</span> getVersion(<span class="type">String</span>) <span class="comment">//软件版本查询</span></span><br><span class="line">   <span class="keyword">case</span> getThemes          <span class="comment">//主题日报列表查看</span></span><br><span class="line">   <span class="keyword">case</span> getNewsDetail(<span class="type">Int</span>) <span class="comment">//获取新闻详情</span></span><br><span class="line">   <span class="keyword">case</span> create(title: <span class="type">String</span>, body: <span class="type">String</span>, userId: <span class="type">Int</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="❷实现TargetType协议"><a href="#❷实现TargetType协议" class="headerlink" title="❷实现TargetType协议"></a>❷实现TargetType协议</h2><blockquote>
+<p>在这里,可以设置请求的参数,例如url……method……para等.</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">APIManager</span>: <span class="title">TargetType</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// The target's base `URL`.</span></span><br><span class="line"><span class="keyword">var</span> baseURL: <span class="type">URL</span> &#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="type">URL</span>.<span class="keyword">init</span>(string: <span class="string">"http://news-at.zhihu.com/api/"</span>)!</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// The path to be appended to `baseURL` to form the full `URL`.</span></span><br><span class="line"><span class="keyword">var</span> path: <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span> <span class="keyword">self</span> &#123;</span><br><span class="line">       <span class="keyword">case</span> .getNewsLatest:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"4/news/latest"</span></span><br><span class="line">       <span class="keyword">case</span> .getStartImage:</span><br><span class="line">            <span class="comment">//start-image 后为图像分辨率，接受任意的 number*number 格式， number 为任意非负整数，返回值均相同。</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">"4/start-image/1080*1776"</span></span><br><span class="line">       <span class="keyword">case</span> .getVersion(<span class="keyword">let</span> version):</span><br><span class="line">            <span class="comment">//URL 最后部分的数字代表所安装『知乎日报』的版本</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">"4/version/ios/"</span> + version</span><br><span class="line">       <span class="keyword">case</span> .getThemes:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"4/themes"</span></span><br><span class="line">       <span class="keyword">case</span> .getNewsDetail(<span class="keyword">let</span> id):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"4/news/<span class="subst">\(id)</span>"</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// The HTTP method used in the request.</span></span><br><span class="line"><span class="comment">// 设置Get、POST</span></span><br><span class="line"><span class="keyword">var</span> method: <span class="type">Moya</span>.<span class="type">Method</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> .<span class="keyword">get</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/// The parameters to be incoded in the request.</span></span><br><span class="line"><span class="keyword">var</span> parameters: [<span class="type">String</span>: <span class="type">Any</span>]? &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/// The method used for parameter encoding.</span></span><br><span class="line"><span class="keyword">var</span> parameterEncoding: <span class="type">ParameterEncoding</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">URLEncoding</span>.<span class="keyword">default</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/// Provides stub data for use in testing.</span></span><br><span class="line"><span class="keyword">var</span> sampleData: <span class="type">Data</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">""</span>.data(using: <span class="type">String</span>.<span class="type">Encoding</span>.utf8)!</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/// The type of HTTP task to be performed.</span></span><br><span class="line"><span class="keyword">var</span> task: <span class="type">Task</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> .request</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/// Whether or not to perform Alamofire validation. Defaults to `false`.</span></span><br><span class="line"><span class="keyword">var</span> validate: <span class="type">Bool</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="❸使用"><a href="#❸使用" class="headerlink" title="❸使用"></a>❸使用</h1><blockquote>
+<p>Moya的使用非常简单，通过TargetType协议定义好每个target之后，就可以直接使用Moya开始发送网络请求了。就像这样</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> provider = <span class="type">MoyaProvider</span>&lt;<span class="type">APIManager</span>&gt;()</span><br><span class="line">provider.request(.getNewsLatest) &#123; result <span class="keyword">in</span></span><br><span class="line"><span class="comment">// do something with result</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>❹❺</p>
+<h2 id="③配合RxSwift"><a href="#③配合RxSwift" class="headerlink" title="③配合RxSwift"></a>③配合RxSwift</h2><blockquote>
+<p>Moya提供了非常方面的RxSwift扩展</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> provider = <span class="type">RxMoyaProvider</span>&lt;<span class="type">APIManager</span>&gt;()</span><br><span class="line">provider.request(.getNewsLatest)</span><br><span class="line">        .filterSuccessfulStatusCodes()</span><br><span class="line">        .mapJSON()</span><br><span class="line">        .subscribe(onNext: &#123; (json) <span class="keyword">in</span></span><br><span class="line">         <span class="comment">//do something with posts</span></span><br><span class="line">        <span class="built_in">print</span>(json)</span><br><span class="line">        &#125;)</span><br><span class="line">        .addDisposableTo(disposeBag)</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RxMoyaProvider</td>
+<td>是MoyaProvider的子类，是对RxSwift的扩展</td>
+</tr>
+<tr>
+<td>filterSuccessfulStatusCodes()</td>
+<td>是Moya为RxSwift提供的扩展方法，可以得到成功地网络请求，忽略其他的</td>
+</tr>
+<tr>
+<td>mapJSON()</td>
+<td>是Moya RxSwift的扩展方法，可以把返回的数据解析成 JSON 格式</td>
+</tr>
+<tr>
+<td>subscribe</td>
+<td>是一个RxSwift的方法,对经过一层一层处理的 Observable 订阅一个 onNext 的 observer，一旦得到 JSON 格式的数据，就会经行相应的处理</td>
+</tr>
+<tr>
+<td>addDisposableTo(disposeBag)</td>
+<td>是 RxSwift 的一个自动内存处理机制，跟ARC有点类似，会自动清理不需要的对象</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="④配合HandyJSON"><a href="#④配合HandyJSON" class="headerlink" title="④配合HandyJSON"></a>④配合HandyJSON</h1><blockquote>
+<p>❶网络请求紧密连接着数据层（Model），具体地说，一般需要建立一个类用来统一管理数据，然后把得到的 JSON 数据映射到数据层（Model）</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">MenuModel</span>: <span class="title">HandyJSON</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> others: [<span class="type">ThemeModel</span>]?</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ThemeModel</span>: <span class="title">HandyJSON</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> color: <span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> thumnail: <span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> id: <span class="type">Int</span>?</span><br><span class="line">    <span class="keyword">var</span> description: <span class="type">String</span>?</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span>?</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>❷创建ViewModel类,创建具体请求方法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MenuViewModel</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">let</span> provider = <span class="type">RxMoyaProvider</span>&lt;<span class="type">APIManager</span>&gt;()</span><br><span class="line">  <span class="keyword">var</span> dispose = <span class="type">DisposeBag</span>()</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">getThemes</span><span class="params">(completed: @escaping <span class="params">(<span class="number">_</span> menuModel: MenuModel)</span></span></span> -&gt;())&#123;</span><br><span class="line">        provider.reuest(.getThemes)</span><br><span class="line">                .mapModel(<span class="type">MenuModel</span>.<span class="keyword">self</span>)</span><br><span class="line">                .subscribe( onNext: &#123; (model) <span class="keyword">in</span> </span><br><span class="line">                                      completed(model)&#125;,</span><br><span class="line">                            onError:&#123; (error) <span class="keyword">in</span> &#125;,</span><br><span class="line">                            onCompleted:<span class="literal">nil</span>,</span><br><span class="line">                            onDisposed:<span class="literal">nil</span>,</span><br><span class="line">                           )</span><br><span class="line">               .addDisposableTo(dispose)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里是将请求的数据通过闭包传了出去,当然也可以不那么做.个人喜好问题.<br>这里是为 RxSwift 中的 ObservableType和 Response写一个简单的扩展方法 mapModel，利用我们写好的Model 类，一步就把JSON数据映射成 model</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ObservableType</span> <span class="title">where</span> <span class="title">E</span> == <span class="title">Response</span> </span>&#123;</span><br><span class="line">     <span class="keyword">public</span> <span class="function"><span class="keyword">func</span> <span class="title">mapModel</span> &lt;T: HandyJSON&gt;<span class="params">(<span class="number">_</span> type: T.<span class="keyword">Type</span>)</span></span>-&gt; <span class="type">Observable</span>&lt;<span class="type">T</span>&gt; &#123;</span><br><span class="line">          <span class="keyword">return</span> flatMap &#123; response -&gt; <span class="type">Observable</span>&lt;<span class="type">T</span>&gt; <span class="keyword">in</span> </span><br><span class="line">          <span class="keyword">return</span> <span class="type">Observable</span>.just(response.mapModel(<span class="type">T</span>.<span class="keyword">self</span>))</span><br><span class="line">        &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">Response</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">mapModel</span>&lt;T: HandyJSON&gt;<span class="params">(<span class="number">_</span> type: T.<span class="keyword">Type</span>)</span></span> -&gt; <span class="type">T</span> &#123;</span><br><span class="line">         <span class="keyword">let</span> jsonString = <span class="type">String</span>.<span class="keyword">init</span>(data: data,encoding: .utf8)</span><br><span class="line">         <span class="keyword">return</span> <span class="type">JSONDeserializer</span>&lt;<span class="type">T</span>&gt;.deserializeFrom(json: jsonString)!</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>#⑤配合ObjectMapper</p>
+<p>##❷❶创建model类</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">DetailModel</span>: <span class="title">Mappable</span> </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> body = <span class="type">String</span>()</span><br><span class="line">        <span class="keyword">var</span> image_source: <span class="type">String</span>?</span><br><span class="line">	  <span class="keyword">var</span> title = <span class="type">String</span>()</span><br><span class="line">	  <span class="keyword">var</span> image: <span class="type">String</span>?</span><br><span class="line">	  <span class="keyword">var</span> share_url = <span class="type">String</span>()</span><br><span class="line">	  <span class="keyword">var</span> js = <span class="type">String</span>()</span><br><span class="line">	  <span class="keyword">var</span> recommenders = [[<span class="type">String</span>: <span class="type">String</span>]]()</span><br><span class="line">	  <span class="keyword">var</span> ga_prefix = <span class="type">String</span>()</span><br><span class="line">	  <span class="keyword">var</span> section: <span class="type">DetailSectionModel</span>?</span><br><span class="line">	  <span class="keyword">var</span> type = <span class="type">Int</span>()</span><br><span class="line">	  <span class="keyword">var</span> id = <span class="type">Int</span>()</span><br><span class="line">	  <span class="keyword">var</span> css = [<span class="type">String</span>]()</span><br><span class="line">   <span class="function"><span class="keyword">func</span> <span class="title">mapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span> &#123;</span><br><span class="line">         body &lt;- <span class="built_in">map</span>[<span class="string">"body"</span>]</span><br><span class="line">		  image_source &lt;- <span class="built_in">map</span>[<span class="string">"image_source"</span>]</span><br><span class="line">		  title &lt;- <span class="built_in">map</span>[<span class="string">"title"</span>]</span><br><span class="line">		  image &lt;- <span class="built_in">map</span>[<span class="string">"image"</span>]</span><br><span class="line">		  share_url &lt;- <span class="built_in">map</span>[<span class="string">"share_url"</span>]</span><br><span class="line">		  js &lt;- <span class="built_in">map</span>[<span class="string">"js"</span>]</span><br><span class="line">		  recommenders &lt;- <span class="built_in">map</span>[<span class="string">"recommenders"</span>]</span><br><span class="line">		  ga_prefix &lt;- <span class="built_in">map</span>[<span class="string">"ga_prefix"</span>]</span><br><span class="line">		  section &lt;- <span class="built_in">map</span>[<span class="string">"section"</span>]</span><br><span class="line">		  type &lt;- <span class="built_in">map</span>[<span class="string">"type"</span>]</span><br><span class="line">		  id &lt;- <span class="built_in">map</span>[<span class="string">"id"</span>]</span><br><span class="line">		  css &lt;- <span class="built_in">map</span>[<span class="string">"css"</span>]</span><br><span class="line">	     &#125;</span><br><span class="line">  reuired <span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>❷使用 ObjectMapper ，需要让自己的 Model 类使用 Mappable 协议，这个协议包括两个方法：</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">required</span> <span class="keyword">init</span>?(<span class="built_in">map</span>: <span class="type">Map</span>) &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">mapping</span><span class="params">(<span class="built_in">map</span>: Map)</span></span> &#123;&#125;<span class="comment">//在 mapping 方法中，用 &lt;- 操作符来处理和映射你的 JSON数据</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>❸数据类建立好之后，还需要为 RxSwift 中的 Observable 写一个简单的扩展方法 mapObject，利用写好的model 类，一步就把JSON 数据映射成一个个 model</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Observable</span> </span>&#123;</span><br><span class="line">       <span class="function"><span class="keyword">func</span> <span class="title">mapObject</span>&lt;T: Mappable&gt;<span class="params">(type: T.<span class="keyword">Type</span>)</span></span> -&gt; <span class="type">Observale</span>&lt;<span class="type">T</span>&gt; &#123;</span><br><span class="line">             <span class="keyword">return</span> <span class="keyword">self</span>.<span class="built_in">map</span> &#123; response <span class="keyword">in</span> </span><br><span class="line">               <span class="comment">//if response is a dictionary, then use ObjectMapper to map the dictionary</span></span><br><span class="line">               <span class="comment">//if not throw an error</span></span><br><span class="line">               <span class="keyword">guard</span> <span class="keyword">let</span> dict = response an? [<span class="type">String</span>: <span class="type">Any</span>] <span class="keyword">else</span> &#123;</span><br><span class="line">                     thow <span class="type">RxSwiftMoyaError</span>.<span class="type">ParseJSONError</span></span><br><span class="line">               &#125;</span><br><span class="line">                 <span class="keyword">return</span> <span class="type">Mapper</span>&lt;<span class="type">T</span>&gt;().<span class="built_in">map</span>(<span class="type">JSON</span>: dict)!</span><br><span class="line">               &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">       <span class="function"><span class="keyword">func</span> <span class="title">mapArray</span>&lt;T: Mappable&gt;<span class="params">(type: T.<span class="keyword">Type</span>)</span></span> -&gt; <span class="type">Observale</span>&lt;[<span class="type">T</span>]&gt; &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">self</span>.<span class="built_in">map</span> &#123; response <span class="keyword">in</span> </span><br><span class="line">               <span class="comment">//if response is an array of dictionaries, then use ObjectMapper to map the dictionary</span></span><br><span class="line">               <span class="comment">//if not, throw an error</span></span><br><span class="line">               </span><br><span class="line">               <span class="keyword">guard</span> <span class="keyword">let</span> array = response <span class="keyword">as</span>? [<span class="type">Any</span>] <span class="keyword">else</span> &#123;</span><br><span class="line">                     thow <span class="type">RxSwiftMoyaError</span>.<span class="type">ParseJSONError</span></span><br><span class="line">               &#125;</span><br><span class="line">               </span><br><span class="line">               <span class="keyword">guard</span> <span class="keyword">let</span> dicts = array <span class="keyword">as</span>? [[<span class="type">String</span>: <span class="type">Any</span>]] <span class="keyword">else</span> &#123;</span><br><span class="line">                     thow <span class="type">RxSwiftMoyaError</span>.<span class="type">ParseJSONError</span></span><br><span class="line">               &#125;</span><br><span class="line">               </span><br><span class="line">               <span class="keyword">guard</span> <span class="keyword">let</span> dicts = array <span class="keyword">as</span>? [[<span class="type">String</span>: <span class="type">Any</span>]] <span class="keyword">else</span> &#123;</span><br><span class="line">                     thow <span class="type">RxSwiftMoyaError</span>.<span class="type">ParseJSONError</span></span><br><span class="line">               &#125;</span><br><span class="line">               </span><br><span class="line">               <span class="keyword">return</span> <span class="type">Mapper</span>&lt;<span class="type">T</span>&gt;().mapArray(<span class="type">JSONArray</span>: dicts)!</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      <span class="class"><span class="keyword">enum</span> <span class="title">RXSwiftMoyaError</span>: <span class="title">String</span> </span>&#123;</span><br><span class="line">           <span class="keyword">case</span> <span class="type">ParaseJSONError</span></span><br><span class="line">           <span class="keyword">case</span> <span class="type">OtherError</span></span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      <span class="class"><span class="keyword">extension</span> <span class="title">RxSwiftMoyaError</span>: <span class="title">Swift</span>.<span class="title">Error</span> </span>&#123;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>mapObject 方法处理单个对象，mapArray 方法处理对象数组</li>
+<li>果传进来的数据 response 是一个 dictionary，那么就利用 ObjectMapper 的 map方法映射这些数据，这个方法会调用你之前在 mapping方法里面定义的逻辑</li>
+<li>如果 response 不是一个 dictionary， 那么就抛出一个错误</li>
+<li>在底部自定义了简单的Error，继承了Swift 的 Error类，在实际应用过程中可以根据需要提供自己想要的 Error</li>
+</ul>
+<blockquote>
+<p>❹运行请求方法</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">calss <span class="type">DetailViewModel</span> &#123;</span><br><span class="line">      <span class="keyword">private</span> <span class="keyword">let</span> provider = <span class="type">RxMoyaProvider</span>&lt;<span class="type">APIManager</span>&gt;()</span><br><span class="line">      <span class="function"><span class="keyword">func</span> <span class="title">getNewsDetail</span><span class="params">(id: Int)</span></span> -&gt; <span class="type">Observable</span>&lt;<span class="type">DetailModel</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> provider.request(.getNewDetail(id))</span><br><span class="line">                       .filterSuccesssfulStatusCodes()</span><br><span class="line">                       .mapJSON()</span><br><span class="line">                       .mapObject(type: <span class="type">DetailModel</span>.<span class="keyword">self</span>)</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/07/Swift/RxSwift/Error/RxSwift-Error/" rel="next" title="RxSwift + ReactorKit 构建信息流框架">
+                <i class="fa fa-chevron-left"></i> RxSwift + ReactorKit 构建信息流框架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/07/Swift/Swift/Grammar/关键字-typealias:associatedtype/" rel="prev" title="Swift-Grammar-关键字-typealias/associatedtype">
+                Swift-Grammar-关键字-typealias/associatedtype <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YKK</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#①Moya"><span class="nav-number">1.</span> <span class="nav-text">①Moya</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#②开始"><span class="nav-number">2.</span> <span class="nav-text">②开始</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#❶创建枚举API"><span class="nav-number">2.1.</span> <span class="nav-text">❶创建枚举API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#❷实现TargetType协议"><span class="nav-number">2.2.</span> <span class="nav-text">❷实现TargetType协议</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#❸使用"><span class="nav-number">3.</span> <span class="nav-text">❸使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#③配合RxSwift"><span class="nav-number">3.1.</span> <span class="nav-text">③配合RxSwift</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#④配合HandyJSON"><span class="nav-number">4.</span> <span class="nav-text">④配合HandyJSON</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YKK</span>
+
+  
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
