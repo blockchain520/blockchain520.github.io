@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="RxSwift,Grammar," />
 
 
 
@@ -94,13 +94,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="💖区块链+直播+OC+Swift💖 💖随心记💖">
-<meta property="og:url" content="http://yoursite.com/categories/Swift/UIKit/UITextView/index.html">
+<meta name="description" content="Dispose 和 DisposeBag当监听一个sequence的时候，有消息事件来了，做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放 ##手动调用释放方式(一般不适用这种方式)  创建一个subscription监听，在两秒以后我们不需要了，手动调用dispose()方法，就能释放监听资源">
+<meta name="keywords" content="RxSwift,Grammar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxSwift-Grammar-Dispose和DisposeBag">
+<meta property="og:url" content="http://yoursite.com/2018/03/27/Swift/RxSwift/Grammar/Dispose和DisposeBag/index.html">
 <meta property="og:site_name" content="💖区块链+直播+OC+Swift💖 💖随心记💖">
+<meta property="og:description" content="Dispose 和 DisposeBag当监听一个sequence的时候，有消息事件来了，做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放 ##手动调用释放方式(一般不适用这种方式)  创建一个subscription监听，在两秒以后我们不需要了，手动调用dispose()方法，就能释放监听资源">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-22T02:42:57.663Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="💖区块链+直播+OC+Swift💖 💖随心记💖">
+<meta name="twitter:title" content="RxSwift-Grammar-Dispose和DisposeBag">
+<meta name="twitter:description" content="Dispose 和 DisposeBag当监听一个sequence的时候，有消息事件来了，做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放 ##手动调用释放方式(一般不适用这种方式)  创建一个subscription监听，在两秒以后我们不需要了，手动调用dispose()方法，就能释放监听资源">
 
 
 
@@ -130,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/Swift/UIKit/UITextView/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/27/Swift/RxSwift/Grammar/Dispose和DisposeBag/"/>
 
 
 
 
 
-  <title>分类: UITextView | 💖区块链+直播+OC+Swift💖 💖随心记💖</title>
+  <title>RxSwift-Grammar-Dispose和DisposeBag | 💖区块链+直播+OC+Swift💖 💖随心记💖</title>
   
 
 
@@ -155,7 +160,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -303,83 +308,200 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>UITextView<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/Swift/RxSwift/Grammar/Dispose和DisposeBag/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YKK">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="💖区块链+直播+OC+Swift💖 💖随心记💖">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/12/13/Swift/Swift/UIKit/Swift-UIKit-UITextView-简单使用/" itemprop="url">
-              
-                <span itemprop="name">Swift-UIKit-UITextView-简单使用</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">RxSwift-Grammar-Dispose和DisposeBag</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-13T21:49:04+08:00"
-              content="2017-12-13" >
-          12-13
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T20:49:46+08:00">
+                2018-03-27
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/13/Swift/Swift/UIKit/Swift-UIKit-UITextView-简介/" itemprop="url">
-              
-                <span itemprop="name">Swift-UIKit-UITextView-简介</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-13T21:41:12+08:00"
-              content="2017-12-13" >
-          12-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <h1 id="Dispose-和-DisposeBag"><a href="#Dispose-和-DisposeBag" class="headerlink" title="Dispose 和 DisposeBag"></a>Dispose 和 DisposeBag</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">当监听一个sequence的时候，有消息事件来了，做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放</span><br></pre></td></tr></table></figure>
+<p>##手动调用释放方式(一般不适用这种方式)</p>
+<blockquote>
+<p>创建一个subscription监听，在两秒以后我们不需要了，手动调用dispose()方法，就能释放监听资源，不再打印信息。上面的subscription不论是在哪个线程中监听，就算在主线程中调用的dispose()方法一样会销毁资源</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> subscription = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">0.3</span>, scheduler:<span class="type">SerialDispatchQueueScheduler</span>.<span class="keyword">init</span>(internalSerialQueueName: <span class="string">"scott"</span>))</span><br><span class="line">                                  .observeOn(<span class="type">MainScheduler</span>.instance)</span><br><span class="line">										 .subscribe &#123; event <span class="keyword">in</span> </span><br><span class="line">										          <span class="built_in">print</span> (event)</span><br><span class="line">										       &#125;</span><br><span class="line"><span class="type">Thread</span>.sleep(forTimeInterval: <span class="number">2.0</span>)</span><br><span class="line">subscription.dispose()</span><br><span class="line">   </span><br><span class="line"><span class="comment">//打印结果：</span></span><br><span class="line">next(<span class="number">0</span>)</span><br><span class="line">next(<span class="number">1</span>)</span><br><span class="line">next(<span class="number">2</span>)</span><br><span class="line">next(<span class="number">3</span>)</span><br><span class="line">next(<span class="number">4</span>)</span><br><span class="line">next(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="自动方式"><a href="#自动方式" class="headerlink" title="自动方式"></a>自动方式</h2><blockquote>
+<p>创建一个disposeBag来盛放我们需要管理的资源，然后把新建的监听都放进去，会在适当的时候销毁这些资源<br>如果需要立即释放资源只需要新建一个DisposeBag()，那么上一个DisposeBag就会被销毁</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</span><br><span class="line"><span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.empty()</span><br><span class="line">               .subscribe&#123; event <span class="keyword">in</span> </span><br><span class="line">                   <span class="built_in">print</span> (event)</span><br><span class="line">                   &#125;</span><br><span class="line">                .addDisponseableTo(disposeBag)</span><br></pre></td></tr></table></figure>
+<h2 id="DisposeBag"><a href="#DisposeBag" class="headerlink" title="DisposeBag"></a>DisposeBag</h2><blockquote>
+<p>DisposeBag其实就相当于iOS中的ARC似得，会在适当的时候销毁观察者，相当于内存管理者吧</p>
+</blockquote>
 
       
     </div>
+    
+    
+    
 
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+            <a href="/tags/Grammar/" rel="tag"># Grammar</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/27/Swift/RxSwift/Grammar/Driver/" rel="next" title="RxSwift-Grammar-Driver">
+                <i class="fa fa-chevron-left"></i> RxSwift-Grammar-Driver
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/27/Swift/RxSwift/Grammar/subscribe和subscribe(onNext:)/" rel="prev" title="RxSwift-Grammar-subscribe和subscribe(onNext:)">
+                RxSwift-Grammar-subscribe和subscribe(onNext:) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -387,6 +509,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -407,8 +533,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -468,6 +603,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Dispose-和-DisposeBag"><span class="nav-number">1.</span> <span class="nav-text">Dispose 和 DisposeBag</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自动方式"><span class="nav-number">1.1.</span> <span class="nav-text">自动方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DisposeBag"><span class="nav-number">1.2.</span> <span class="nav-text">DisposeBag</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -591,6 +742,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
