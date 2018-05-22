@@ -94,18 +94,20 @@
 
 
 
-<meta name="description" content="订阅UITableViewCell里的按钮点击事件 通过订阅 tableView 的 itemSelected 或 modelSelected 这两个 Rx 扩展方法，可以对单元格的点击事件进行响应，并执行相关的业务代码。但有时并不需要整个 cell 都能进行点击响应，可能是点击单元格内的按钮时才触发相关的操作，下面通过样例演示这个功能的实现  MyTableCell.swift（自定义单元格类）">
+<meta name="description" content="订阅UITableViewCell里的按钮点击事件 通过订阅 tableView 的 itemSelected 或 modelSelected 这两个 Rx 扩展方法，可以对单元格的点击事件进行响应，并执行相关的业务代码。但有时并不需要整个 cell 都能进行点击响应，可能是点击单元格内的按钮时才触发相关的操作，下面通过样例演示这个功能的实现  效果图 MyTableCell.swift（自定义单">
 <meta name="keywords" content="Swift,RxSwift,UIKit">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxSwift-UIKit-UITableViewCell-Event订阅UITableViewCell里的按钮点击事件">
 <meta property="og:url" content="http://yoursite.com/20178/05/22/Swift/RxSwift/UIKit/UITableViewCell-Event/index.html">
 <meta property="og:site_name" content="💖区块链+直播+OC+Swift💖 💖随心记💖">
-<meta property="og:description" content="订阅UITableViewCell里的按钮点击事件 通过订阅 tableView 的 itemSelected 或 modelSelected 这两个 Rx 扩展方法，可以对单元格的点击事件进行响应，并执行相关的业务代码。但有时并不需要整个 cell 都能进行点击响应，可能是点击单元格内的按钮时才触发相关的操作，下面通过样例演示这个功能的实现  MyTableCell.swift（自定义单元格类）">
+<meta property="og:description" content="订阅UITableViewCell里的按钮点击事件 通过订阅 tableView 的 itemSelected 或 modelSelected 这两个 Rx 扩展方法，可以对单元格的点击事件进行响应，并执行相关的业务代码。但有时并不需要整个 cell 都能进行点击响应，可能是点击单元格内的按钮时才触发相关的操作，下面通过样例演示这个功能的实现  效果图 MyTableCell.swift（自定义单">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-22T06:56:00.076Z">
+<meta property="og:image" content="http://ot0mms4k8.bkt.clouddn.com/%E8%AE%A2%E9%98%85UITableViewCell%E9%87%8C%E7%9A%84%E6%8C%89%E9%92%AE%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6.gif">
+<meta property="og:updated_time" content="2018-05-22T07:07:40.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxSwift-UIKit-UITableViewCell-Event订阅UITableViewCell里的按钮点击事件">
-<meta name="twitter:description" content="订阅UITableViewCell里的按钮点击事件 通过订阅 tableView 的 itemSelected 或 modelSelected 这两个 Rx 扩展方法，可以对单元格的点击事件进行响应，并执行相关的业务代码。但有时并不需要整个 cell 都能进行点击响应，可能是点击单元格内的按钮时才触发相关的操作，下面通过样例演示这个功能的实现  MyTableCell.swift（自定义单元格类）">
+<meta name="twitter:description" content="订阅UITableViewCell里的按钮点击事件 通过订阅 tableView 的 itemSelected 或 modelSelected 这两个 Rx 扩展方法，可以对单元格的点击事件进行响应，并执行相关的业务代码。但有时并不需要整个 cell 都能进行点击响应，可能是点击单元格内的按钮时才触发相关的操作，下面通过样例演示这个功能的实现  效果图 MyTableCell.swift（自定义单">
+<meta name="twitter:image" content="http://ot0mms4k8.bkt.clouddn.com/%E8%AE%A2%E9%98%85UITableViewCell%E9%87%8C%E7%9A%84%E6%8C%89%E9%92%AE%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6.gif">
 
 
 
@@ -425,6 +427,7 @@
         <h1 id="订阅UITableViewCell里的按钮点击事件"><a href="#订阅UITableViewCell里的按钮点击事件" class="headerlink" title="订阅UITableViewCell里的按钮点击事件"></a>订阅UITableViewCell里的按钮点击事件</h1><blockquote>
 <p>通过订阅 tableView 的 itemSelected 或 modelSelected 这两个 Rx 扩展方法，可以对单元格的点击事件进行响应，并执行相关的业务代码。<br>但有时并不需要整个 cell 都能进行点击响应，可能是点击单元格内的按钮时才触发相关的操作，下面通过样例演示这个功能的实现</p>
 </blockquote>
+<h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://ot0mms4k8.bkt.clouddn.com/%E8%AE%A2%E9%98%85UITableViewCell%E9%87%8C%E7%9A%84%E6%8C%89%E9%92%AE%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6.gif" alt="效果图"></p>
 <h1 id="MyTableCell-swift（自定义单元格类）"><a href="#MyTableCell-swift（自定义单元格类）" class="headerlink" title="MyTableCell.swift（自定义单元格类）"></a>MyTableCell.swift（自定义单元格类）</h1><ul>
 <li>注意 prepareForReuse() 方法里的 disposeBag = DisposeBag()</li>
 <li>每次 prepareForReuse() 方法执行时都会初始化一个新的 disposeBag。</li>
@@ -471,8 +474,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/18/OC/BlockChain/BlockChain/" rel="next" title="BlockChain">
-                <i class="fa fa-chevron-left"></i> BlockChain
+              <a href="/2018/05/18/OC/TLibSet/TLibSet/" rel="next" title="TLibSet  第三方账号配置目录">
+                <i class="fa fa-chevron-left"></i> TLibSet  第三方账号配置目录
               </a>
             
           </div>
@@ -611,7 +614,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#订阅UITableViewCell里的按钮点击事件"><span class="nav-number">1.</span> <span class="nav-text">订阅UITableViewCell里的按钮点击事件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MyTableCell-swift（自定义单元格类）"><span class="nav-number">2.</span> <span class="nav-text">MyTableCell.swift（自定义单元格类）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ViewController-swift（主视图控制器）"><span class="nav-number">3.</span> <span class="nav-text">ViewController.swift（主视图控制器）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#订阅UITableViewCell里的按钮点击事件"><span class="nav-number">1.</span> <span class="nav-text">订阅UITableViewCell里的按钮点击事件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#效果图"><span class="nav-number">2.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MyTableCell-swift（自定义单元格类）"><span class="nav-number">3.</span> <span class="nav-text">MyTableCell.swift（自定义单元格类）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ViewController-swift（主视图控制器）"><span class="nav-number">4.</span> <span class="nav-text">ViewController.swift（主视图控制器）</span></a></li></ol></div>
             
 
           </div>

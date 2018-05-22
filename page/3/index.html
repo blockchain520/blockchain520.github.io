@@ -318,7 +318,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/Swift/RxSwift/Grammar/Subscribe/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/Swift/RxSwift/Grammar/observeOn()和subscribeOn()/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YKK">
@@ -337,7 +337,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/Swift/RxSwift/Grammar/Subscribe/" itemprop="url">RxSwift-Grammar-Subscribe</a></h1>
+                <a class="post-title-link" href="/2018/03/27/Swift/RxSwift/Grammar/observeOn()和subscribeOn()/" itemprop="url">RxSwift-Grammar-observeOn()和subscribeOn()</a></h1>
         
 
         <div class="post-meta">
@@ -422,16 +422,30 @@
       
         
           
-          subscribe 和 subscribe(onNext:)
-Subscribe
+          observeOn()和subscribeOn()
 
 
-subscribe是订阅sequence发出的事件，比如next事件，error事件等
-而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和
+
+
+
+
+
+
+subscribeOn()
+设置起点在哪个线程
+
+
+observeOn()
+置了后续工作在哪个线程
+
+
+
+
+1)所有动作都发生在当前的默认线程2)observeOn()转换线程到主线程，下面所有的操作都在主线程3)subscribe
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/Swift/RxSwift/Grammar/Subscribe/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/Swift/RxSwift/Grammar/observeOn()和subscribeOn()/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
