@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="💖区块链+直播+OC+Swift💖 💖随心记💖">
 <meta property="og:description" content="Schedulers调度器 调度器（Schedulers）是 RxSwift 实现多线程的核心模块，它主要用于控制任务在哪个线程或队列运行  RxSwift 内置了如下几种 Scheduler CurrentThreadScheduler  表示当前线程 Scheduler。（默认使用这个）  MainScheduler  表示主线程。如果我们需要执行一些和 UI 相关的任务，就需要切换到该 Sc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-22T14:39:10.467Z">
+<meta property="og:updated_time" content="2018-05-22T14:57:35.894Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxSwift-Grammar-Schedulers调度器">
 <meta name="twitter:description" content="Schedulers调度器 调度器（Schedulers）是 RxSwift 实现多线程的核心模块，它主要用于控制任务在哪个线程或队列运行  RxSwift 内置了如下几种 Scheduler CurrentThreadScheduler  表示当前线程 Scheduler。（默认使用这个）  MainScheduler  表示主线程。如果我们需要执行一些和 UI 相关的任务，就需要切换到该 Sc">
@@ -457,6 +457,12 @@
 <p>如果使用 RxSwift 来实现，代码大概是这样的</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> rxData: <span class="type">Observable</span>&lt;<span class="type">Data</span>&gt; = ...</span><br><span class="line"> </span><br><span class="line">rxData.subscribeOn(<span class="type">ConcurrentDispatchQueueScheduler</span>(qos: .userInitiated)) <span class="comment">//后台构建序列</span></span><br><span class="line">      .observeOn(<span class="type">MainScheduler</span>.instance)  <span class="comment">//主线程监听并处理序列结果</span></span><br><span class="line">      .subscribe(onNext: &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] data <span class="keyword">in</span></span><br><span class="line">           <span class="keyword">self</span>?.data = data</span><br><span class="line">          &#125;)</span><br><span class="line">      .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure>
+<h2 id="subscribeOn"><a href="#subscribeOn" class="headerlink" title="subscribeOn()"></a>subscribeOn()</h2><blockquote>
+<p>该方法决定数据序列的构建函数在哪个 Scheduler 上运行。<br>比如上面样例，由于获取数据、解析数据需要花费一段时间的时间，所以通过 subscribeOn 将其切换到后台 Scheduler 来执行。这样可以避免主线程被阻塞。</p>
+</blockquote>
+<h2 id="observeOn"><a href="#observeOn" class="headerlink" title="observeOn()"></a>observeOn()</h2><blockquote>
+<p>该方法决定在哪个 Scheduler 上监听这个数据序列。<br>比如上面样例，我们获取并解析完毕数据后又通过 observeOn 方法切换到主线程来监听并且处理结果</p>
+</blockquote>
 
       
     </div>
@@ -491,8 +497,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/18/OC/BlockChain/BlockChain/" rel="next" title="BlockChain">
-                <i class="fa fa-chevron-left"></i> BlockChain
+              <a href="/2018/05/18/OC/KLine/KLine/" rel="next" title="Directory">
+                <i class="fa fa-chevron-left"></i> Directory
               </a>
             
           </div>
@@ -635,7 +641,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Schedulers调度器"><span class="nav-number">1.</span> <span class="nav-text">Schedulers调度器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RxSwift-内置了如下几种-Scheduler"><span class="nav-number">1.1.</span> <span class="nav-text">RxSwift 内置了如下几种 Scheduler</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用样例"><span class="nav-number">1.2.</span> <span class="nav-text">使用样例</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Schedulers调度器"><span class="nav-number">1.</span> <span class="nav-text">Schedulers调度器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RxSwift-内置了如下几种-Scheduler"><span class="nav-number">1.1.</span> <span class="nav-text">RxSwift 内置了如下几种 Scheduler</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用样例"><span class="nav-number">1.2.</span> <span class="nav-text">使用样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#subscribeOn"><span class="nav-number">1.3.</span> <span class="nav-text">subscribeOn()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#observeOn"><span class="nav-number">1.4.</span> <span class="nav-text">observeOn()</span></a></li></ol></li></ol></div>
             
 
           </div>
