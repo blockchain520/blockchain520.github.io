@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="💖区块链+直播+OC+Swift💖 💖随心记💖">
 <meta property="og:description" content="连接性操作 ①publish ②replay ③multicast   Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息  ①publish ①publish 将一个正常">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-06T01:46:07.000Z">
+<meta property="og:updated_time" content="2018-05-22T03:56:59.066Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-RxSwift-连接性操作">
 <meta name="twitter:description" content="连接性操作 ①publish ②replay ③multicast   Connectable Observable有订阅时不开始发射事件消息，而是仅当调用它们的connect（）方法时。这样就可以等待所有我们想要的订阅者都已经订阅了以后，再开始发出事件消息，这样能保证我们想要的所有订阅者都能接收到事件消息。其实也就是等大家都就位以后，开始发出消息  ①publish ①publish 将一个正常">
@@ -374,8 +374,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
                   </a>
                 </span>
 
@@ -385,8 +385,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/RxSwift/" itemprop="url" rel="index">
-                    <span itemprop="name">RxSwift</span>
+                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
                   </a>
                 </span>
 
@@ -445,6 +445,7 @@
 <p>将一个正常的sequence转换成一个connectable sequence，并且通过特性的subject发送出去，比如PublishSubject，或者replaySubject，behaviorSubject等。不同的Subject会有不同的结果</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">let</span> subject = <span class="type">PublishSubject</span>&lt;<span class="type">Int</span>&gt;()</span><br><span class="line">    </span><br><span class="line"><span class="number">_</span> = subject</span><br><span class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"Subject: <span class="subst">\($<span class="number">0</span>)</span>"</span>) &#125;)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">let</span> intSequence = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">1</span>, scheduler: <span class="type">MainScheduler</span>.instance)</span><br><span class="line">    .multicast(subject)</span><br><span class="line">    </span><br><span class="line"><span class="number">_</span> = intSequence</span><br><span class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"\tSubscription 1:, Event: <span class="subst">\($<span class="number">0</span>)</span>"</span>) &#125;)</span><br><span class="line">    </span><br><span class="line">delay(<span class="number">2</span>) &#123; <span class="number">_</span> = intSequence.connect() &#125;</span><br><span class="line">    </span><br><span class="line">delay(<span class="number">4</span>) &#123;</span><br><span class="line">    <span class="number">_</span> = intSequence</span><br><span class="line">        .subscribe(onNext: &#123; <span class="built_in">print</span>(<span class="string">"\tSubscription 2:, Event: <span class="subst">\($<span class="number">0</span>)</span>"</span>) &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -578,7 +579,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

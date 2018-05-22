@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="Driver let results =  query.rx                     .text					     .throttle(0.3,scheduler: MainScheduler.instance)//在主线程中操作，如果0.3秒内值发生多次改变，取最后一次的值					     .flatMapLatest &amp;#123; query in     //筛选出空值,">
+<meta name="description" content="Driver 首先创建一个可监听序列results;将results绑定到resultCount.rx.text上;将results绑定到resultsTableView上.  //throttle过滤操作let results =  query.rx.text.throttle(0.3,				                scheduler: MainScheduler.instance)/">
 <meta name="keywords" content="RxSwift,Grammar">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxSwift-Grammar-Driver">
 <meta property="og:url" content="http://yoursite.com/2018/03/27/Swift/RxSwift/Grammar/Driver/index.html">
 <meta property="og:site_name" content="💖区块链+直播+OC+Swift💖 💖随心记💖">
-<meta property="og:description" content="Driver let results =  query.rx                     .text					     .throttle(0.3,scheduler: MainScheduler.instance)//在主线程中操作，如果0.3秒内值发生多次改变，取最后一次的值					     .flatMapLatest &amp;#123; query in     //筛选出空值,">
+<meta property="og:description" content="Driver 首先创建一个可监听序列results;将results绑定到resultCount.rx.text上;将results绑定到resultsTableView上.  //throttle过滤操作let results =  query.rx.text.throttle(0.3,				                scheduler: MainScheduler.instance)/">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-22T02:56:10.553Z">
+<meta property="og:updated_time" content="2018-05-22T05:50:48.421Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxSwift-Grammar-Driver">
-<meta name="twitter:description" content="Driver let results =  query.rx                     .text					     .throttle(0.3,scheduler: MainScheduler.instance)//在主线程中操作，如果0.3秒内值发生多次改变，取最后一次的值					     .flatMapLatest &amp;#123; query in     //筛选出空值,">
+<meta name="twitter:description" content="Driver 首先创建一个可监听序列results;将results绑定到resultCount.rx.text上;将results绑定到resultsTableView上.  //throttle过滤操作let results =  query.rx.text.throttle(0.3,				                scheduler: MainScheduler.instance)/">
 
 
 
@@ -422,21 +422,20 @@
       
 
       
-        <h1 id="Driver"><a href="#Driver" class="headerlink" title="Driver"></a>Driver</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">let</span> results =  query.rx</span><br><span class="line">                     .text</span><br><span class="line">					     .throttle(<span class="number">0.3</span>,scheduler: <span class="type">MainScheduler</span>.instance)<span class="comment">//在主线程中操作，如果0.3秒内值发生多次改变，取最后一次的值</span></span><br><span class="line">					     .flatMapLatest &#123; query <span class="keyword">in</span>     <span class="comment">//筛选出空值, 拍平序列，并取得最后一个有效的值</span></span><br><span class="line">					          fetchAutoCompleteItems(query)</span><br><span class="line">					         &#125;</span><br><span class="line">    </span><br><span class="line">results</span><br><span class="line">    .<span class="built_in">map</span> &#123; <span class="string">"<span class="subst">\($<span class="number">0</span>.<span class="built_in">count</span>)</span>"</span> &#125;  <span class="comment">//得出结果之后，取出结果的数量</span></span><br><span class="line">    .bindTo(resultCount.rx</span><br><span class="line">                       .text) <span class="comment">//取出结果的数量，绑定到resultCount上面显示出来</span></span><br><span class="line">    .addDisposableTo(disposeBag) <span class="comment">//释放资源</span></span><br><span class="line">    </span><br><span class="line">results</span><br><span class="line">    .bindTo(resultsTableView.rx</span><br><span class="line">                            .items(cellIdentifier: <span class="string">"Cell"</span>)) &#123;   (<span class="number">_</span>, result, cell) <span class="keyword">in</span></span><br><span class="line">                                        cell.textLabel?.text = <span class="string">"<span class="subst">\(result)</span>"</span> <span class="comment">////取出结果，TableView的Cell上面显示出来</span></span><br><span class="line">    &#125;</span><br><span class="line">    .addDisposableTo(disposeBag)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>首先创建一个可监听序列results;</li>
-<li>然后将results绑定到resultCount.rx.text上;</li>
-<li>将results绑定到resultsTableView上.</li>
-</ul>
+        <h1 id="Driver"><a href="#Driver" class="headerlink" title="Driver"></a>Driver</h1><blockquote>
+<p>首先创建一个可监听序列results;<br>将results绑定到resultCount.rx.text上;<br>将results绑定到resultsTableView上.</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//throttle过滤操作</span></span><br><span class="line"><span class="keyword">let</span> results =  query.rx.text.throttle(<span class="number">0.3</span>,</span><br><span class="line">				                scheduler: <span class="type">MainScheduler</span>.instance)<span class="comment">//在主线程中操作，如果0.3秒内值发生多次改变，取最后一次的值</span></span><br><span class="line">					    .flatMapLatest   <span class="comment">// flatMapLatest只会接收最新的value事件 </span></span><br><span class="line">					         &#123;   query <span class="keyword">in</span>   <span class="comment">//筛选出空值, 拍平序列，并取得最后一个有效的值</span></span><br><span class="line">					                fetchAutoCompleteItems(query)</span><br><span class="line">					         &#125;</span><br><span class="line">					           </span><br><span class="line">    </span><br><span class="line">results.<span class="built_in">map</span> &#123; <span class="string">"<span class="subst">\($<span class="number">0</span>.<span class="built_in">count</span>)</span>"</span> &#125;       <span class="comment">//得出结果之后，取出结果的数量</span></span><br><span class="line">       .bindTo(resultCount.rx.text) <span class="comment">//取出结果的数量，绑定到resultCount上面显示出来</span></span><br><span class="line">       .addDisposableTo(disposeBag) <span class="comment">//释放资源</span></span><br><span class="line">    </span><br><span class="line">results.bindTo(resultsTableView.rx.items(cellIdentifier: <span class="string">"Cell"</span>)) &#123;   (<span class="number">_</span>, result, cell) <span class="keyword">in</span></span><br><span class="line">                                        cell.textLabel?.text = <span class="string">"<span class="subst">\(result)</span>"</span> <span class="comment">//取出结果，TableView的Cell上面显示出来</span></span><br><span class="line">             &#125;</span><br><span class="line">       .addDisposableTo(disposeBag)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>上面程序会出现下面几个异常：</p>
 </blockquote>
 <ul>
 <li>如果fetchAutoCompleteItems出错，那么它绑定的UI将不再收到任何事件消息；</li>
-<li>如果fetchAutoCompleteItems发生在后台线程，那么它绑定的事件也将在后台线程执行，这样更新UI会造成crash；<br>  有两次绑定，fetchAutoCompleteItems就会执行两次</li>
+<li>如果fetchAutoCompleteItems发生在后台线程，那么它绑定的事件也将在后台线程执行，这样更新UI会造成crash；</li>
+<li>有两次绑定，fetchAutoCompleteItems就会执行两次</li>
 </ul>
 <blockquote>
-<p>当然针对以上问题，我们也有解决方案，针对第三点，我们可以使用神器shareReplay(1)保证只执行一次，可以使用observeOn()保证后面所有操作在主线程完成</p>
+<p>当然针对以上问题，也有解决方案<br>针对第三点，可以使用神器shareReplay(1)保证只执行一次，可以使用observeOn()保证后面所有操作在主线程完成</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">let</span> results = query.rx.text</span><br><span class="line">					    .throttle(<span class="number">0.3</span>, </span><br><span class="line">					              scheduler: <span class="type">MainScheduler</span>.instance)</span><br><span class="line">					    .flatMapLatest &#123; query <span class="keyword">in</span></span><br><span class="line">					        fetchAutoCompleteItems(query).observeOn(<span class="type">MainScheduler</span>.instance) <span class="comment">// 将返回结果切换到到主线程上</span></span><br><span class="line">					                                     .catchErrorJustReturn([])    <span class="comment">// 如果有问题，错误结果将会得到处理          </span></span><br><span class="line">					    &#125;</span><br><span class="line">					    .shareReplay(<span class="number">1</span>)       <span class="comment">// HTTP请求将会得到分享，即两次绑定UI使用同一网络请求</span></span><br><span class="line">                                 </span><br><span class="line">results</span><br><span class="line">    .<span class="built_in">map</span> &#123; <span class="string">"<span class="subst">\($<span class="number">0</span>.<span class="built_in">count</span>)</span>"</span> &#125;</span><br><span class="line">    .bindTo(resultCount.rx.text)</span><br><span class="line">    .addDisposableTo(disposeBag)</span><br><span class="line">    </span><br><span class="line">results</span><br><span class="line">    .bindTo(resultTableView.rx.items(cellIdentifier: <span class="string">"Cell"</span>)) &#123; (<span class="number">_</span>, result, cell) <span class="keyword">in</span></span><br><span class="line">        cell.textLabel?.text = <span class="string">"<span class="subst">\(result)</span>"</span></span><br><span class="line">    &#125;</span><br><span class="line">    .addDisposableTo(disposeBag)</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -454,7 +453,9 @@
 <p>任何 ‘Observable’ 序列都可以被转换为’Driver’, 只要他满足一下三点：</p>
 </blockquote>
 <ul>
-<li>1.不能出错   2.观察主线程  3.共享资源</li>
+<li>1.不能出错   </li>
+<li>2.观察主线程 </li>
+<li>3.共享资源</li>
 <li>如何确保这些属性都满足呢？只需要使用 ‘asDriver(onErrorJustReturn: [])’ ,相当于如下代码:</li>
 </ul>
 <figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> safeSequence = xs</span><br><span class="line"></span><br><span class="line">  .observeOn(<span class="type">MainScheduler</span>.instance) <span class="comment">// 切换到主线程</span></span><br><span class="line"></span><br><span class="line">  .catchErrorJustReturn(onErrorJustReturn) <span class="comment">// 不能出错</span></span><br><span class="line"></span><br><span class="line">  .shareReplayLatestWhileConnected         <span class="comment">// 共享资源</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">return</span> <span class="type">Driver</span>(raw: safeSequence)           <span class="comment">// 返回</span></span><br></pre></td></tr></table></figure>
@@ -476,7 +477,6 @@
 <li>在主线程中监听;</li>
 <li>共享事件流;</li>
 </ul>
-<p><span id="1.8"></span></p>
 
       
     </div>
@@ -511,8 +511,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/27/Swift/RxSwift/Grammar/Observable&Observer/" rel="next" title="RxSwift-Grammar-Observable可观察序列&Observer观察者">
-                <i class="fa fa-chevron-left"></i> RxSwift-Grammar-Observable可观察序列&Observer观察者
+              <a href="/2018/03/21/Swift/Swift/Grammar/Protocol协议-Base/" rel="next" title="Swift-Grammar-Protocol协议-基础">
+                <i class="fa fa-chevron-left"></i> Swift-Grammar-Protocol协议-基础
               </a>
             
           </div>
@@ -521,8 +521,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/27/Swift/RxSwift/Grammar/Dispose和DisposeBag/" rel="prev" title="RxSwift-Grammar-Dispose和DisposeBag">
-                RxSwift-Grammar-Dispose和DisposeBag <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/27/Swift/RxSwift/Grammar/Subscribe/" rel="prev" title="RxSwift-Grammar-Subscribe">
+                RxSwift-Grammar-Subscribe <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -611,7 +611,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
