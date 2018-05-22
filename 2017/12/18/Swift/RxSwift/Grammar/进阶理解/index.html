@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="Disposing 当监听一个事件序列的时候，有消息事件来了，做某些事情but,这个事件序列不再发出消息，监听也就没有存在价值，so,需要释放监听资源(内存资源释放)不需要用某些变量时，把这些变量所占用的内存空间释放掉释放某一个监听的时可手动调用释放方法，但是这个貌似一般不常用：  let subscription = Observable&amp;lt;Int&amp;gt;.interval(0.3,">
+<meta name="description" content="https://www.jianshu.com/p/431f645cb805 Disposing 当监听一个事件序列的时候，有消息事件来了，做某些事情but,这个事件序列不再发出消息，监听也就没有存在价值，so,需要释放监听资源(内存资源释放)不需要用某些变量时，把这些变量所占用的内存空间释放掉释放某一个监听的时可手动调用释放方法，但是这个貌似一般不常用：  let subscription =">
 <meta name="keywords" content="RxSwift,Grammar">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-RxSwift-进阶理解">
 <meta property="og:url" content="http://yoursite.com/2017/12/18/Swift/RxSwift/Grammar/进阶理解/index.html">
 <meta property="og:site_name" content="💖区块链+直播+OC+Swift💖 💖随心记💖">
-<meta property="og:description" content="Disposing 当监听一个事件序列的时候，有消息事件来了，做某些事情but,这个事件序列不再发出消息，监听也就没有存在价值，so,需要释放监听资源(内存资源释放)不需要用某些变量时，把这些变量所占用的内存空间释放掉释放某一个监听的时可手动调用释放方法，但是这个貌似一般不常用：  let subscription = Observable&amp;lt;Int&amp;gt;.interval(0.3,">
+<meta property="og:description" content="https://www.jianshu.com/p/431f645cb805 Disposing 当监听一个事件序列的时候，有消息事件来了，做某些事情but,这个事件序列不再发出消息，监听也就没有存在价值，so,需要释放监听资源(内存资源释放)不需要用某些变量时，把这些变量所占用的内存空间释放掉释放某一个监听的时可手动调用释放方法，但是这个貌似一般不常用：  let subscription =">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-22T01:57:04.387Z">
+<meta property="og:updated_time" content="2018-05-22T06:06:59.836Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift-RxSwift-进阶理解">
-<meta name="twitter:description" content="Disposing 当监听一个事件序列的时候，有消息事件来了，做某些事情but,这个事件序列不再发出消息，监听也就没有存在价值，so,需要释放监听资源(内存资源释放)不需要用某些变量时，把这些变量所占用的内存空间释放掉释放某一个监听的时可手动调用释放方法，但是这个貌似一般不常用：  let subscription = Observable&amp;lt;Int&amp;gt;.interval(0.3,">
+<meta name="twitter:description" content="https://www.jianshu.com/p/431f645cb805 Disposing 当监听一个事件序列的时候，有消息事件来了，做某些事情but,这个事件序列不再发出消息，监听也就没有存在价值，so,需要释放监听资源(内存资源释放)不需要用某些变量时，把这些变量所占用的内存空间释放掉释放某一个监听的时可手动调用释放方法，但是这个貌似一般不常用：  let subscription =">
 
 
 
@@ -422,7 +422,8 @@
       
 
       
-        <h1 id="Disposing"><a href="#Disposing" class="headerlink" title="Disposing"></a>Disposing</h1><blockquote>
+        <p><a href="https://www.jianshu.com/p/431f645cb805" target="_blank" rel="noopener">https://www.jianshu.com/p/431f645cb805</a></p>
+<h1 id="Disposing"><a href="#Disposing" class="headerlink" title="Disposing"></a>Disposing</h1><blockquote>
 <p>当监听一个事件序列的时候，有消息事件来了，做某些事情<br>but,这个事件序列不再发出消息，监听也就没有存在价值，so,需要释放监听资源(内存资源释放)<br>不需要用某些变量时，把这些变量所占用的内存空间释放掉<br>释放某一个监听的时可手动调用释放方法，但是这个貌似一般不常用：</p>
 </blockquote>
 <figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> subscription = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">0.3</span>,</span><br><span class="line">                                            scheduler: <span class="type">SerialDispatchQueueScheduler</span>.<span class="keyword">init</span>(internalSerialQueueName: <span class="string">"test"</span>))<span class="comment">//关于scheduler，我们会在下面讲到</span></span><br><span class="line">                                  .observeOn(<span class="type">MainScheduler</span>.instance)  <span class="comment">//observeOn也会在下面讲到</span></span><br><span class="line">                                  .subscribe &#123; </span><br><span class="line">                                         event <span class="keyword">in</span></span><br><span class="line">                                             <span class="built_in">print</span>(event)</span><br><span class="line">                                     &#125;</span><br><span class="line">    </span><br><span class="line"><span class="type">Thread</span>.sleep(forTimeInterval: <span class="number">2.0</span>)</span><br><span class="line">subscription.dispose()</span><br><span class="line"></span><br><span class="line"><span class="comment">//--</span></span><br><span class="line">next(<span class="number">0</span>)</span><br><span class="line">next(<span class="number">1</span>)</span><br><span class="line">next(<span class="number">2</span>)</span><br><span class="line">next(<span class="number">3</span>)</span><br><span class="line">next(<span class="number">4</span>)</span><br><span class="line">next(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
