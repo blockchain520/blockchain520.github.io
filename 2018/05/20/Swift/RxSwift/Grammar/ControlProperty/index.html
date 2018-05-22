@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="Swift,UIKit,NSNotificationCenter," />
+  <meta name="keywords" content="RxSwift,Grammar," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="NSNotificationCenter 如果被通知对象创建了，那么执行完发送通知之后就会执行被通知的selector的方法，之后再回来执行后一行代码通知一般在mode与View需要交流（传递数据）时使用，或者也可以用于多线程的消息传递，也可是其他的信息传递,最常用的场景是页面值的回传  注册通知 参数：第一个是响应被通知的对象，一般是self， selector:一个自定义方法，实现得到通知后的">
-<meta name="keywords" content="Swift,UIKit,NSNotificationCenter">
+<meta name="description" content="Schedulers调度器基本介绍 ControlProperty 是专门用来描述 UI 控件属性，拥有该类型的属性都是被观察者（Observable）ControlProperty 具有以下特征   不会产生 error 事件 一定在 MainScheduler 订阅（主线程订阅） 一定在 MainScheduler 监听（主线程监听） 共享状态变化  使用样例 其实在 RxCocoa 下许多">
+<meta name="keywords" content="RxSwift,Grammar">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift-UIKit-NSNotificationCenter-简介">
-<meta property="og:url" content="http://yoursite.com/2017/12/14/Swift/Swift/UIKit/NSNotificationCenter-简介/index.html">
+<meta property="og:title" content="RxSwift-Grammar-ControlProperty">
+<meta property="og:url" content="http://yoursite.com/2018/05/20/Swift/RxSwift/Grammar/ControlProperty/index.html">
 <meta property="og:site_name" content="💖区块链+直播+OC+Swift💖 💖随心记💖">
-<meta property="og:description" content="NSNotificationCenter 如果被通知对象创建了，那么执行完发送通知之后就会执行被通知的selector的方法，之后再回来执行后一行代码通知一般在mode与View需要交流（传递数据）时使用，或者也可以用于多线程的消息传递，也可是其他的信息传递,最常用的场景是页面值的回传  注册通知 参数：第一个是响应被通知的对象，一般是self， selector:一个自定义方法，实现得到通知后的">
+<meta property="og:description" content="Schedulers调度器基本介绍 ControlProperty 是专门用来描述 UI 控件属性，拥有该类型的属性都是被观察者（Observable）ControlProperty 具有以下特征   不会产生 error 事件 一定在 MainScheduler 订阅（主线程订阅） 一定在 MainScheduler 监听（主线程监听） 共享状态变化  使用样例 其实在 RxCocoa 下许多">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-14T10:25:46.000Z">
+<meta property="og:updated_time" content="2018-05-22T15:17:08.876Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift-UIKit-NSNotificationCenter-简介">
-<meta name="twitter:description" content="NSNotificationCenter 如果被通知对象创建了，那么执行完发送通知之后就会执行被通知的selector的方法，之后再回来执行后一行代码通知一般在mode与View需要交流（传递数据）时使用，或者也可以用于多线程的消息传递，也可是其他的信息传递,最常用的场景是页面值的回传  注册通知 参数：第一个是响应被通知的对象，一般是self， selector:一个自定义方法，实现得到通知后的">
+<meta name="twitter:title" content="RxSwift-Grammar-ControlProperty">
+<meta name="twitter:description" content="Schedulers调度器基本介绍 ControlProperty 是专门用来描述 UI 控件属性，拥有该类型的属性都是被观察者（Observable）ControlProperty 具有以下特征   不会产生 error 事件 一定在 MainScheduler 订阅（主线程订阅） 一定在 MainScheduler 监听（主线程监听） 共享状态变化  使用样例 其实在 RxCocoa 下许多">
 
 
 
@@ -135,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/14/Swift/Swift/UIKit/NSNotificationCenter-简介/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/20/Swift/RxSwift/Grammar/ControlProperty/"/>
 
 
 
 
 
-  <title>Swift-UIKit-NSNotificationCenter-简介 | 💖区块链+直播+OC+Swift💖 💖随心记💖</title>
+  <title>RxSwift-Grammar-ControlProperty | 💖区块链+直播+OC+Swift💖 💖随心记💖</title>
   
 
 
@@ -322,7 +322,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/14/Swift/Swift/UIKit/NSNotificationCenter-简介/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/20/Swift/RxSwift/Grammar/ControlProperty/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YKK">
@@ -339,7 +339,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Swift-UIKit-NSNotificationCenter-简介</h1>
+          <h1 class="post-title" itemprop="name headline">RxSwift-Grammar-ControlProperty</h1>
         
 
         <div class="post-meta">
@@ -351,8 +351,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-14T18:22:06+08:00">
-                2017-12-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-20T20:59:46+08:00">
+                2018-05-20
               </time>
             
 
@@ -374,8 +374,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/" itemprop="url" rel="index">
-                    <span itemprop="name">Swift</span>
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
                   </a>
                 </span>
 
@@ -385,19 +385,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/" itemprop="url" rel="index">
-                    <span itemprop="name">UIKit</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Swift/UIKit/NSNotificationCenter/" itemprop="url" rel="index">
-                    <span itemprop="name">NSNotificationCenter</span>
+                  <a href="/categories/RxSwift/Grammar/" itemprop="url" rel="index">
+                    <span itemprop="name">Grammar</span>
                   </a>
                 </span>
 
@@ -433,22 +422,21 @@
       
 
       
-        <h1 id="NSNotificationCenter"><a href="#NSNotificationCenter" class="headerlink" title="NSNotificationCenter"></a>NSNotificationCenter</h1><blockquote>
-<p>如果被通知对象创建了，那么执行完发送通知之后就会执行被通知的selector的方法，之后再回来执行后一行代码<br>通知一般在mode与View需要交流（传递数据）时使用，或者也可以用于多线程的消息传递，也可是其他的信息传递,最常用的场景是页面值的回传</p>
+        <h1 id="Schedulers调度器"><a href="#Schedulers调度器" class="headerlink" title="Schedulers调度器"></a>Schedulers调度器</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><blockquote>
+<p>ControlProperty 是专门用来描述 UI 控件属性，拥有该类型的属性都是被观察者（Observable）<br>ControlProperty 具有以下特征</p>
 </blockquote>
-<h2 id="注册通知"><a href="#注册通知" class="headerlink" title="注册通知"></a>注册通知</h2><blockquote>
-<p>参数：第一个是响应被通知的对象，一般是self， selector:一个自定义方法，实现得到通知后的操作（如果使用闭包的方法，就在回调中实现），<br>name:通知的名字（注意注册通知和发送通知必须一致才能够响应通知），<br>object:发通知的对象，如果填nil则表示接受所有通知，如果填上具体的对象，则是1对1的通知。<br>建议：如果通知多可以单独写一个方法放通知（调用第二个方法），如果通知比较少建议使用第一种，再实现其selector方法，注册通知是在需要被通知的类里写</p>
+<ul>
+<li>不会产生 error 事件</li>
+<li>一定在 MainScheduler 订阅（主线程订阅）</li>
+<li>一定在 MainScheduler 监听（主线程监听）</li>
+<li>共享状态变化</li>
+</ul>
+<h2 id="使用样例"><a href="#使用样例" class="headerlink" title="使用样例"></a>使用样例</h2><blockquote>
+<p>其实在 RxCocoa 下许多 UI 控件属性都是被观察者（可观察序列）<br>比如我们查看源码（UITextField+Rx.swift），可以发现 UITextField 的 rx.text 属性类型便是 ControlProperty&lt;String?&gt;：</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="type">NSNotificationCenter</span>.defaultCenter().addObserver(<span class="keyword">self</span>, selector: #selector(<span class="type">TiltleNotification</span>), name: <span class="string">"TiltleNotification"</span>, object: <span class="literal">nil</span>)<span class="comment">//注册了一个名字叫做TiltleNotification</span></span><br></pre></td></tr></table></figure>
-<h2 id="发送通知post"><a href="#发送通知post" class="headerlink" title="发送通知post"></a>发送通知post</h2><blockquote>
-<p>在需要通知的类（即需要传信息出去的类）中使用通知传递消息<br>name也可以这样写:NSNotification.Name.init(“TiltleNotification”) </p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="type">NSNotificationCenter</span>.defaultCenter().postNotificationName(<span class="type">NSNotification</span>.<span class="type">Name</span>(<span class="string">"TiltleNotification"</span>), object: <span class="keyword">self</span>, userInfo: [<span class="string">"success"</span>:<span class="literal">true</span>,<span class="string">"img"</span>:<span class="type">UIImage</span>(named:<span class="string">"image"</span>])</span><br></pre></td></tr></table></figure>
-<h2 id="在完成通知中的选择器方法"><a href="#在完成通知中的选择器方法" class="headerlink" title="在完成通知中的选择器方法"></a>在完成通知中的选择器方法</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">pushBookTiltleNotification</span><span class="params">(notification:NSNotification)</span></span>&#123; <span class="comment">//记得参数加上，才能得到信息  </span></span><br><span class="line">      <span class="keyword">let</span> dict = notification.userInfo   </span><br><span class="line">      <span class="keyword">if</span> (dict[<span class="string">"success"</span>] <span class="keyword">as</span>! <span class="type">Bool</span>) &#123;<span class="comment">//获取传递过来的值,而且需要转换下  </span></span><br><span class="line">          <span class="type">ProgressHUD</span>.showSuccess(<span class="string">"通知成功"</span>)  </span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;  </span><br><span class="line">          <span class="type">ProgressHUD</span>.showError(<span class="string">"通知失败"</span>)  </span><br><span class="line">      &#125;  </span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="移除通知"><a href="#移除通知" class="headerlink" title="移除通知"></a>移除通知</h2><blockquote>
-<p>由于通知是单列的，所以使用完后必须在析构deinit中移除通知，否则后期将引发难以查询的莫名错误</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">deinit</span>&#123;  </span><br><span class="line">       </span><br><span class="line">      <span class="comment">//注意由于通知是单例的，所以用了之后需要析构，  </span></span><br><span class="line">      <span class="type">NSNotificationCenter</span>.defaultCenter().removeObserver(<span class="keyword">self</span>, name: <span class="string">"TiltleNotification"</span>, object: <span class="literal">nil</span>)  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> RxSwift</span><br><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Reactive</span> <span class="title">where</span> <span class="title">Base</span>: <span class="title">UITextField</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> text: <span class="type">ControlProperty</span>&lt;<span class="type">String</span>?&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> value</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> value: <span class="type">ControlProperty</span>&lt;<span class="type">String</span>?&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> base.rx.controlPropertyWithDefaultEvents(</span><br><span class="line">            getter: &#123; textField <span class="keyword">in</span></span><br><span class="line">                textField.text</span><br><span class="line">        &#125;,</span><br><span class="line">            setter: &#123; textField, value <span class="keyword">in</span></span><br><span class="line">                <span class="keyword">if</span> textField.text != value &#123;</span><br><span class="line">                    textField.text = value</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//......</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="那么我们如果想让一个-textField-里输入内容实时地显示在另一个-label-上，即前者作为被观察者，后者作为观察者。可以这么写："><a href="#那么我们如果想让一个-textField-里输入内容实时地显示在另一个-label-上，即前者作为被观察者，后者作为观察者。可以这么写：" class="headerlink" title="那么我们如果想让一个 textField 里输入内容实时地显示在另一个 label 上，即前者作为被观察者，后者作为观察者。可以这么写："></a>那么我们如果想让一个 textField 里输入内容实时地显示在另一个 label 上，即前者作为被观察者，后者作为观察者。可以这么写：</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"><span class="keyword">import</span> RxSwift</span><br><span class="line"><span class="keyword">import</span> RxCocoa</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">     </span><br><span class="line">    <span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> textField: <span class="type">UITextField</span>!</span><br><span class="line">     </span><br><span class="line">    <span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> label: <span class="type">UILabel</span>!</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">         </span><br><span class="line">        <span class="comment">//将textField输入的文字绑定到label上</span></span><br><span class="line">        textField.rx.text</span><br><span class="line">            .bind(to: label.rx.text)</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">UILabel</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">var</span> fontSize: <span class="type">Binder</span>&lt;<span class="type">CGFloat</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Binder</span>(<span class="keyword">self</span>) &#123; label, fontSize <span class="keyword">in</span></span><br><span class="line">            label.font = <span class="type">UIFont</span>.systemFont(ofSize: fontSize)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -467,11 +455,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Swift/" rel="tag"># Swift</a>
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
           
-            <a href="/tags/UIKit/" rel="tag"># UIKit</a>
-          
-            <a href="/tags/NSNotificationCenter/" rel="tag"># NSNotificationCenter</a>
+            <a href="/tags/Grammar/" rel="tag"># Grammar</a>
           
         </div>
       
@@ -484,8 +470,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/14/Swift/Swift/UIKit/UISearchController-简介/" rel="next" title="Swift-UIKit-UISearchController-简介">
-                <i class="fa fa-chevron-left"></i> Swift-UIKit-UISearchController-简介
+              <a href="/2018/05/20/Swift/RxSwift/Grammar/Schedulers调度器/" rel="next" title="RxSwift-Grammar-Schedulers调度器">
+                <i class="fa fa-chevron-left"></i> RxSwift-Grammar-Schedulers调度器
               </a>
             
           </div>
@@ -494,8 +480,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/14/Swift/Swift/Func/Swift-Func-使用iconfont图标/" rel="prev" title="Swift-Func-使用iconfont图标">
-                Swift-Func-使用iconfont图标 <i class="fa fa-chevron-right"></i>
+              <a href="/20178/05/22/Swift/RxSwift/UIKit/UITableViewCell-Event/" rel="prev" title="RxSwift-UIKit-UITableViewCell-Event订阅UITableViewCell里的按钮点击事件">
+                RxSwift-UIKit-UITableViewCell-Event订阅UITableViewCell里的按钮点击事件 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -628,7 +614,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NSNotificationCenter"><span class="nav-number">1.</span> <span class="nav-text">NSNotificationCenter</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注册通知"><span class="nav-number">1.1.</span> <span class="nav-text">注册通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发送通知post"><span class="nav-number">1.2.</span> <span class="nav-text">发送通知post</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在完成通知中的选择器方法"><span class="nav-number">1.3.</span> <span class="nav-text">在完成通知中的选择器方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移除通知"><span class="nav-number">1.4.</span> <span class="nav-text">移除通知</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Schedulers调度器"><span class="nav-number">1.</span> <span class="nav-text">Schedulers调度器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本介绍"><span class="nav-number">1.1.</span> <span class="nav-text">基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用样例"><span class="nav-number">1.2.</span> <span class="nav-text">使用样例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#那么我们如果想让一个-textField-里输入内容实时地显示在另一个-label-上，即前者作为被观察者，后者作为观察者。可以这么写："><span class="nav-number">1.3.</span> <span class="nav-text">那么我们如果想让一个 textField 里输入内容实时地显示在另一个 label 上，即前者作为被观察者，后者作为观察者。可以这么写：</span></a></li></ol></li></ol></div>
             
 
           </div>
