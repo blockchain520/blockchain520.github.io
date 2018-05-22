@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="Swift,RxSwift,UIKit," />
+  <meta name="keywords" content="Swift,UIKit,RxSwift," />
 
 
 
@@ -95,7 +95,7 @@
 
 
 <meta name="description" content="RxSwift RxSwift 是一个用于与 Swift 语言交互的框架，但它只是基础，并不能用来进行用户交互、网络请求等。   而 RxCocoa 是让 Cocoa APIs 更容易使用响应式编程的一个框架。RxCocoa 能够让我们方便地进行响应式网络请求、响应式的用户交互、绑定数据模型到 UI 控件等等。而且大多数的 UIKit 控件都有响应式扩展，它们都是通过 rx 属性进行使用  UIL">
-<meta name="keywords" content="Swift,RxSwift,UIKit">
+<meta name="keywords" content="Swift,UIKit,RxSwift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxSwift-UIKit-UILabel-响应式扩展-01">
 <meta property="og:url" content="http://yoursite.com/2017/12/15/Swift/RxSwift/UIKit/UILabel-01/index.html">
@@ -103,7 +103,7 @@
 <meta property="og:description" content="RxSwift RxSwift 是一个用于与 Swift 语言交互的框架，但它只是基础，并不能用来进行用户交互、网络请求等。   而 RxCocoa 是让 Cocoa APIs 更容易使用响应式编程的一个框架。RxCocoa 能够让我们方便地进行响应式网络请求、响应式的用户交互、绑定数据模型到 UI 控件等等。而且大多数的 UIKit 控件都有响应式扩展，它们都是通过 rx 属性进行使用  UIL">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ozr735s7e.bkt.clouddn.com/Rxswift-uilabel-01.gif">
-<meta property="og:updated_time" content="2018-05-22T01:07:57.206Z">
+<meta property="og:updated_time" content="2018-05-22T01:34:47.868Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxSwift-UIKit-UILabel-响应式扩展-01">
 <meta name="twitter:description" content="RxSwift RxSwift 是一个用于与 Swift 语言交互的框架，但它只是基础，并不能用来进行用户交互、网络请求等。   而 RxCocoa 是让 Cocoa APIs 更容易使用响应式编程的一个框架。RxCocoa 能够让我们方便地进行响应式网络请求、响应式的用户交互、绑定数据模型到 UI 控件等等。而且大多数的 UIKit 控件都有响应式扩展，它们都是通过 rx 属性进行使用  UIL">
@@ -449,7 +449,7 @@
 <blockquote>
 <p>把时间弄到lab上显示<br>创建一个计时器（每0.1秒发送一个索引数）</p>
 </blockquote>
-<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">     </span><br><span class="line">   <span class="keyword">let</span> timer = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">0.1</span>, scheduler: <span class="type">MainScheduler</span>.instance)</span><br><span class="line">        </span><br><span class="line">``` </span><br><span class="line">  </span><br><span class="line">&gt;已过去的时间格式化成想要的字符串，并绑定到label上</span><br><span class="line"> </span><br><span class="line">```swift </span><br><span class="line">   <span class="comment">//普通文本     </span></span><br><span class="line">    timer.<span class="built_in">map</span>&#123;(<span class="type">String</span>(format: <span class="string">"过去多少时间:%0.2d:%0.2d.%0.1d"</span>,</span><br><span class="line">                      arguments:[($<span class="number">0</span> / <span class="number">600</span>) % <span class="number">600</span>,</span><br><span class="line">                                 ($<span class="number">0</span> % <span class="number">600</span>) / <span class="number">10</span>,</span><br><span class="line">                                 $<span class="number">0</span> % <span class="number">10</span>]))&#125;</span><br><span class="line">         .bind(to: timeLabel.rx.text)</span><br><span class="line">         .disposed(by: disposeBag)</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">   <span class="comment">//MARK:UI-彩色lab</span></span><br><span class="line">    view.addSubview(timeColorLabel)</span><br><span class="line">    timer.<span class="built_in">map</span>(formatTimeInterval)</span><br><span class="line">        .bind(to: timeColorLabel.rx.attributedText)</span><br><span class="line">        .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">   <span class="keyword">let</span> timer = <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt;.interval(<span class="number">0.1</span>, scheduler: <span class="type">MainScheduler</span>.instance)  </span><br><span class="line">``` </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">&gt;已过去的时间格式化成想要的字符串，并绑定到label上</span><br><span class="line"></span><br><span class="line">```swift </span><br><span class="line">   <span class="comment">//普通文本     </span></span><br><span class="line">    timer.<span class="built_in">map</span>&#123;(<span class="type">String</span>(format: <span class="string">"过去多少时间:%0.2d:%0.2d.%0.1d"</span>,</span><br><span class="line">                      arguments:[($<span class="number">0</span> / <span class="number">600</span>) % <span class="number">600</span>,</span><br><span class="line">                                 ($<span class="number">0</span> % <span class="number">600</span>) / <span class="number">10</span>,</span><br><span class="line">                                 $<span class="number">0</span> % <span class="number">10</span>]))&#125;</span><br><span class="line">         .bind(to: timeLabel.rx.text)</span><br><span class="line">         .disposed(by: disposeBag)</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">   <span class="comment">//MARK:UI-彩色lab</span></span><br><span class="line">    view.addSubview(timeColorLabel)</span><br><span class="line">    timer.<span class="built_in">map</span>(formatTimeInterval)</span><br><span class="line">        .bind(to: timeColorLabel.rx.attributedText)</span><br><span class="line">        .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>将数字转成对应的富文本</p>
 </blockquote>
@@ -476,9 +476,9 @@
           
             <a href="/tags/Swift/" rel="tag"># Swift</a>
           
-            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
-          
             <a href="/tags/UIKit/" rel="tag"># UIKit</a>
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
           
         </div>
       
@@ -491,8 +491,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/14/Swift/Swift/UIKit/UIImagePickerController/" rel="next" title="Swift-UIKit-UIImagePickerController">
-                <i class="fa fa-chevron-left"></i> Swift-UIKit-UIImagePickerController
+              <a href="/2017/12/15/Swift/RxSwift/Grammar/01-基本介绍&安装配置/" rel="next" title="RxSwift-基本介绍&安装配置-01">
+                <i class="fa fa-chevron-left"></i> RxSwift-基本介绍&安装配置-01
               </a>
             
           </div>
@@ -501,8 +501,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/15/Swift/RxSwift/Grammar/01-基本介绍&安装配置/" rel="prev" title="RxSwift-基本介绍&安装配置-01">
-                RxSwift-基本介绍&安装配置-01 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/15/Swift/RxSwift/Grammar/02-Observables/" rel="prev" title="RxSwift-Grammar-Observables-02">
+                RxSwift-Grammar-Observables-02 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
