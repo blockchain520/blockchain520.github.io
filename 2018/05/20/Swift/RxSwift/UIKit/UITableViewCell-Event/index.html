@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Swift,RxSwift,UIKit," />
 
 
 
@@ -94,13 +94,20 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="💖区块链+直播+OC+Swift💖 💖随心记💖">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta name="description" content="订阅UITableViewCell里的按钮点击事件 通过订阅 tableView 的 itemSelected 或 modelSelected 这两个 Rx 扩展方法，可以对单元格的点击事件进行响应，并执行相关的业务代码。但有时并不需要整个 cell 都能进行点击响应，可能是点击单元格内的按钮时才触发相关的操作，下面通过样例演示这个功能的实现  效果图 MyTableCell.swift（自定义单">
+<meta name="keywords" content="Swift,RxSwift,UIKit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxSwift-UIKit-UITableViewCell-Event订阅UITableViewCell里的按钮点击事件">
+<meta property="og:url" content="http://yoursite.com/2018/05/20/Swift/RxSwift/UIKit/UITableViewCell-Event/index.html">
 <meta property="og:site_name" content="💖区块链+直播+OC+Swift💖 💖随心记💖">
+<meta property="og:description" content="订阅UITableViewCell里的按钮点击事件 通过订阅 tableView 的 itemSelected 或 modelSelected 这两个 Rx 扩展方法，可以对单元格的点击事件进行响应，并执行相关的业务代码。但有时并不需要整个 cell 都能进行点击响应，可能是点击单元格内的按钮时才触发相关的操作，下面通过样例演示这个功能的实现  效果图 MyTableCell.swift（自定义单">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ot0mms4k8.bkt.clouddn.com/%E8%AE%A2%E9%98%85UITableViewCell%E9%87%8C%E7%9A%84%E6%8C%89%E9%92%AE%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6.gif">
+<meta property="og:updated_time" content="2018-05-23T07:22:50.711Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="💖区块链+直播+OC+Swift💖 💖随心记💖">
+<meta name="twitter:title" content="RxSwift-UIKit-UITableViewCell-Event订阅UITableViewCell里的按钮点击事件">
+<meta name="twitter:description" content="订阅UITableViewCell里的按钮点击事件 通过订阅 tableView 的 itemSelected 或 modelSelected 这两个 Rx 扩展方法，可以对单元格的点击事件进行响应，并执行相关的业务代码。但有时并不需要整个 cell 都能进行点击响应，可能是点击单元格内的按钮时才触发相关的操作，下面通过样例演示这个功能的实现  效果图 MyTableCell.swift（自定义单">
+<meta name="twitter:image" content="http://ot0mms4k8.bkt.clouddn.com/%E8%AE%A2%E9%98%85UITableViewCell%E9%87%8C%E7%9A%84%E6%8C%89%E9%92%AE%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6.gif">
 
 
 
@@ -130,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/20/Swift/RxSwift/UIKit/UITableViewCell-Event/"/>
 
 
 
 
 
-  <title>归档 | 💖区块链+直播+OC+Swift💖 💖随心记💖</title>
+  <title>RxSwift-UIKit-UITableViewCell-Event订阅UITableViewCell里的按钮点击事件 | 💖区块链+直播+OC+Swift💖 💖随心记💖</title>
   
 
 
@@ -155,7 +162,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -303,410 +310,203 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/20/Swift/RxSwift/UIKit/UITableViewCell-Event/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YKK">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="💖区块链+直播+OC+Swift💖 💖随心记💖">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h1 class="post-title" itemprop="name headline">RxSwift-UIKit-UITableViewCell-Event订阅UITableViewCell里的按钮点击事件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-20T09:20:28+08:00">
+                2018-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        非常好! 目前共计 151 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/" itemprop="url" rel="index">
+                    <span itemprop="name">RxSwift</span>
+                  </a>
+                </span>
 
-      
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RxSwift/UIKit/" itemprop="url" rel="index">
+                    <span itemprop="name">UIKit</span>
+                  </a>
+                </span>
 
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/22/Swift/RxSwift/UIKit/UISegmentedControl-01/" itemprop="url">
-              
-                <span itemprop="name">RxSwift-UIKit-UISegmentedControl-响应式扩展-01</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-22T12:22:28+08:00"
-              content="2018-05-22" >
-          05-22
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/22/Swift/RxSwift/UIKit/UIActivityIndicatorView-01/" itemprop="url">
-              
-                <span itemprop="name">RxSwift-UIKit-UIActivityIndicatorView状态指示器-响应式扩展-01</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-22T12:12:28+08:00"
-              content="2018-05-22" >
-          05-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/22/Swift/RxSwift/UIKit/UISwitch-01/" itemprop="url">
-              
-                <span itemprop="name">RxSwift-UIKit-UISwitch-响应式扩展-01</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-22T09:22:28+08:00"
-              content="2018-05-22" >
-          05-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="订阅UITableViewCell里的按钮点击事件"><a href="#订阅UITableViewCell里的按钮点击事件" class="headerlink" title="订阅UITableViewCell里的按钮点击事件"></a>订阅UITableViewCell里的按钮点击事件</h1><blockquote>
+<p>通过订阅 tableView 的 itemSelected 或 modelSelected 这两个 Rx 扩展方法，可以对单元格的点击事件进行响应，并执行相关的业务代码。<br>但有时并不需要整个 cell 都能进行点击响应，可能是点击单元格内的按钮时才触发相关的操作，下面通过样例演示这个功能的实现</p>
+</blockquote>
+<h1 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h1><p><img src="http://ot0mms4k8.bkt.clouddn.com/%E8%AE%A2%E9%98%85UITableViewCell%E9%87%8C%E7%9A%84%E6%8C%89%E9%92%AE%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6.gif" alt="效果图"></p>
+<h1 id="MyTableCell-swift（自定义单元格类）"><a href="#MyTableCell-swift（自定义单元格类）" class="headerlink" title="MyTableCell.swift（自定义单元格类）"></a>MyTableCell.swift（自定义单元格类）</h1><ul>
+<li>注意 prepareForReuse() 方法里的 disposeBag = DisposeBag()</li>
+<li>每次 prepareForReuse() 方法执行时都会初始化一个新的 disposeBag。</li>
+<li>这是因为 cell 是可以复用的，这样当 cell 每次重用的时候，便会自动释放之前的 disposeBag，从而保证 cell 被重用的时候不会被多次订阅，避免错误发生。</li>
+</ul>
+<blockquote>
+<p>单元格类</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyTableCell</span>: <span class="title">UITableViewCell</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> button : <span class="type">UIButton</span>!</span><br><span class="line">    <span class="keyword">var</span> disposeBag = <span class="type">DisposeBag</span>()</span><br><span class="line">    <span class="comment">//单元格重用时调用</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">prepareForReuse</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.prepareForReuse()</span><br><span class="line">        disposeBag = <span class="type">DisposeBag</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//初始化</span></span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">init</span>(style: <span class="type">UITableViewCellStyle</span>, reuseIdentifier: <span class="type">String</span>?) &#123;</span><br><span class="line">        <span class="keyword">super</span>.<span class="keyword">init</span>(style: style, reuseIdentifier: reuseIdentifier)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//添加按钮</span></span><br><span class="line">        button = <span class="type">UIButton</span>(frame: <span class="type">CGRect</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">40</span>, height: <span class="number">25</span>))</span><br><span class="line">        button.setTitle(<span class="string">"click"</span>, <span class="keyword">for</span>: .normal)<span class="comment">//普通状态下的文字</span></span><br><span class="line">        button.backgroundColor = <span class="type">UIColor</span>.red</span><br><span class="line">        button.layer.cornerRadius = <span class="number">5</span></span><br><span class="line">        button.titleLabel?.font = <span class="type">UIFont</span>.systemFont(ofSize: <span class="number">12</span>)</span><br><span class="line">        <span class="keyword">self</span>.addSubview(button)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 布局</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span>  <span class="title">layoutSubviews</span><span class="params">()</span></span> &#123;</span><br><span class="line">       <span class="keyword">super</span>.layoutSubviews()</span><br><span class="line">        button.center = <span class="type">CGPoint</span>(x: bounds.width - <span class="number">35</span>, y: bounds.midY)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">required</span> <span class="keyword">init</span>?(coder aDecoder: <span class="type">NSCoder</span>) &#123;</span><br><span class="line">              <span class="built_in">fatalError</span>(<span class="string">"init(coder:) has not been implemented"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="ViewController-swift（主视图控制器）"><a href="#ViewController-swift（主视图控制器）" class="headerlink" title="ViewController.swift（主视图控制器）"></a>ViewController.swift（主视图控制器）</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> UIKit</span><br><span class="line"><span class="keyword">import</span> RxSwift</span><br><span class="line"><span class="keyword">import</span> RxCocoa</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>: <span class="title">UIViewController</span> </span>&#123;</span><br><span class="line">    <span class="comment">//disposeBag</span></span><br><span class="line">    <span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</span><br><span class="line">    <span class="comment">//tableView</span></span><br><span class="line">    <span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> tableView: <span class="type">UITableView</span> = &#123;</span><br><span class="line">        <span class="keyword">let</span> tableView = <span class="type">UITableView</span>(frame: <span class="keyword">self</span>.view.frame,style: .plain)</span><br><span class="line">        <span class="comment">//创建表格视图</span></span><br><span class="line">        <span class="comment">//创建一个重用的单元格</span></span><br><span class="line">        tableView.register(<span class="type">MyTableCell</span>.<span class="keyword">self</span>, forCellReuseIdentifier: <span class="string">"Cell"</span>)</span><br><span class="line">        <span class="comment">//单元格无法选中</span></span><br><span class="line">        tableView.allowsSelection = <span class="literal">false</span></span><br><span class="line">        <span class="keyword">return</span> tableView</span><br><span class="line">    &#125;()</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">        <span class="comment">// Do any additional setup after loading the view, typically from a nib.</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//加载tableView</span></span><br><span class="line">        <span class="keyword">self</span>.view.addSubview(<span class="keyword">self</span>.tableView)</span><br><span class="line">        <span class="comment">//初始化数据  .just 只创建包含一个元素的序列</span></span><br><span class="line">        <span class="keyword">let</span> items = <span class="type">Observable</span>.just([<span class="string">"01"</span>,<span class="string">"02"</span>,<span class="string">"03"</span>,<span class="string">"04"</span>])</span><br><span class="line">        <span class="comment">//设置单元格数据（其实就是对 cellForRowAt 的封装）</span></span><br><span class="line">        items.bind(to: tableView.rx.items)&#123; (tableView, row , element) <span class="keyword">in</span></span><br><span class="line">                                                <span class="comment">//初始化cell</span></span><br><span class="line">                                                <span class="keyword">let</span> cell = tableView.dequeueReusableCell(withIdentifier: <span class="string">"Cell"</span>) <span class="keyword">as</span>! <span class="type">MyTableCell</span></span><br><span class="line">                                                cell.textLabel?.text = <span class="string">"<span class="subst">\(element)</span>"</span></span><br><span class="line">                                                <span class="comment">//cell中按钮点击事件订阅</span></span><br><span class="line">                                                cell.button</span><br><span class="line">                                                    .rx</span><br><span class="line">                                                    .tap</span><br><span class="line">                                                    .asDriver() <span class="comment">//转换成一个Driver序列</span></span><br><span class="line">                                                    .drive(onNext: &#123;</span><br><span class="line">                                                        [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></span><br><span class="line">                                                        <span class="keyword">self</span>?.showAlert(title: <span class="string">"<span class="subst">\(row)</span>"</span>,</span><br><span class="line">                                                            msg: element)</span><br><span class="line">                                                        &#125;</span><br><span class="line">                                                    )</span><br><span class="line">                                                    .disposed(by: cell.disposeBag)</span><br><span class="line">                                                <span class="keyword">return</span> cell</span><br><span class="line">                                        &#125;</span><br><span class="line">            .disposed(by: disposeBag)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//显示弹出框信息</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">showAlert</span><span class="params">(title: String, msg: String)</span></span> &#123;</span><br><span class="line">        <span class="keyword">let</span> alert = <span class="type">UIAlertController</span>(title: title,</span><br><span class="line">                                      message: msg,</span><br><span class="line">                                      preferredStyle: .alert)</span><br><span class="line">        alert.addAction(<span class="type">UIAlertAction</span>(title: <span class="string">"sure"</span>,</span><br><span class="line">                                      style: .cancel))</span><br><span class="line">        <span class="keyword">self</span>.present(alert,animated: <span class="literal">true</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/22/Swift/RxSwift/UIKit/UIButton-01/" itemprop="url">
-              
-                <span itemprop="name">RxSwift-UIKit-UIButton-响应式扩展-01</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-22T09:20:28+08:00"
-              content="2018-05-22" >
-          05-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/20/Swift/RxSwift/Grammar/ControlEvent/" itemprop="url">
-              
-                <span itemprop="name">RxSwift-Grammar-ControlEvent</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-20T21:49:46+08:00"
-              content="2018-05-20" >
-          05-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/20/Swift/RxSwift/Grammar/ControlProperty/" itemprop="url">
-              
-                <span itemprop="name">RxSwift-Grammar-ControlProperty</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-20T20:59:46+08:00"
-              content="2018-05-20" >
-          05-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/20/Swift/RxSwift/Grammar/Schedulers调度器/" itemprop="url">
-              
-                <span itemprop="name">RxSwift-Grammar-Schedulers调度器</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-20T20:49:46+08:00"
-              content="2018-05-20" >
-          05-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/20/Swift/RxSwift/UIKit/UITableViewCell-Event/" itemprop="url">
-              
-                <span itemprop="name">RxSwift-UIKit-UITableViewCell-Event订阅UITableViewCell里的按钮点击事件</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-20T09:20:28+08:00"
-              content="2018-05-20" >
-          05-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/18/OC/Live/Live/" itemprop="url">
-              
-                <span itemprop="name">Directory</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-18T17:15:41+08:00"
-              content="2018-05-18" >
-          05-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/18/OC/Tool/Tool/" itemprop="url">
-              
-                <span itemprop="name">TLibSet  第三方账号配置目录</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-18T17:15:41+08:00"
-              content="2018-05-18" >
-          05-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/RxSwift/" rel="tag"># RxSwift</a>
+          
+            <a href="/tags/UIKit/" rel="tag"># UIKit</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/18/OC/Live/Live/" rel="next" title="Directory">
+                <i class="fa fa-chevron-left"></i> Directory
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/20/Swift/RxSwift/Grammar/Schedulers调度器/" rel="prev" title="RxSwift-Grammar-Schedulers调度器">
+                RxSwift-Grammar-Schedulers调度器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/16/">16</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -714,6 +514,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -734,8 +538,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -795,6 +608,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#订阅UITableViewCell里的按钮点击事件"><span class="nav-number">1.</span> <span class="nav-text">订阅UITableViewCell里的按钮点击事件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#效果图"><span class="nav-number">2.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MyTableCell-swift（自定义单元格类）"><span class="nav-number">3.</span> <span class="nav-text">MyTableCell.swift（自定义单元格类）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ViewController-swift（主视图控制器）"><span class="nav-number">4.</span> <span class="nav-text">ViewController.swift（主视图控制器）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -918,6 +747,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
