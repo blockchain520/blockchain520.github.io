@@ -1301,7 +1301,7 @@ Completable 是 Observable 的另外一个版本不像 Observable 可以发出�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/Swift/RxSwift/Grammar/observeOn()和subscribeOn()/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/Swift/RxSwift/Grammar/自定义operator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YKK">
@@ -1320,7 +1320,7 @@ Completable 是 Observable 的另外一个版本不像 Observable 可以发出�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/Swift/RxSwift/Grammar/observeOn()和subscribeOn()/" itemprop="url">RxSwift-Grammar-observeOn()和subscribeOn()</a></h1>
+                <a class="post-title-link" href="/2018/03/27/Swift/RxSwift/Grammar/自定义operator/" itemprop="url">RxSwift-Grammar-自定义operator</a></h1>
         
 
         <div class="post-meta">
@@ -1405,30 +1405,14 @@ Completable 是 Observable 的另外一个版本不像 Observable 可以发出�
       
         
           
-          observeOn()和subscribeOn()
+          自定义operator
+自定义操作符很简单，官方推荐尽量使用标准的操作符，但是你也可以定义自己的操作符，文档上说有两种方法，这里介绍一下常用的一种方法吧自定义一个map操作符
 
-
-
-
-
-
-
-
-subscribeOn()
-设置起点在哪个线程
-
-
-observeOn()
-置了后续工作在哪个线程
-
-
-
-
-1)所有动作都发生在当前的默认线程2)observeOn()转换线程到主线程，下面所有的操作都在主线程3)subscribe
+ extension ObserverType &#123;    func myMap&lt;R&gt;(transfo
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/Swift/RxSwift/Grammar/observeOn()和subscribeOn()/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/Swift/RxSwift/Grammar/自定义operator/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1645,7 +1629,7 @@ observeOn()
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/Swift/RxSwift/Grammar/Subscribe/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/Swift/RxSwift/Grammar/Dispose和DisposeBag/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YKK">
@@ -1664,7 +1648,7 @@ observeOn()
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/Swift/RxSwift/Grammar/Subscribe/" itemprop="url">RxSwift-Grammar-Subscribe</a></h1>
+                <a class="post-title-link" href="/2018/03/27/Swift/RxSwift/Grammar/Dispose和DisposeBag/" itemprop="url">RxSwift-Grammar-Dispose和DisposeBag</a></h1>
         
 
         <div class="post-meta">
@@ -1749,16 +1733,14 @@ observeOn()
       
         
           
-          subscribe 和 subscribe(onNext:)
-Subscribe
+          Dispose 和 DisposeBag当监听一个sequence的时候，有消息事件来了，做某些事情。但是这个sequence不再发送消息事件了，那么我们的监听也就没有什么存在的价值了，所以我们需要释放我们这些监听资源，其实也就是内存资源释放
+##手动调用释放方式(一般不适用这种方式)
 
-
-subscribe是订阅sequence发出的事件，比如next事件，error事件等
-而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和
+创建一个s
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/Swift/RxSwift/Grammar/Subscribe/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/Swift/RxSwift/Grammar/Dispose和DisposeBag/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1811,7 +1793,7 @@ subscribe是订阅sequence发出的事件，比如next事件，error事件等
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/Swift/RxSwift/Grammar/Observable&Observer/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/Swift/RxSwift/Grammar/Traits-Single/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YKK">
@@ -1830,7 +1812,7 @@ subscribe是订阅sequence发出的事件，比如next事件，error事件等
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/Swift/RxSwift/Grammar/Observable&Observer/" itemprop="url">RxSwift-Grammar-Observable可观察序列&Observer观察者</a></h1>
+                <a class="post-title-link" href="/2018/03/27/Swift/RxSwift/Grammar/Traits-Single/" itemprop="url">RxSwift-Grammar-特征序列Traits-Single</a></h1>
         
 
         <div class="post-meta">
@@ -1915,18 +1897,19 @@ subscribe是订阅sequence发出的事件，比如next事件，error事件等
       
         
           
-          Observable可观察序列  和 Observer观察者实质
-Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应
-
-举例
-Button 的点击这个情景
+          Single基本介绍
+Single 是 Observable 的另外一个版本但它不像 Observable 可以发出多个元素，它要么只能发出一个元素，要么产生一个 error 事件
 
 
-把用户
+发出一个元素，或一个 error 事件
+不会共享状态变化
+
+应用场景
+Single 比较常见的例子就是执行 HTT
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/Swift/RxSwift/Grammar/Observable&Observer/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/Swift/RxSwift/Grammar/Traits-Single/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
