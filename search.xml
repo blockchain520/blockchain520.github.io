@@ -30,6 +30,31 @@
     </entry>
     
     <entry>
+      <title>RxSwift-UIKit-UISwitch-响应式扩展-01</title>
+      <link href="/2018/05/22/Swift/RxSwift/UIKit/UISwitch-01/"/>
+      <url>/2018/05/22/Swift/RxSwift/UIKit/UISwitch-01/</url>
+      <content type="html"><![CDATA[<h1 id="btn响应"><a href="#btn响应" class="headerlink" title="btn响应"></a>btn响应</h1><blockquote><p>disposeBag</p></blockquote><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</span><br></pre></td></tr></table></figure><blockquote><p>UI</p></blockquote><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> mySwitch: <span class="type">UISwitch</span> = &#123;</span><br><span class="line">    <span class="keyword">let</span> mySwitch = <span class="type">UISwitch</span>()</span><br><span class="line">    mySwitch.frame = <span class="type">CGRect</span>(x: <span class="number">20</span>, y: <span class="number">80</span>, width: <span class="number">80</span>, height: <span class="number">30</span>)</span><br><span class="line">    <span class="keyword">return</span> mySwitch</span><br><span class="line">&#125;()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">fileprivate</span> <span class="built_in">lazy</span> <span class="keyword">var</span> switchshowBtn: <span class="type">UIButton</span> = &#123;</span><br><span class="line">        <span class="keyword">let</span> switchshowBtn = <span class="type">UIButton</span>()</span><br><span class="line">        switchshowBtn.frame = <span class="type">CGRect</span>(x: <span class="number">120</span>, y: <span class="number">80</span>, width: <span class="number">200</span>, height: <span class="number">30</span>)</span><br><span class="line">        switchshowBtn.setTitleColor(<span class="type">UIColor</span>.gray, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</span><br><span class="line">        switchshowBtn.setTitleColor(<span class="type">UIColor</span>.red, <span class="keyword">for</span>: <span class="type">UIControlState</span>.selected)</span><br><span class="line">        switchshowBtn.setTitle(<span class="string">"show switch select"</span>, <span class="keyword">for</span>: <span class="type">UIControlState</span>.normal)</span><br><span class="line">        <span class="keyword">return</span> switchshowBtn</span><br><span class="line">    &#125;()</span><br></pre></td></tr></table></figure><blockquote><p>当 switch 开关状态改变时，输出当前值</p></blockquote><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">mySwitch.rx</span><br><span class="line">        .isOn.asObservable()</span><br><span class="line">        .subscribe(onNext: &#123;</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"当前开关状态：<span class="subst">\($<span class="number">0</span>)</span>"</span>)</span><br><span class="line">           &#125;)</span><br><span class="line">        .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure><blockquote><p>切换 switch 开关时，button 会在可用和不可用的状态间切换</p></blockquote><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">mySwitch.rx</span><br><span class="line">        .isOn</span><br><span class="line">        .bind(to: switchshowBtn.rx.isSelected)</span><br><span class="line">        .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      <categories>
+          
+          <category> RxSwift </category>
+          
+          <category> UIKit </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> RxSwift </tag>
+            
+            <tag> UIKit </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>RxSwift-UIKit-UIButton-响应式扩展-01</title>
       <link href="/2018/05/22/Swift/RxSwift/UIKit/UIButton-01/"/>
       <url>/2018/05/22/Swift/RxSwift/UIKit/UIButton-01/</url>
@@ -152,27 +177,6 @@
     
     <entry>
       <title>TLibSet  第三方账号配置目录</title>
-      <link href="/2018/05/18/OC/TLibSet/TLibSet/"/>
-      <url>/2018/05/18/OC/TLibSet/TLibSet/</url>
-      <content type="html"><![CDATA[<p>直播</p>]]></content>
-      
-      <categories>
-          
-          <category> TLibSet </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> TLibSet </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>TLibSet  第三方账号配置目录</title>
       <link href="/2018/05/18/OC/Tool/Tool/"/>
       <url>/2018/05/18/OC/Tool/Tool/</url>
       <content type="html"><![CDATA[<p>直播</p>]]></content>
@@ -208,6 +212,27 @@
         <tags>
             
             <tag> Live </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>TLibSet  第三方账号配置目录</title>
+      <link href="/2018/05/18/OC/TLibSet/TLibSet/"/>
+      <url>/2018/05/18/OC/TLibSet/TLibSet/</url>
+      <content type="html"><![CDATA[<p>直播</p>]]></content>
+      
+      <categories>
+          
+          <category> TLibSet </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> TLibSet </tag>
             
         </tags>
       
@@ -408,56 +433,6 @@
     </entry>
     
     <entry>
-      <title>RxSwift-Grammar-Subscribe</title>
-      <link href="/2018/03/27/Swift/RxSwift/Grammar/Subscribe/"/>
-      <url>/2018/03/27/Swift/RxSwift/Grammar/Subscribe/</url>
-      <content type="html"><![CDATA[<h1 id="subscribe-和-subscribe-onNext"><a href="#subscribe-和-subscribe-onNext" class="headerlink" title="subscribe 和 subscribe(onNext:)"></a>subscribe 和 subscribe(onNext:)</h1><blockquote><p>Subscribe</p></blockquote><ul><li><strong>subscribe是订阅sequence发出的事件</strong>，比如next事件，error事件等</li><li>而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和completed事件</li><li>相对应的还有subscribe(onError:) 和 subscribe(onCompleted:)</li></ul>]]></content>
-      
-      <categories>
-          
-          <category> RxSwift </category>
-          
-          <category> Grammar </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> RxSwift </tag>
-            
-            <tag> Grammar </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>RxSwift-Grammar-自定义operator</title>
-      <link href="/2018/03/27/Swift/RxSwift/Grammar/%E8%87%AA%E5%AE%9A%E4%B9%89operator/"/>
-      <url>/2018/03/27/Swift/RxSwift/Grammar/%E8%87%AA%E5%AE%9A%E4%B9%89operator/</url>
-      <content type="html"><![CDATA[<h1 id="自定义operator"><a href="#自定义operator" class="headerlink" title="自定义operator"></a>自定义operator</h1><blockquote><p>自定义操作符很简单，官方推荐尽量使用标准的操作符，但是你也可以定义自己的操作符，文档上说有两种方法，这里介绍一下常用的一种方法吧<br>自定义一个map操作符</p></blockquote><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">ObserverType</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">myMap</span>&lt;R&gt;<span class="params">(transform: E -&gt; R)</span></span> -&gt; <span class="type">Observable</span>&lt;<span class="type">R</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Observable</span>.create&#123; observer <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">let</span> subscription = <span class="keyword">self</span>.subscribe &#123;e <span class="keyword">in</span></span><br><span class="line">                <span class="keyword">switch</span> e&#123;</span><br><span class="line">                <span class="keyword">case</span> .next(<span class="keyword">let</span> value):</span><br><span class="line">                    <span class="keyword">let</span> result = transform(value)</span><br><span class="line">                    observer.on(.next(result))</span><br><span class="line">                <span class="keyword">case</span> .error(<span class="keyword">let</span> error):</span><br><span class="line">                    observer.on(.error(error))</span><br><span class="line">                <span class="keyword">case</span> .completed:</span><br><span class="line">                    observer.on(.completed)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> subscription</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>参数是一个闭包，其中闭包参数是E类型返回值是R类型，map函数的返回值是一个Observable类型。</p></blockquote>]]></content>
-      
-      <categories>
-          
-          <category> RxSwift </category>
-          
-          <category> Grammar </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> RxSwift </tag>
-            
-            <tag> Grammar </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>RxSwift-Grammar-Dispose和DisposeBag</title>
       <link href="/2018/03/27/Swift/RxSwift/Grammar/Dispose%E5%92%8CDisposeBag/"/>
       <url>/2018/03/27/Swift/RxSwift/Grammar/Dispose%E5%92%8CDisposeBag/</url>
@@ -508,10 +483,10 @@
     </entry>
     
     <entry>
-      <title>RxSwift-Grammar-Observable可观察序列&amp;Observer观察者</title>
-      <link href="/2018/03/27/Swift/RxSwift/Grammar/Observable&amp;Observer/"/>
-      <url>/2018/03/27/Swift/RxSwift/Grammar/Observable&amp;Observer/</url>
-      <content type="html"><![CDATA[<h1 id="Observable可观察序列-和-Observer观察者"><a href="#Observable可观察序列-和-Observer观察者" class="headerlink" title="Observable可观察序列  和 Observer观察者"></a>Observable可观察序列  和 Observer观察者</h1><h2 id="实质"><a href="#实质" class="headerlink" title="实质"></a>实质</h2><blockquote><p>Observer (观察者)订阅一个可观察序列 Observable(事件源)<br>每一个Observable的实例都是一个序列<br>观察者 对 Observable 发射的数据或数据序列作出响应</p></blockquote><h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><blockquote><p>Button 的点击这个情景</p></blockquote><ul><li>把用户一次又一次的点击 Button 看做是序列(sequence)</li><li>通过调用 subscribe 来订阅这个点击事件</li><li>每次点击都会发射一个数据</li><li>作为订阅者的 subscribe 收到这个这个数据进行某些响应</li></ul><blockquote><p>Rx 的基本概念，有Observer观察者观察一个序列sequence，每当序列发射值的时候，观察者根据序列做一些事情<br>Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素</p></blockquote><ul><li>Observable(ObservableType)等效于Sequence</li><li>observableType.subscribe(_:)方法等效于Sequence.makeIterator()</li><li>ObservableType.subscribe(_:)接收一个观察者ObserverType参数,它将被订阅自动接收由可观察到的序列事件和元素，而不是在返回的生成器上手动调用next()</li></ul><blockquote><p>如果一个Observable发出一个next事件(Event.next(Element)),它还能够继续发出更多的事件<br>但是，如果一个Observable发出一个error事件(Event.error(ErrorType))或者一个completed事件(Event.completed)，那么这个Observable序列就不能给订阅者发送其他的事件</p></blockquote><h2 id="可观察序列-Observables-aka-Sequences"><a href="#可观察序列-Observables-aka-Sequences" class="headerlink" title="可观察序列 (Observables aka Sequences)"></a>可观察序列 (Observables aka Sequences)</h2><blockquote><p>可观察序列 存在三种情况:<br>①发射数据(Next)<br>②遇到问题(Error)<br>③发射完成(Completed)</p></blockquote><blockquote><p>有限序列</p></blockquote><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">比如，有这样一个序列 --1--2--3--4--5--6--| ，它发送了按顺序发送了 1 2 3 4 5 6 这些值后，就终止了，就是发射完成。这是一个有限序列</span><br><span class="line">也有可能因为某些特殊的情况，遇到某些错误（比如数据解析错误），--1--2--3--4--X ，因为解析错误意外终止</span><br></pre></td></tr></table></figure><blockquote><p>无限序列</p></blockquote><ul><li>比如用户点击 Button ，这个就属于无限序列</li></ul><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---tap-tap-------tap---&gt; 当然这里的无限不是真的无限，是不确定用户什么时候会点击，不确定是否会继续点击。所以这是一个无限序列，每当用户点击，序列就发射一个值</span><br></pre></td></tr></table></figure><blockquote><p>将以上的三种情况统概括为事件</p></blockquote><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Event</span>&lt;<span class="title">Element</span>&gt;  </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Next</span>(<span class="type">Element</span>)      <span class="comment">// 序列的下一个元素</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">Error</span>(<span class="type">ErrorType</span>)   <span class="comment">// 序列因为某些错误终止</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">Completed</span>          <span class="comment">// 正常的序列技术</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="观察者-Observer"><a href="#观察者-Observer" class="headerlink" title="观察者 (Observer)"></a>观察者 (Observer)</h2><blockquote><p>观察者需要一个订阅序列的功能</p></blockquote><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Observable</span>&lt;<span class="title">Element</span>&gt; </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">subscribe</span><span class="params">(observer: Observer&lt;Element&gt;)</span></span> -&gt; <span class="type">Disposable</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">ObserverType</span> </span>&#123;</span><br><span class="line"> <span class="function"><span class="keyword">func</span> <span class="title">on</span><span class="params">(event: Event&lt;Element&gt;)</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>通过序列的这个 subscribe 来订阅序列<br>这里就应该提到序列的“冷”“热”问题</p></blockquote><ul><li>冷：只有当有观察者订阅这个序列时，序列才发射值</li><li>热：序列创建时就开始发射值</li></ul><blockquote><p>整体上就是这样的一个关系，序列发射值，观察者订阅序列，收到值，进行处理</p></blockquote><h2 id="Obserable"><a href="#Obserable" class="headerlink" title="Obserable"></a>Obserable</h2><blockquote><p>创建被观察者其实就是<strong>创建一个Obserable的sequence</strong>，就是创建一个流，然后就可以被订阅subscribe，这样被观察者发出时间消失，就能做相应的处理</p></blockquote>]]></content>
+      <title>RxSwift-Grammar-自定义operator</title>
+      <link href="/2018/03/27/Swift/RxSwift/Grammar/%E8%87%AA%E5%AE%9A%E4%B9%89operator/"/>
+      <url>/2018/03/27/Swift/RxSwift/Grammar/%E8%87%AA%E5%AE%9A%E4%B9%89operator/</url>
+      <content type="html"><![CDATA[<h1 id="自定义operator"><a href="#自定义operator" class="headerlink" title="自定义operator"></a>自定义operator</h1><blockquote><p>自定义操作符很简单，官方推荐尽量使用标准的操作符，但是你也可以定义自己的操作符，文档上说有两种方法，这里介绍一下常用的一种方法吧<br>自定义一个map操作符</p></blockquote><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">extension</span> <span class="title">ObserverType</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">myMap</span>&lt;R&gt;<span class="params">(transform: E -&gt; R)</span></span> -&gt; <span class="type">Observable</span>&lt;<span class="type">R</span>&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Observable</span>.create&#123; observer <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">let</span> subscription = <span class="keyword">self</span>.subscribe &#123;e <span class="keyword">in</span></span><br><span class="line">                <span class="keyword">switch</span> e&#123;</span><br><span class="line">                <span class="keyword">case</span> .next(<span class="keyword">let</span> value):</span><br><span class="line">                    <span class="keyword">let</span> result = transform(value)</span><br><span class="line">                    observer.on(.next(result))</span><br><span class="line">                <span class="keyword">case</span> .error(<span class="keyword">let</span> error):</span><br><span class="line">                    observer.on(.error(error))</span><br><span class="line">                <span class="keyword">case</span> .completed:</span><br><span class="line">                    observer.on(.completed)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> subscription</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>参数是一个闭包，其中闭包参数是E类型返回值是R类型，map函数的返回值是一个Observable类型。</p></blockquote>]]></content>
       
       <categories>
           
@@ -558,10 +533,10 @@
     </entry>
     
     <entry>
-      <title>RxSwift-Grammar-observeOn()和subscribeOn()</title>
-      <link href="/2018/03/27/Swift/RxSwift/Grammar/observeOn()%E5%92%8CsubscribeOn()/"/>
-      <url>/2018/03/27/Swift/RxSwift/Grammar/observeOn()%E5%92%8CsubscribeOn()/</url>
-      <content type="html"><![CDATA[<h1 id="observeOn-和subscribeOn"><a href="#observeOn-和subscribeOn" class="headerlink" title="observeOn()和subscribeOn()"></a>observeOn()和subscribeOn()</h1><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>subscribeOn()</td><td>设置起点在哪个线程</td></tr><tr><td>observeOn()</td><td>置了后续工作在哪个线程</td></tr></tbody></table><blockquote><p>1)所有动作都发生在当前的默认线程<br>2)observeOn()转换线程到主线程，下面所有的操作都在主线程<br>3)subscribeOn()规定动作一开始不是发生在默认线程，而是在OtherScheduler了<br>)-如果之前没有调用observeOn()，那么这边会在OtherScheduler发生，但是我们前面调用了observeOn()，所以这个动作会在主线程中调用<br>subscribeOn()只是影响事件链开始默认的线程，而observeOn()规定了下一步动作发生在哪个线程中。</p></blockquote><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">someObservable</span><br><span class="line">     .doOneThing() <span class="comment">//1</span></span><br><span class="line">     .observeOn(<span class="type">MainRouteScheduler</span>.instance) <span class="comment">// 2</span></span><br><span class="line">      .subscribeOn(<span class="type">OtherScheduler</span>.instance) <span class="comment">// 3</span></span><br><span class="line">      .subscribeNext &#123; <span class="comment">// 4</span></span><br><span class="line">        ......</span><br><span class="line">         &#125;</span><br><span class="line">      .addDisposableTo(disposeBag)</span><br></pre></td></tr></table></figure>]]></content>
+      <title>RxSwift-Grammar-Observable可观察序列&amp;Observer观察者</title>
+      <link href="/2018/03/27/Swift/RxSwift/Grammar/Observable&amp;Observer/"/>
+      <url>/2018/03/27/Swift/RxSwift/Grammar/Observable&amp;Observer/</url>
+      <content type="html"><![CDATA[<h1 id="Observable可观察序列-和-Observer观察者"><a href="#Observable可观察序列-和-Observer观察者" class="headerlink" title="Observable可观察序列  和 Observer观察者"></a>Observable可观察序列  和 Observer观察者</h1><h2 id="实质"><a href="#实质" class="headerlink" title="实质"></a>实质</h2><blockquote><p>Observer (观察者)订阅一个可观察序列 Observable(事件源)<br>每一个Observable的实例都是一个序列<br>观察者 对 Observable 发射的数据或数据序列作出响应</p></blockquote><h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><blockquote><p>Button 的点击这个情景</p></blockquote><ul><li>把用户一次又一次的点击 Button 看做是序列(sequence)</li><li>通过调用 subscribe 来订阅这个点击事件</li><li>每次点击都会发射一个数据</li><li>作为订阅者的 subscribe 收到这个这个数据进行某些响应</li></ul><blockquote><p>Rx 的基本概念，有Observer观察者观察一个序列sequence，每当序列发射值的时候，观察者根据序列做一些事情<br>Observable序列相比于Swift序列的关键优势点在于它能够异步地接收元素</p></blockquote><ul><li>Observable(ObservableType)等效于Sequence</li><li>observableType.subscribe(_:)方法等效于Sequence.makeIterator()</li><li>ObservableType.subscribe(_:)接收一个观察者ObserverType参数,它将被订阅自动接收由可观察到的序列事件和元素，而不是在返回的生成器上手动调用next()</li></ul><blockquote><p>如果一个Observable发出一个next事件(Event.next(Element)),它还能够继续发出更多的事件<br>但是，如果一个Observable发出一个error事件(Event.error(ErrorType))或者一个completed事件(Event.completed)，那么这个Observable序列就不能给订阅者发送其他的事件</p></blockquote><h2 id="可观察序列-Observables-aka-Sequences"><a href="#可观察序列-Observables-aka-Sequences" class="headerlink" title="可观察序列 (Observables aka Sequences)"></a>可观察序列 (Observables aka Sequences)</h2><blockquote><p>可观察序列 存在三种情况:<br>①发射数据(Next)<br>②遇到问题(Error)<br>③发射完成(Completed)</p></blockquote><blockquote><p>有限序列</p></blockquote><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">比如，有这样一个序列 --1--2--3--4--5--6--| ，它发送了按顺序发送了 1 2 3 4 5 6 这些值后，就终止了，就是发射完成。这是一个有限序列</span><br><span class="line">也有可能因为某些特殊的情况，遇到某些错误（比如数据解析错误），--1--2--3--4--X ，因为解析错误意外终止</span><br></pre></td></tr></table></figure><blockquote><p>无限序列</p></blockquote><ul><li>比如用户点击 Button ，这个就属于无限序列</li></ul><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---tap-tap-------tap---&gt; 当然这里的无限不是真的无限，是不确定用户什么时候会点击，不确定是否会继续点击。所以这是一个无限序列，每当用户点击，序列就发射一个值</span><br></pre></td></tr></table></figure><blockquote><p>将以上的三种情况统概括为事件</p></blockquote><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Event</span>&lt;<span class="title">Element</span>&gt;  </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Next</span>(<span class="type">Element</span>)      <span class="comment">// 序列的下一个元素</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">Error</span>(<span class="type">ErrorType</span>)   <span class="comment">// 序列因为某些错误终止</span></span><br><span class="line">    <span class="keyword">case</span> <span class="type">Completed</span>          <span class="comment">// 正常的序列技术</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="观察者-Observer"><a href="#观察者-Observer" class="headerlink" title="观察者 (Observer)"></a>观察者 (Observer)</h2><blockquote><p>观察者需要一个订阅序列的功能</p></blockquote><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Observable</span>&lt;<span class="title">Element</span>&gt; </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">subscribe</span><span class="params">(observer: Observer&lt;Element&gt;)</span></span> -&gt; <span class="type">Disposable</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">ObserverType</span> </span>&#123;</span><br><span class="line"> <span class="function"><span class="keyword">func</span> <span class="title">on</span><span class="params">(event: Event&lt;Element&gt;)</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>通过序列的这个 subscribe 来订阅序列<br>这里就应该提到序列的“冷”“热”问题</p></blockquote><ul><li>冷：只有当有观察者订阅这个序列时，序列才发射值</li><li>热：序列创建时就开始发射值</li></ul><blockquote><p>整体上就是这样的一个关系，序列发射值，观察者订阅序列，收到值，进行处理</p></blockquote><h2 id="Obserable"><a href="#Obserable" class="headerlink" title="Obserable"></a>Obserable</h2><blockquote><p>创建被观察者其实就是<strong>创建一个Obserable的sequence</strong>，就是创建一个流，然后就可以被订阅subscribe，这样被观察者发出时间消失，就能做相应的处理</p></blockquote>]]></content>
       
       <categories>
           
@@ -587,6 +562,56 @@
       <link href="/2018/03/27/Swift/RxSwift/Grammar/UIBindingObserver/"/>
       <url>/2018/03/27/Swift/RxSwift/Grammar/UIBindingObserver/</url>
       <content type="html"><![CDATA[<h1 id="UIBindingObserver"><a href="#UIBindingObserver" class="headerlink" title="UIBindingObserver"></a>UIBindingObserver</h1><blockquote><p>UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个observer，我们可以这样做</p></blockquote><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">extension Reactive where Base: UITextField &#123;</span><br><span class="line">    var inputEnabled: UIBindingObserver&lt;Base, Result&gt; &#123;</span><br><span class="line">        return UIBindingObserver(UIElement: base) &#123; textFiled, result in</span><br><span class="line">            textFiled.isEnabled = result.isValid</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>UIBindingObserver是一个类，他的初始化方法中，有两个参数，第一个参数是一个元素本身，第一个参数是一个闭包，闭包参数是元素本身，还有他的一个属性</p></blockquote><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">init</span>(<span class="type">UIElement</span>: <span class="type">UIElementType</span>, binding: @escaping (<span class="type">UIElementType</span>, <span class="type">Value</span>) -&gt; <span class="type">Swift</span>.<span class="type">Void</span>)</span><br></pre></td></tr></table></figure><blockquote><p>自定义了一个inputEnabled关联了UITextField的isEnabled属性</p></blockquote>]]></content>
+      
+      <categories>
+          
+          <category> RxSwift </category>
+          
+          <category> Grammar </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> RxSwift </tag>
+            
+            <tag> Grammar </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>RxSwift-Grammar-Subscribe</title>
+      <link href="/2018/03/27/Swift/RxSwift/Grammar/Subscribe/"/>
+      <url>/2018/03/27/Swift/RxSwift/Grammar/Subscribe/</url>
+      <content type="html"><![CDATA[<h1 id="subscribe-和-subscribe-onNext"><a href="#subscribe-和-subscribe-onNext" class="headerlink" title="subscribe 和 subscribe(onNext:)"></a>subscribe 和 subscribe(onNext:)</h1><blockquote><p>Subscribe</p></blockquote><ul><li><strong>subscribe是订阅sequence发出的事件</strong>，比如next事件，error事件等</li><li>而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和completed事件</li><li>相对应的还有subscribe(onError:) 和 subscribe(onCompleted:)</li></ul>]]></content>
+      
+      <categories>
+          
+          <category> RxSwift </category>
+          
+          <category> Grammar </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> RxSwift </tag>
+            
+            <tag> Grammar </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>RxSwift-Grammar-observeOn()和subscribeOn()</title>
+      <link href="/2018/03/27/Swift/RxSwift/Grammar/observeOn()%E5%92%8CsubscribeOn()/"/>
+      <url>/2018/03/27/Swift/RxSwift/Grammar/observeOn()%E5%92%8CsubscribeOn()/</url>
+      <content type="html"><![CDATA[<h1 id="observeOn-和subscribeOn"><a href="#observeOn-和subscribeOn" class="headerlink" title="observeOn()和subscribeOn()"></a>observeOn()和subscribeOn()</h1><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>subscribeOn()</td><td>设置起点在哪个线程</td></tr><tr><td>observeOn()</td><td>置了后续工作在哪个线程</td></tr></tbody></table><blockquote><p>1)所有动作都发生在当前的默认线程<br>2)observeOn()转换线程到主线程，下面所有的操作都在主线程<br>3)subscribeOn()规定动作一开始不是发生在默认线程，而是在OtherScheduler了<br>)-如果之前没有调用observeOn()，那么这边会在OtherScheduler发生，但是我们前面调用了observeOn()，所以这个动作会在主线程中调用<br>subscribeOn()只是影响事件链开始默认的线程，而observeOn()规定了下一步动作发生在哪个线程中。</p></blockquote><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line">someObservable</span><br><span class="line">     .doOneThing() <span class="comment">//1</span></span><br><span class="line">     .observeOn(<span class="type">MainRouteScheduler</span>.instance) <span class="comment">// 2</span></span><br><span class="line">      .subscribeOn(<span class="type">OtherScheduler</span>.instance) <span class="comment">// 3</span></span><br><span class="line">      .subscribeNext &#123; <span class="comment">// 4</span></span><br><span class="line">        ......</span><br><span class="line">         &#125;</span><br><span class="line">      .addDisposableTo(disposeBag)</span><br></pre></td></tr></table></figure>]]></content>
       
       <categories>
           
@@ -962,8 +987,8 @@
     
     <entry>
       <title>RxSwift-Grammar-调试操作 -07-08</title>
-      <link href="/2017/12/20/Swift/RxSwift/Grammar/07-08-Operators-%E8%B0%83%E8%AF%95%E6%93%8D%E4%BD%9C/"/>
-      <url>/2017/12/20/Swift/RxSwift/Grammar/07-08-Operators-%E8%B0%83%E8%AF%95%E6%93%8D%E4%BD%9C/</url>
+      <link href="/2017/12/20/Swift/RxSwift/Grammar/08-%E7%89%B9%E5%BE%81%E5%BA%8F%E5%88%97/"/>
+      <url>/2017/12/20/Swift/RxSwift/Grammar/08-%E7%89%B9%E5%BE%81%E5%BA%8F%E5%88%97/</url>
       <content type="html"><![CDATA[<h1 id="①debug"><a href="#①debug" class="headerlink" title="①debug"></a>①debug</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><blockquote><p>我们可以将 debug 调试操作符添加到一个链式步骤当中，这样系统就能将所有的订阅者、事件、和处理等详细信息打印出来，方便我们开发调试</p></blockquote><h2 id="使用样例"><a href="#使用样例" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</span><br><span class="line"> </span><br><span class="line"><span class="type">Observable</span>.of(<span class="string">"2"</span>, <span class="string">"3"</span>)</span><br><span class="line">    .startWith(<span class="string">"1"</span>)</span><br><span class="line">    .debug()</span><br><span class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure><p><img src="http://ozr735s7e.bkt.clouddn.com/%20RxSwift-Grammar-%E8%B0%83%E8%AF%95%E6%93%8D%E4%BD%9C%20-07-08.png" alt=""></p><h2 id="debug-方法还可以传入标记参数"><a href="#debug-方法还可以传入标记参数" class="headerlink" title="debug() 方法还可以传入标记参数"></a>debug() 方法还可以传入标记参数</h2><blockquote><p>当项目中存在多个 debug 时可以很方便地区分出来</p></blockquote><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</span><br><span class="line"> </span><br><span class="line"><span class="type">Observable</span>.of(<span class="string">"2"</span>, <span class="string">"3"</span>)</span><br><span class="line">    .startWith(<span class="string">"1"</span>)</span><br><span class="line">    .debug(<span class="string">"调试1"</span>)</span><br><span class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure><h1 id="②RxSwift-Resources-total"><a href="#②RxSwift-Resources-total" class="headerlink" title="②RxSwift.Resources.total"></a>②RxSwift.Resources.total</h1><h2 id="基本介绍-1"><a href="#基本介绍-1" class="headerlink" title="基本介绍"></a>基本介绍</h2><blockquote><p>通过将 RxSwift.Resources.total 打印出来，我们可以查看当前 RxSwift 申请的所有资源数量。这个在检查内存泄露的时候非常有用</p></blockquote><h2 id="使用样例-1"><a href="#使用样例-1" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="type">RxSwift</span>.<span class="type">Resources</span>.total)</span><br><span class="line">         </span><br><span class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</span><br><span class="line"> </span><br><span class="line"><span class="built_in">print</span>(<span class="type">RxSwift</span>.<span class="type">Resources</span>.total)</span><br><span class="line">         </span><br><span class="line"><span class="type">Observable</span>.of(<span class="string">"BBB"</span>, <span class="string">"CCC"</span>)</span><br><span class="line">    .startWith(<span class="string">"AAA"</span>)</span><br><span class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line">         </span><br><span class="line"><span class="built_in">print</span>(<span class="type">RxSwift</span>.<span class="type">Resources</span>.total)</span><br><span class="line"></span><br><span class="line"><span class="comment">//print</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="type">AAA</span></span><br><span class="line"><span class="type">BBB</span></span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure><h1 id="③retry"><a href="#③retry" class="headerlink" title="③retry"></a>③retry</h1><h2 id="基本介绍-2"><a href="#基本介绍-2" class="headerlink" title="基本介绍"></a>基本介绍</h2><blockquote><p>使用该方法当遇到错误的时候，会重新订阅该序列。比如遇到网络请求失败时，可以进行重新连接。<br>retry() 方法可以传入数字表示重试次数。不传的话只会重试一次</p></blockquote><h2 id="使用样例-2"><a href="#使用样例-2" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</span><br><span class="line"><span class="keyword">var</span> <span class="built_in">count</span> = <span class="number">1</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">let</span> sequenceThatErrors = <span class="type">Observable</span>&lt;<span class="type">String</span>&gt;.create &#123; observer <span class="keyword">in</span></span><br><span class="line">    observer.onNext(<span class="string">"a"</span>)</span><br><span class="line">    observer.onNext(<span class="string">"b"</span>)</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//让第一个订阅时发生错误</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">count</span> == <span class="number">1</span> &#123;</span><br><span class="line">        observer.onError(<span class="type">MyError</span>.<span class="type">A</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Error encountered"</span>)</span><br><span class="line">        <span class="built_in">count</span> += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    observer.onNext(<span class="string">"c"</span>)</span><br><span class="line">    observer.onNext(<span class="string">"d"</span>)</span><br><span class="line">    observer.onCompleted()</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">return</span> <span class="type">Disposables</span>.create()</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">sequenceThatErrors</span><br><span class="line">    .retry(<span class="number">2</span>)  <span class="comment">//重试2次（参数为空则只重试一次）</span></span><br><span class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)运行结果如下：</span><br><span class="line">    </span><br><span class="line"><span class="comment">//print</span></span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line"><span class="type">Error</span> eccountered</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line"><span class="built_in">c</span></span><br><span class="line">d</span><br></pre></td></tr></table></figure>]]></content>
       
       <categories>
@@ -987,8 +1012,8 @@
     
     <entry>
       <title>RxSwift-Grammar-调试操作 -07-08</title>
-      <link href="/2017/12/20/Swift/RxSwift/Grammar/08-%E7%89%B9%E5%BE%81%E5%BA%8F%E5%88%97/"/>
-      <url>/2017/12/20/Swift/RxSwift/Grammar/08-%E7%89%B9%E5%BE%81%E5%BA%8F%E5%88%97/</url>
+      <link href="/2017/12/20/Swift/RxSwift/Grammar/07-08-Operators-%E8%B0%83%E8%AF%95%E6%93%8D%E4%BD%9C/"/>
+      <url>/2017/12/20/Swift/RxSwift/Grammar/07-08-Operators-%E8%B0%83%E8%AF%95%E6%93%8D%E4%BD%9C/</url>
       <content type="html"><![CDATA[<h1 id="①debug"><a href="#①debug" class="headerlink" title="①debug"></a>①debug</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><blockquote><p>我们可以将 debug 调试操作符添加到一个链式步骤当中，这样系统就能将所有的订阅者、事件、和处理等详细信息打印出来，方便我们开发调试</p></blockquote><h2 id="使用样例"><a href="#使用样例" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</span><br><span class="line"> </span><br><span class="line"><span class="type">Observable</span>.of(<span class="string">"2"</span>, <span class="string">"3"</span>)</span><br><span class="line">    .startWith(<span class="string">"1"</span>)</span><br><span class="line">    .debug()</span><br><span class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure><p><img src="http://ozr735s7e.bkt.clouddn.com/%20RxSwift-Grammar-%E8%B0%83%E8%AF%95%E6%93%8D%E4%BD%9C%20-07-08.png" alt=""></p><h2 id="debug-方法还可以传入标记参数"><a href="#debug-方法还可以传入标记参数" class="headerlink" title="debug() 方法还可以传入标记参数"></a>debug() 方法还可以传入标记参数</h2><blockquote><p>当项目中存在多个 debug 时可以很方便地区分出来</p></blockquote><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</span><br><span class="line"> </span><br><span class="line"><span class="type">Observable</span>.of(<span class="string">"2"</span>, <span class="string">"3"</span>)</span><br><span class="line">    .startWith(<span class="string">"1"</span>)</span><br><span class="line">    .debug(<span class="string">"调试1"</span>)</span><br><span class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br></pre></td></tr></table></figure><h1 id="②RxSwift-Resources-total"><a href="#②RxSwift-Resources-total" class="headerlink" title="②RxSwift.Resources.total"></a>②RxSwift.Resources.total</h1><h2 id="基本介绍-1"><a href="#基本介绍-1" class="headerlink" title="基本介绍"></a>基本介绍</h2><blockquote><p>通过将 RxSwift.Resources.total 打印出来，我们可以查看当前 RxSwift 申请的所有资源数量。这个在检查内存泄露的时候非常有用</p></blockquote><h2 id="使用样例-1"><a href="#使用样例-1" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="type">RxSwift</span>.<span class="type">Resources</span>.total)</span><br><span class="line">         </span><br><span class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</span><br><span class="line"> </span><br><span class="line"><span class="built_in">print</span>(<span class="type">RxSwift</span>.<span class="type">Resources</span>.total)</span><br><span class="line">         </span><br><span class="line"><span class="type">Observable</span>.of(<span class="string">"BBB"</span>, <span class="string">"CCC"</span>)</span><br><span class="line">    .startWith(<span class="string">"AAA"</span>)</span><br><span class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)</span><br><span class="line">         </span><br><span class="line"><span class="built_in">print</span>(<span class="type">RxSwift</span>.<span class="type">Resources</span>.total)</span><br><span class="line"></span><br><span class="line"><span class="comment">//print</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="type">AAA</span></span><br><span class="line"><span class="type">BBB</span></span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure><h1 id="③retry"><a href="#③retry" class="headerlink" title="③retry"></a>③retry</h1><h2 id="基本介绍-2"><a href="#基本介绍-2" class="headerlink" title="基本介绍"></a>基本介绍</h2><blockquote><p>使用该方法当遇到错误的时候，会重新订阅该序列。比如遇到网络请求失败时，可以进行重新连接。<br>retry() 方法可以传入数字表示重试次数。不传的话只会重试一次</p></blockquote><h2 id="使用样例-2"><a href="#使用样例-2" class="headerlink" title="使用样例"></a>使用样例</h2><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> disposeBag = <span class="type">DisposeBag</span>()</span><br><span class="line"><span class="keyword">var</span> <span class="built_in">count</span> = <span class="number">1</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">let</span> sequenceThatErrors = <span class="type">Observable</span>&lt;<span class="type">String</span>&gt;.create &#123; observer <span class="keyword">in</span></span><br><span class="line">    observer.onNext(<span class="string">"a"</span>)</span><br><span class="line">    observer.onNext(<span class="string">"b"</span>)</span><br><span class="line">     </span><br><span class="line">    <span class="comment">//让第一个订阅时发生错误</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">count</span> == <span class="number">1</span> &#123;</span><br><span class="line">        observer.onError(<span class="type">MyError</span>.<span class="type">A</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"Error encountered"</span>)</span><br><span class="line">        <span class="built_in">count</span> += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    observer.onNext(<span class="string">"c"</span>)</span><br><span class="line">    observer.onNext(<span class="string">"d"</span>)</span><br><span class="line">    observer.onCompleted()</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">return</span> <span class="type">Disposables</span>.create()</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">sequenceThatErrors</span><br><span class="line">    .retry(<span class="number">2</span>)  <span class="comment">//重试2次（参数为空则只重试一次）</span></span><br><span class="line">    .subscribe(onNext: &#123; <span class="built_in">print</span>($<span class="number">0</span>) &#125;)</span><br><span class="line">    .disposed(by: disposeBag)运行结果如下：</span><br><span class="line">    </span><br><span class="line"><span class="comment">//print</span></span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line"><span class="type">Error</span> eccountered</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line"><span class="built_in">c</span></span><br><span class="line">d</span><br></pre></td></tr></table></figure>]]></content>
       
       <categories>
@@ -2617,25 +2642,6 @@
     </entry>
     
     <entry>
-      <title>Swift-Lib-Kingfisher-图片加载库</title>
-      <link href="/2017/12/13/Swift/Swift/Lib/Kingfisher-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93/"/>
-      <url>/2017/12/13/Swift/Swift/Lib/Kingfisher-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93/</url>
-      <content type="html"><![CDATA[<p><a href="http://blog.csdn.net/djh996064549/article/details/71085679" target="_blank" rel="noopener">http://blog.csdn.net/djh996064549/article/details/71085679</a></p>]]></content>
-      
-      <categories>
-          
-          <category> Swift </category>
-          
-          <category> Lib </category>
-          
-          <category> Kingfisher </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    <entry>
       <title>Swift-Lib-SnapKit-自动布局</title>
       <link href="/2017/12/13/Swift/Swift/Lib/SnapKit-%E8%87%AA%E5%8A%A8%E5%B8%83%E5%B1%80/"/>
       <url>/2017/12/13/Swift/Swift/Lib/SnapKit-%E8%87%AA%E5%8A%A8%E5%B8%83%E5%B1%80/</url>
@@ -2648,6 +2654,25 @@
           <category> Lib </category>
           
           <category> SnapKit </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>Swift-Lib-Kingfisher-图片加载库</title>
+      <link href="/2017/12/13/Swift/Swift/Lib/Kingfisher-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93/"/>
+      <url>/2017/12/13/Swift/Swift/Lib/Kingfisher-%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%BA%93/</url>
+      <content type="html"><![CDATA[<p><a href="http://blog.csdn.net/djh996064549/article/details/71085679" target="_blank" rel="noopener">http://blog.csdn.net/djh996064549/article/details/71085679</a></p>]]></content>
+      
+      <categories>
+          
+          <category> Swift </category>
+          
+          <category> Lib </category>
+          
+          <category> Kingfisher </category>
           
       </categories>
       
