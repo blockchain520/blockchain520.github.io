@@ -318,7 +318,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/18/OC/Live/Live/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/18/OC/TLibSet/TLibSet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YKK">
@@ -337,7 +337,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/18/OC/Live/Live/" itemprop="url">Directory</a></h1>
+                <a class="post-title-link" href="/2018/05/18/OC/TLibSet/TLibSet/" itemprop="url">TLibSet  第三方账号配置目录</a></h1>
         
 
         <div class="post-meta">
@@ -372,8 +372,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Live/" itemprop="url" rel="index">
-                    <span itemprop="name">Live</span>
+                  <a href="/categories/TLibSet/" itemprop="url" rel="index">
+                    <span itemprop="name">TLibSet</span>
                   </a>
                 </span>
 
@@ -416,7 +416,7 @@
           
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/18/OC/Live/Live/#more" rel="contents">
+            <a class="btn" href="/2018/05/18/OC/TLibSet/TLibSet/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1636,7 +1636,7 @@ Moya
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/Swift/RxSwift/Grammar/UIBindingObserver/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/Swift/RxSwift/Grammar/Subscribe/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YKK">
@@ -1655,7 +1655,7 @@ Moya
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/Swift/RxSwift/Grammar/UIBindingObserver/" itemprop="url">RxSwift-Grammar-UIBindingObserver</a></h1>
+                <a class="post-title-link" href="/2018/03/27/Swift/RxSwift/Grammar/Subscribe/" itemprop="url">RxSwift-Grammar-Subscribe</a></h1>
         
 
         <div class="post-meta">
@@ -1740,12 +1740,16 @@ Moya
       
         
           
-          UIBindingObserver
-UIBindingObserver这个东西很有用的，创建我们自己的监听者，有时候RxCocoa(RxSwift中对UIKit的一个扩展库)给的扩展不够我们使用，比如一个UITextField有个isEnabled属性，我想把这个isEnabled变为一个obser
+          subscribe 和 subscribe(onNext:)
+Subscribe
+
+
+subscribe是订阅sequence发出的事件，比如next事件，error事件等
+而subscribe(onNext:)是监听sequence发出的next事件中的element进行处理，他会忽略error和
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/Swift/RxSwift/Grammar/UIBindingObserver/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/Swift/RxSwift/Grammar/Subscribe/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1798,7 +1802,7 @@ UIBindingObserver这个东西很有用的，创建我们自己的监听者，有
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/Swift/RxSwift/Grammar/Observable&Observer/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/Swift/RxSwift/Grammar/observeOn()和subscribeOn()/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YKK">
@@ -1817,7 +1821,7 @@ UIBindingObserver这个东西很有用的，创建我们自己的监听者，有
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/27/Swift/RxSwift/Grammar/Observable&Observer/" itemprop="url">RxSwift-Grammar-Observable可观察序列&Observer观察者</a></h1>
+                <a class="post-title-link" href="/2018/03/27/Swift/RxSwift/Grammar/observeOn()和subscribeOn()/" itemprop="url">RxSwift-Grammar-observeOn()和subscribeOn()</a></h1>
         
 
         <div class="post-meta">
@@ -1902,18 +1906,30 @@ UIBindingObserver这个东西很有用的，创建我们自己的监听者，有
       
         
           
-          Observable可观察序列  和 Observer观察者实质
-Observer (观察者)订阅一个可观察序列 Observable(事件源)每一个Observable的实例都是一个序列观察者 对 Observable 发射的数据或数据序列作出响应
-
-举例
-Button 的点击这个情景
+          observeOn()和subscribeOn()
 
 
-把用户
+
+
+
+
+
+
+subscribeOn()
+设置起点在哪个线程
+
+
+observeOn()
+置了后续工作在哪个线程
+
+
+
+
+1)所有动作都发生在当前的默认线程2)observeOn()转换线程到主线程，下面所有的操作都在主线程3)subscribe
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/Swift/RxSwift/Grammar/Observable&Observer/#more" rel="contents">
+            <a class="btn" href="/2018/03/27/Swift/RxSwift/Grammar/observeOn()和subscribeOn()/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
