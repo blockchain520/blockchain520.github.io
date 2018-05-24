@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="UserViewModel.swift···swiftimport RxSwiftstruct  UserViewModel{    //用户名    let myUserName = Variable(“guest”)    //用户信息    lazy var myUserInfo = {        return self.myUserName                   .asO">
+<meta name="description" content="UserViewModel.swiftimport RxSwiftstruct  UserViewModel&amp;#123;    //用户名    let myUserName = Variable(&quot;guest&quot;)    //用户信息    lazy var myUserInfo = &amp;#123;        return self.myUserName                   .a">
 <meta name="keywords" content="RxSwift,Grammar">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RxSwift-Two-Way-Binding-双向绑定">
 <meta property="og:url" content="http://yoursite.com/2018/05/23/Swift/RxSwift/Grammar/Two-Way-Binding-双向绑定/index.html">
 <meta property="og:site_name" content="💖区块链+直播+OC+Swift💖 💖随心记💖">
-<meta property="og:description" content="UserViewModel.swift···swiftimport RxSwiftstruct  UserViewModel{    //用户名    let myUserName = Variable(“guest”)    //用户信息    lazy var myUserInfo = {        return self.myUserName                   .asO">
+<meta property="og:description" content="UserViewModel.swiftimport RxSwiftstruct  UserViewModel&amp;#123;    //用户名    let myUserName = Variable(&quot;guest&quot;)    //用户信息    lazy var myUserInfo = &amp;#123;        return self.myUserName                   .a">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-24T07:49:16.209Z">
+<meta property="og:updated_time" content="2018-05-24T07:52:45.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RxSwift-Two-Way-Binding-双向绑定">
-<meta name="twitter:description" content="UserViewModel.swift···swiftimport RxSwiftstruct  UserViewModel{    //用户名    let myUserName = Variable(“guest”)    //用户信息    lazy var myUserInfo = {        return self.myUserName                   .asO">
+<meta name="twitter:description" content="UserViewModel.swiftimport RxSwiftstruct  UserViewModel&amp;#123;    //用户名    let myUserName = Variable(&quot;guest&quot;)    //用户信息    lazy var myUserInfo = &amp;#123;        return self.myUserName                   .a">
 
 
 
@@ -422,8 +422,7 @@
       
 
       
-        <h1 id="UserViewModel-swift"><a href="#UserViewModel-swift" class="headerlink" title="UserViewModel.swift"></a>UserViewModel.swift</h1><p>···swift<br>import RxSwift<br>struct  UserViewModel{<br>    //用户名<br>    let myUserName = Variable(“guest”)<br>    //用户信息<br>    lazy var myUserInfo = {<br>        return self.myUserName<br>                   .asObservable()<br>                   .map{<br>                       $0 == “520” ? “你爱我❤️” : “你不爱我❤️”<br>                       }<br>                   .share(replay: 1)<br>    }()<br>}</p>
-<p>···</p>
+        <h1 id="UserViewModel-swift"><a href="#UserViewModel-swift" class="headerlink" title="UserViewModel.swift"></a>UserViewModel.swift</h1><figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> RxSwift</span><br><span class="line"><span class="class"><span class="keyword">struct</span>  <span class="title">UserViewModel</span></span>&#123;</span><br><span class="line">    <span class="comment">//用户名</span></span><br><span class="line">    <span class="keyword">let</span> myUserName = <span class="type">Variable</span>(<span class="string">"guest"</span>)</span><br><span class="line">    <span class="comment">//用户信息</span></span><br><span class="line">    <span class="built_in">lazy</span> <span class="keyword">var</span> myUserInfo = &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.myUserName</span><br><span class="line">                   .asObservable()</span><br><span class="line">                   .<span class="built_in">map</span>&#123;</span><br><span class="line">                       $<span class="number">0</span> == <span class="string">"520"</span> ? <span class="string">"你爱我❤️"</span> : <span class="string">"你不爱我❤️"</span></span><br><span class="line">                       &#125;</span><br><span class="line">                   .share(replay: <span class="number">1</span>)</span><br><span class="line">    &#125;()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="ViewController-swift"><a href="#ViewController-swift" class="headerlink" title="ViewController.swift"></a>ViewController.swift</h1><blockquote>
 <p>disposeBag</p>
 </blockquote>
